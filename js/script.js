@@ -137,6 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Ativando os carrosseis
     setupCarousel('.diff-cards', '.diff-arrow-left', '.diff-arrow-right');
     setupCarousel('.gallery-container', '.gal-arrow-left', '.gal-arrow-right');
+    setupCarousel('.clients-logos', '.client-arrow-left', '.client-arrow-right');
 
 
     // --- LÓGICA DO LIGHTBOX (Galeria em tela cheia) ---

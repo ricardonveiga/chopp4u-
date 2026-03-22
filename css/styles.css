@@ -226,10 +226,12 @@ body.menu-open #page-wrapper { transform: translateX(300px); }
 
 .clients-section { background-color: var(--bg-white); padding: 100px 5%; border-radius: 0 0 100px 0; position: relative; z-index: 6; }
 .clients-carousel { display: flex; align-items: center; gap: 20px; max-width: 1400px; margin: 50px auto; }
-.clients-logos { display: flex; gap: 20px; flex: 1; justify-content: space-between; }
-.logo-box { background: #fff; box-shadow: 0 5px 15px rgba(0,0,0,0.05); padding: 20px; border-radius: 10px; display: flex; align-items: center; justify-content: center; }
-.logo-box img { max-width: 120px; filter: grayscale(100%); transition: 0.3s; }
-.logo-box:hover img { filter: grayscale(0%); }
+/* NOVO CARROSSEL DE CLIENTES */
+.clients-logos { display: flex; gap: 20px; flex: 1; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; -ms-overflow-style: none; }
+.clients-logos::-webkit-scrollbar { display: none; }
+.logo-box { background: #fff; box-shadow: 0 5px 15px rgba(0,0,0,0.05); padding: 20px; border-radius: 10px; display: flex; align-items: center; justify-content: center; min-width: 200px; scroll-snap-align: start; }
+.logo-box img { max-width: 150px; transition: transform 0.3s ease-in-out; cursor: pointer; }
+.logo-box:hover img { transform: scale(1.08); }
 
 .cta-section { position: relative; padding: 120px 5%; text-align: center; background-size: cover; background-position: center; background-attachment: fixed; margin-top: -50px; padding-top: 150px; }
 .cta-overlay { position: relative; z-index: 2; }
