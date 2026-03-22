@@ -225,7 +225,8 @@ body.menu-open #page-wrapper { transform: translateX(300px); }
 .gallery-item { min-width: calc(33.333% - 14px); scroll-snap-align: start; }
 .gallery-item img { width: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 5px; }
 
-.clients-section { background-color: var(--bg-black); padding: 100px 5%; border-radius: 0 0 100px 0; position: relative; z-index: 6; }
+.clients-section { background-color: var(--bg-white); padding: 100px 5%; border-radius: 0 0 100px 0; position: relative; z-index: 6; }
+.clients-section h2 { color: var(--text-dark); }
 .clients-carousel { display: flex; align-items: center; gap: 20px; max-width: 1400px; margin: 50px auto; }
 /* NOVO CARROSSEL DE CLIENTES */
 .clients-logos { display: flex; gap: 20px; flex: 1; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; -ms-overflow-style: none; }
