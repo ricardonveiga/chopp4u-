@@ -13,11 +13,21 @@
 <body>
 
     <aside id="sidebar" class="sidebar">
-        <button id="close-btn" class="close-btn"><i class="fas fa-times"></i></button>
+        <div class="sidebar-top-bar mobile-only">
+            <button id="close-btn-mob" class="close-btn-mob"><i class="fas fa-times"></i></button>
+            <img src="images/logo-chopp-4u-atualizado.svg" alt="Chopp 4U! Logo" class="sidebar-mob-logo">
+            <div class="header-social">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+
+        <button id="close-btn" class="close-btn desktop-only"><i class="fas fa-times"></i></button>
         
-        <div class="sidebar-header">
+        <div class="sidebar-header desktop-only">
             <img src="images/logo-chopp-4u-atualizado.svg" alt="Chopp 4U! Logo">
         </div>
+        
         <nav class="sidebar-nav">
             <ul>
                 <li><a href="#hero" class="active">HOME</a></li>
@@ -27,13 +37,28 @@
                 <li><a href="clientes.html">CLIENTES</a></li>
             </ul>
         </nav>
-        <div class="sidebar-social">
+        
+        <div class="sidebar-social desktop-only">
             <p>REDES SOCIAIS</p>
             <div class="social-icons">
                 <a href="#"><i class="fab fa-facebook-f"></i></a>
                 <a href="#"><i class="fab fa-instagram"></i></a>
             </div>
             <a href="https://wa.me/5511922886539?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20um%20or%C3%A7amento%21" target="_blank" class="btn btn-outline btn-full">→ ENTRE EM CONTATO</a>
+        </div>
+
+        <div class="sidebar-footer-mob mobile-only">
+            <h3>ENTRE EM CONTATO</h3>
+            <ul>
+                <li><i class="fab fa-whatsapp"></i> +55 11 92288-6539</li>
+                <li><i class="far fa-envelope"></i> vendas@chopp4u.com.br</li>
+                <li><i class="fab fa-instagram"></i> @chopp4u</li>
+                <li><i class="far fa-check-square"></i> Chopp4U - CNPJ 31.854.260/0001-58</li>
+                <li><i class="fas fa-map-marker-alt"></i> Rua Raul Pompéia 800, São Paulo - SP</li>
+            </ul>
+            <div class="sidebar-mob-bottom">
+                <p>© Copyright 2025 | Chopp4U! | ADM | Desenvolvido por smsites.com.br</p>
+            </div>
         </div>
     </aside>
     
@@ -43,11 +68,11 @@
         
         <div class="top-bar" id="top-bar">
             <div class="top-bar-container">
-                <div class="top-social">
+                <div class="top-social desktop-only">
                     <a href="#"><i class="fab fa-facebook-f"></i></a>
                     <a href="#"><i class="fab fa-instagram"></i></a>
                 </div>
-                <div class="top-info-right">
+                <div class="top-info-right desktop-only">
                     <span><i class="fas fa-check"></i> CNPJ 31.854.260/0001-58</span>
                     <span class="separator">|</span>
                     <span><i class="far fa-envelope"></i> vendas@chopp4u.com.br</span>
@@ -55,6 +80,17 @@
                     <span class="phone-number">
                         <a href="https://wa.me/5511922886539?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20um%20or%C3%A7amento%21" target="_blank" style="color: inherit;"><i class="fab fa-whatsapp"></i> +55 11 92288-6539</a>
                     </span>
+                </div>
+
+                <div class="top-info-right mobile-only mob-top-info">
+                    <div class="mob-contact-line">
+                        <span><i class="far fa-envelope"></i> vendas@chopp4u.com.br</span>
+                        <span class="separator">|</span>
+                        <span class="phone-number"><a href="https://wa.me/5511922886539" target="_blank" style="color: inherit;"><i class="fab fa-whatsapp"></i> +55 11 92288-6539</a></span>
+                    </div>
+                    <div class="mob-cnpj-line">
+                        <span><i class="fas fa-check"></i> CNPJ 31.854.260/0001-58</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -76,8 +112,13 @@
                         <li><a href="clientes.html">CLIENTES</a></li>
                     </ul>
                 </nav>
-                <div class="header-btn">
+                <div class="header-btn desktop-only">
                     <a href="https://wa.me/5511922886539?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20um%20or%C3%A7amento%21" target="_blank" class="btn btn-outline">→ PEÇA SEU CHOPE AQUI</a>
+                </div>
+
+                <div class="header-social mobile-only">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
                 </div>
             </div>
         </header>
@@ -90,7 +131,8 @@
                     <a href="https://wa.me/5511922886539?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20um%20or%C3%A7amento%21" target="_blank" class="btn btn-primary">SOLICITE UM ORÇAMENTO</a>
                 </div>
             </div>
-            <div class="hero-pagination">
+            
+            <div class="hero-pagination desktop-only">
                 <div class="page-item active">
                     <span class="num">01</span>
                     <span class="text">FAÇA O SEU EVENTO</span>
@@ -103,6 +145,15 @@
                     <span class="num">03</span>
                     <span class="text">EVENTOS CORPORATIVOS</span>
                 </div>
+            </div>
+
+            <div class="mobile-pagination mobile-only">
+                <div class="mob-controls">
+                    <span class="mob-prev">ANT</span> 
+                    <span style="color: var(--primary-yellow); margin: 0 10px;">/</span> 
+                    <span class="mob-next">PRÓX</span>
+                </div>
+                <div class="mob-current">01</div>
             </div>
         </section>
 

@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const menuBtn = document.getElementById('menu-btn');
     const closeBtn = document.getElementById('close-btn');
+    const closeBtnMob = document.getElementById('close-btn-mob'); // Pegando o botão X do mobile
     const sidebar = document.getElementById('sidebar');
     const overlay = document.getElementById('overlay');
 
@@ -14,7 +15,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     menuBtn.addEventListener('click', toggleMenu);
-    closeBtn.addEventListener('click', toggleMenu);
+    if(closeBtn) closeBtn.addEventListener('click', toggleMenu);
+    if(closeBtnMob) closeBtnMob.addEventListener('click', toggleMenu); // O botão de fechar do mobile funciona
     overlay.addEventListener('click', toggleMenu);
 
     const serviceItems = document.querySelectorAll('.service-item');
@@ -38,6 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- ANIMAÇÃO DOS BOTÕES E FUNDO DO HERO ---
     const heroSlide = document.querySelector('.hero-slider .slide');
     const pageItems = document.querySelectorAll('.hero-pagination .page-item');
+    const mobCurrent = document.querySelector('.mob-current'); // O número da paginação mobile
     
     // Pré-carregamento das imagens para evitar a "tela preta" piscando
     const imageUrls = [
@@ -61,14 +64,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function goToSlide(index) {
         if (!heroSlide) return;
-        pageItems.forEach(el => el.classList.remove('active'));
-        pageItems[index].classList.add('active');
+        
+        // Desktop nav update
+        if(pageItems.length > 0){
+            pageItems.forEach(el => el.classList.remove('active'));
+            if(pageItems[index]) pageItems[index].classList.add('active');
+        }
+        
         heroSlide.style.backgroundImage = bgImages[index];
         currentSlide = index;
+
+        // Mobile nav update ("01", "02", "03")
+        if(mobCurrent) {
+            mobCurrent.textContent = '0' + (index + 1);
+        }
     }
 
     function nextSlide() {
-        let next = (currentSlide + 1) % pageItems.length;
+        let next = (currentSlide + 1) % bgImages.length;
         goToSlide(next);
     }
 
@@ -81,15 +94,35 @@ document.addEventListener('DOMContentLoaded', () => {
         clearInterval(slideInterval);
     }
 
+    // Clique nas abas do desktop
     pageItems.forEach((item, index) => {
         item.addEventListener('click', () => {
-            stopSlider(); // Para a animação automática ao clicar
+            stopSlider(); 
             goToSlide(index);
         });
     });
 
+    // Controles Mobile (ANT / PRÓX)
+    const mobPrev = document.querySelector('.mob-prev');
+    const mobNext = document.querySelector('.mob-next');
+    
+    if(mobPrev) {
+        mobPrev.addEventListener('click', () => {
+            stopSlider();
+            let prev = (currentSlide - 1 + bgImages.length) % bgImages.length;
+            goToSlide(prev);
+        });
+    }
+    
+    if(mobNext) {
+        mobNext.addEventListener('click', () => {
+            stopSlider();
+            nextSlide();
+        });
+    }
+
     // Inicia a animação se existirem os itens na tela
-    if (pageItems.length > 0) {
+    if (bgImages.length > 0) {
         startSlider();
     }
 
@@ -185,5 +218,4 @@ document.addEventListener('DOMContentLoaded', () => {
             lightboxImg.src = galleryImages[currentImageIndex].src;
         }
     }
-
 });
