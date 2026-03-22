@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- ANIMAÇÃO DOS BOTÕES E FUNDO DO HERO ---
     const heroSlide = document.querySelector('.hero-slider .slide');
     const pageItems = document.querySelectorAll('.hero-pagination .page-item');
-    const mobileCurrentNum = document.getElementById('current-slide-num'); // Controle numero mobile
+    const mobileCurrentNum = document.getElementById('current-slide-num');
     
     const imageUrls = [
         'images/banner-1.jpg',
@@ -60,7 +60,6 @@ document.addEventListener('DOMContentLoaded', () => {
     function goToSlide(index) {
         if (!heroSlide) return;
         
-        // Atualiza a barra do desktop
         pageItems.forEach(el => el.classList.remove('active'));
         if(pageItems[index]) {
             pageItems[index].classList.add('active');
@@ -69,14 +68,12 @@ document.addEventListener('DOMContentLoaded', () => {
         heroSlide.style.backgroundImage = bgImages[index];
         currentSlide = index;
 
-        // Atualiza o numero na barra do Mobile
         if(mobileCurrentNum) {
             mobileCurrentNum.textContent = '0' + (index + 1);
         }
     }
 
     function nextSlide() {
-        // Se pageItems existir no desktop usa o tamanho dele, senão usa o array de bg
         let limit = pageItems.length > 0 ? pageItems.length : bgImages.length;
         let next = (currentSlide + 1) % limit;
         goToSlide(next);
@@ -96,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
         clearInterval(slideInterval);
     }
 
-    // Clique nas barras do Desktop
+    // Clique na paginação Desktop
     pageItems.forEach((item, index) => {
         item.addEventListener('click', () => {
             stopSlider(); 
@@ -104,7 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Cliques nos textos "ANT / PRÓX" do Mobile
+    // Clique na paginação Mobile (ANT / PRÓX)
     const mobilePrevBtn = document.getElementById('prev-slide-btn');
     const mobileNextBtn = document.getElementById('next-slide-btn');
 
@@ -122,12 +119,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Inicia a animação se existirem os itens na tela
     if (pageItems.length > 0 || bgImages.length > 0) {
         startSlider();
     }
 
-    // --- LÓGICA DOS CARROSSEIS (Diferenciais e Galeria) ---
+    // --- LÓGICA DOS CARROSSEIS ---
     function setupCarousel(containerSelector, leftArrowSelector, rightArrowSelector) {
         const container = document.querySelector(containerSelector);
         const leftArrow = document.querySelector(leftArrowSelector);
@@ -170,7 +166,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setupCarousel('.clients-logos', '.client-arrow-left', '.client-arrow-right');
 
 
-    // --- LÓGICA DO LIGHTBOX (Galeria em tela cheia) ---
+    // --- LÓGICA DO LIGHTBOX ---
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightbox-img');
     const closeLightboxBtn = document.querySelector('.lightbox-close');

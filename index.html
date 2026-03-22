@@ -13,14 +13,16 @@
 <body>
 
     <aside id="sidebar" class="sidebar">
-        <div class="sidebar-fake-header">
-            <button id="close-btn" class="close-btn"><i class="fas fa-times"></i></button>
+        <button id="close-btn" class="close-btn"><i class="fas fa-times"></i></button>
+        
+        <div class="sidebar-header">
             <img src="images/logo-chopp-4u-atualizado.svg" alt="Chopp 4U! Logo">
-            <div class="mobile-header-social">
+            <div class="mobile-only mobile-sidebar-social">
                 <a href="#"><i class="fab fa-facebook-f"></i></a>
                 <a href="#"><i class="fab fa-instagram"></i></a>
             </div>
         </div>
+        
         <nav class="sidebar-nav">
             <ul>
                 <li><a href="#hero" class="active">HOME</a></li>
@@ -30,7 +32,17 @@
                 <li><a href="clientes.html">CLIENTES</a></li>
             </ul>
         </nav>
-        <div class="sidebar-contact-yellow">
+        
+        <div class="sidebar-social desktop-only">
+            <p>REDES SOCIAIS</p>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+            <a href="https://wa.me/5511922886539?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20um%20or%C3%A7amento%21" target="_blank" class="btn btn-outline btn-full">→ ENTRE EM CONTATO</a>
+        </div>
+
+        <div class="mobile-only sidebar-contact-yellow">
             <h4>ENTRE EM CONTATO</h4>
             <ul>
                 <li><i class="fab fa-whatsapp"></i> +55 11 92288-6539</li>
@@ -54,13 +66,13 @@
                     <a href="#"><i class="fab fa-instagram"></i></a>
                 </div>
                 <div class="top-info-right">
+                    <span><i class="fas fa-check"></i> CNPJ 31.854.260/0001-58</span>
+                    <span class="separator">|</span>
                     <span><i class="far fa-envelope"></i> vendas@chopp4u.com.br</span>
                     <span class="separator">|</span>
                     <span class="phone-number">
                         <a href="https://wa.me/5511922886539?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20um%20or%C3%A7amento%21" target="_blank" style="color: inherit;"><i class="fab fa-whatsapp"></i> +55 11 92288-6539</a>
                     </span>
-                    <span class="separator">|</span>
-                    <span><i class="fas fa-check"></i> CNPJ 31.854.260/0001-58</span>
                 </div>
             </div>
         </div>
@@ -73,7 +85,7 @@
                 <div class="logo">
                     <img src="images/logo-chopp-4u-atualizado.svg" alt="Chopp 4U! Logo">
                 </div>
-                <div class="mobile-header-social">
+                <div class="mobile-only mobile-header-social">
                     <a href="#"><i class="fab fa-facebook-f"></i></a>
                     <a href="#"><i class="fab fa-instagram"></i></a>
                 </div>
@@ -116,7 +128,7 @@
                 </div>
             </div>
 
-            <div class="mobile-hero-nav">
+            <div class="mobile-only mobile-hero-nav">
                 <div class="nav-controls">
                     <span id="prev-slide-btn">ANT</span> <span class="sep">/</span> <span id="next-slide-btn">PRÓX</span>
                 </div>
@@ -276,7 +288,18 @@
         </section>
 
         <footer class="footer">
-            <div class="contact-block-centered">
+            <div class="newsletter-bar desktop-only">
+                <div>
+                    <h4>FIQUE CONECTADO</h4>
+                    <p>Leve o melhor chope para seu evento com a Chopp4U!</p>
+                </div>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Insira seu e-mail" required>
+                    <button type="submit">CADASTRAR</button>
+                </form>
+            </div>
+
+            <div class="mobile-only contact-block-centered">
                 <a href="https://wa.me/5511922886539?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20um%20or%C3%A7amento%21" target="_blank" class="btn btn-solid-yellow btn-cadastrar">CADASTRAR</a>
                 <h3>FIQUE CONECTADO</h3>
                 <p>Leve o melhor chope para seu evento com a Chopp4U!</p>

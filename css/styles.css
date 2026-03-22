@@ -20,8 +20,8 @@ body { font-family: var(--font-main); background-color: var(--bg-dark); color: v
 ul { list-style: none; }
 a { text-decoration: none; color: inherit; transition: 0.3s ease; }
 
-/* Desktop Classes that should be hidden on mobile */
-.mobile-header-social, .mobile-hero-nav { display: none; }
+/* Proteção para os elementos Mobile não sujarem o Desktop */
+.mobile-only { display: none !important; }
 
 /* ==========================================================================
    2. TIPOGRAFIA GERAL
@@ -43,7 +43,7 @@ p { line-height: 1.6; margin-bottom: 1rem; font-family: var(--font-main); }
 .logo img { max-height: 50px; width: auto; display: block; transition: transform 0.3s ease-in-out; cursor: pointer; }
 .logo:hover img { transform: scale(1.08); }
 
-.btn { display: inline-block; padding: 12px 24px; border-radius: 5px; font-family: var(--font-menu); font-weight: 600; font-size: 0.9rem; cursor: pointer; transition: all 0.3s ease; text-transform: uppercase; }
+.btn { display: inline-block; padding: 12px 24px; border-radius: 5px; font-family: var(--font-menu); font-weight: 600; font-size: 0.9rem; cursor: pointer; transition: all 0.3s ease; }
 .square-btn { border-radius: 0; }
 .btn-full { width: 100%; }
 
@@ -59,26 +59,13 @@ p { line-height: 1.6; margin-bottom: 1rem; font-family: var(--font-main); }
 
 /* --- EFEITO: LINHA CONTÍNUA NOS BOTÕES --- */
 .header-btn .btn-outline, .sidebar-social .btn-outline {
-    position: relative; border: none; 
-    background-color: transparent;
-    color: var(--text-light); border-radius: 5px; padding: 10px 20px;
-    display: inline-flex; justify-content: center; align-items: center;
-    z-index: 1; overflow: hidden; transition: color 0.3s ease;
+    position: relative; border: none; background-color: transparent; color: var(--text-light); border-radius: 5px; padding: 10px 20px; display: inline-flex; justify-content: center; align-items: center; z-index: 1; overflow: hidden; transition: color 0.3s ease;
 }
 .header-btn .btn-outline:hover, .sidebar-social .btn-outline:hover { color: var(--text-light); }
-.header-btn .btn-outline::before, .sidebar-social .btn-outline::before {
-    content: ''; position: absolute; z-index: -2; width: 300px; height: 300px; 
-    top: 50%; left: 50%; background-image: conic-gradient(transparent 75%, var(--primary-yellow) 100%);
-    animation: traceBorder 4.5s linear infinite;
-}
-.header-btn .btn-outline::after, .sidebar-social .btn-outline::after {
-    content: ''; position: absolute; z-index: -1; inset: 1px; background-color: var(--bg-black); border-radius: 4px; transition: background-color 0.3s ease; 
-}
+.header-btn .btn-outline::before, .sidebar-social .btn-outline::before { content: ''; position: absolute; z-index: -2; width: 300px; height: 300px; top: 50%; left: 50%; background-image: conic-gradient(transparent 75%, var(--primary-yellow) 100%); animation: traceBorder 4.5s linear infinite; }
+.header-btn .btn-outline::after, .sidebar-social .btn-outline::after { content: ''; position: absolute; z-index: -1; inset: 1px; background-color: var(--bg-black); border-radius: 4px; transition: background-color 0.3s ease; }
 .header-btn .btn-outline:hover::after, .sidebar-social .btn-outline:hover::after { background-color: #1f1f1f; }
-@keyframes traceBorder {
-    0% { transform: translate(-50%, -50%) rotate(0deg); }
-    100% { transform: translate(-50%, -50%) rotate(360deg); }
-}
+@keyframes traceBorder { 0% { transform: translate(-50%, -50%) rotate(0deg); } 100% { transform: translate(-50%, -50%) rotate(360deg); } }
 
 /* --- LIGHTBOX --- */
 .lightbox { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.9); z-index: 9999; display: flex; justify-content: center; align-items: center; opacity: 0; visibility: hidden; transition: 0.3s; }
@@ -107,7 +94,9 @@ p { line-height: 1.6; margin-bottom: 1rem; font-family: var(--font-main); }
 
 #header { background-color: var(--bg-black); width: 100%; position: relative; z-index: 100; border-bottom: 2px solid var(--primary-yellow); }
 .header-container { display: flex; justify-content: space-between; align-items: center; padding: 20px 5%; max-width: 1800px; margin: 0 auto; }
-.menu-icon { color: var(--primary-yellow); font-size: 1.5rem; cursor: pointer; display: none; }
+
+/* ICONE DO MENU DE VOLTA AO NORMAL NO DESKTOP */
+.menu-icon { color: var(--primary-yellow); font-size: 1.5rem; cursor: pointer; }
 
 .desktop-nav ul { display: flex; align-items: center; gap: 20px; }
 .desktop-nav li { display: flex; align-items: center; gap: 20px; }
@@ -118,11 +107,33 @@ p { line-height: 1.6; margin-bottom: 1rem; font-family: var(--font-main); }
 .desktop-nav a:hover::after, .desktop-nav a.active::after { width: 100%; opacity: 1; }
 
 /* ==========================================================================
-   4.1 MENU LATERAL (SIDEBAR DESKTOP)
+   4.1 MENU LATERAL (SIDEBAR DESKTOP ORIGINAL)
    ========================================================================== */
 .sidebar { position: fixed; top: 0; left: -300px; width: 300px; height: 100vh; background-color: var(--bg-dark); z-index: 1000; transition: transform 0.4s ease; padding: 40px 0; display: flex; flex-direction: column; overflow: visible; }
-.sidebar-fake-header { display: none; }
-.sidebar-contact-yellow { display: none; }
+.sidebar.open { transform: translateX(300px); }
+.close-btn { position: absolute; left: 315px; top: 15px; width: 40px; height: 40px; background-color: var(--bg-black); border-radius: 50%; display: flex; justify-content: center; align-items: center; border: none; color: var(--text-gray); font-size: 1.2rem; cursor: pointer; transition: all 0.3s ease; opacity: 0; visibility: hidden; z-index: 1001; }
+.sidebar.open .close-btn { opacity: 1; visibility: visible; }
+.close-btn:hover { color: var(--primary-yellow); transform: scale(1.1); }
+.sidebar-header { position: relative; display: flex; justify-content: center; align-items: center; margin-bottom: 50px; width: 100%; }
+.sidebar-header img { max-height: 45px; width: auto; display: block; }
+.sidebar-nav ul { display: flex; flex-direction: column; align-items: center; width: 100%; }
+.sidebar-nav li { width: 100%; text-align: center; margin: 15px 0; border: none !important; }
+.sidebar-nav a { font-family: var(--font-menu); font-size: 0.80rem; font-weight: 400; display: inline-block; padding-bottom: 5px; color: var(--text-gray); transition: color 0.3s ease; text-transform: uppercase; position: relative; }
+.sidebar-nav a::after { content: ''; position: absolute; bottom: -18px; left: 50%; transform: translateX(-50%); width: 0%; height: 1px; background-color: var(--primary-yellow); opacity: 0; transition: all 0.3s ease; }
+.sidebar-nav a:hover, .sidebar-nav a.active { color: var(--primary-yellow);}
+.sidebar-nav a:hover::after, .sidebar-nav a.active::after { width: 150px; opacity: 1; }
+
+.sidebar-social { margin-top: 40px; display: flex; flex-direction: column; align-items: center; width: 100%; }
+.sidebar-social p { color: var(--primary-yellow); font-weight: 700; font-size: 0.85rem; margin-bottom: 15px; letter-spacing: 0.5px; }
+.social-icons { display: flex; justify-content: center; gap: 15px; margin-bottom: 30px; }
+.social-icons a { display: inline-flex; justify-content: center; align-items: center; width: 35px; height: 35px; border-radius: 50%; background-color: var(--primary-yellow); border: 1px solid var(--primary-yellow); color: var(--bg-black); font-size: 1rem; transition: 0.3s ease; }
+.social-icons a:hover { background-color: var(--bg-black); color: var(--bg-white); transform: scale(1.1); }
+.sidebar-social .btn-outline { width: 80%; font-size: 0.8rem; }
+
+.overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 999; display: none; }
+.overlay.show { display: block; }
+#page-wrapper { transition: transform 0.4s ease; width: 100%; position: relative; }
+body.menu-open #page-wrapper { transform: translateX(300px); }
 
 /* ==========================================================================
    5. SEÇÕES DA PÁGINA
@@ -196,6 +207,10 @@ p { line-height: 1.6; margin-bottom: 1rem; font-family: var(--font-main); }
    6. FOOTER E WHATSAPP
    ========================================================================= */
 .footer { background: var(--gradient-yellow); color: var(--text-dark); padding-top: 60px; position: relative; }
+.newsletter-bar { display: flex; justify-content: space-between; align-items: center; max-width: 1600px; margin: 0 auto; padding: 0 5% 40px; border-bottom: 1px solid rgba(0,0,0,0.1); }
+.newsletter-form { display: flex; }
+.newsletter-form input { padding: 12px 20px; border: none; border-radius: 5px 0 0 5px; width: 300px; outline: none; }
+.newsletter-form button { background: var(--bg-black); color: var(--text-light); border: none; padding: 12px 25px; border-radius: 0 5px 5px 0; font-family: var(--font-menu); font-weight: 600; cursor: pointer; }
 
 .contact-block-centered { text-align: center; max-width: 1600px; margin: 0 auto; padding: 0 5% 40px; border-bottom: 1px solid rgba(0,0,0,0.1); display: flex; flex-direction: column; align-items: center; }
 .contact-block-centered h3 { color: var(--text-dark); margin: 20px 0 10px; }
@@ -217,50 +232,55 @@ p { line-height: 1.6; margin-bottom: 1rem; font-family: var(--font-main); }
 .whatsapp-float { position: fixed; bottom: 30px; right: 30px; background-color: #25d366; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 2rem; box-shadow: 2px 2px 10px rgba(0,0,0,0.2); z-index: 1000; transition: 0.3s; }
 .whatsapp-float:hover { transform: scale(1.1); }
 
+
 /* ==========================================================================
-   7. MEDIA QUERIES (A MÁGICA DO MOBILE COMEÇA AQUI)
+   7. MEDIA QUERIES (MOBILE) - ONDE TUDO ACONTECE SEM AFETAR O DESKTOP
    ========================================================================== */
 @media (max-width: 992px) {
-    /* Esconde elementos exclusivos do Desktop */
-    .desktop-nav, .header-btn { display: none; }
+    /* Exibe os fantasmas mobile e oculta os exclusivos desktop */
+    .mobile-only { display: flex !important; }
     .desktop-only { display: none !important; }
     
-    /* Configurações Globais Mobile */
+    .desktop-nav, .header-btn { display: none; }
     .btn { text-transform: uppercase; }
+    
     .hero-slider { margin-top: 0; }
     .about-container, .services-container { flex-direction: column; }
     .footer-content { grid-template-columns: 1fr 1fr; gap: 30px; }
     
-    /* === 1. TOP BAR (Faixa Amarela) IDÊNTICA AO PRINT === */
+    /* Top Bar Mobile - IDÊNTICA ao print */
     .top-bar { display: block; padding: 10px 5%; }
-    .top-bar-container { flex-direction: column; text-align: center; gap: 5px; justify-content: center; }
-    .top-social { display: none; } /* Oculta as redes aqui para jogar pro header */
-    .top-info-right { flex-direction: row; flex-wrap: wrap; justify-content: center; font-size: 0.75rem; color: var(--bg-black); font-weight: 600; }
-    .top-info-right span { margin: 2px 5px; display: inline-flex; align-items: center; }
-    .top-info-right .separator { display: none; } /* Esconde o pipe entre os itens para quebrar melhor */
+    .top-bar-container { flex-direction: column; text-align: center; justify-content: center; }
+    .top-social { display: none; }
+    .top-info-right { flex-direction: row; flex-wrap: wrap; justify-content: center; font-size: 0.75rem; color: var(--bg-black); font-weight: 600; line-height: 1.8; }
+    .top-info-right span { margin: 0 5px; display: inline-flex; align-items: center; }
+    .top-info-right .separator { display: none; } /* Oculta a barrinha em pé */
     
-    /* === 2. HEADER IDÊNTICO AO PRINT === */
-    .header-container { position: relative; display: flex; align-items: center; justify-content: space-between; padding: 15px 5%; }
-    .menu-icon { display: block; order: 1; color: var(--primary-yellow); font-size: 1.5rem; flex: 1; text-align: left; }
+    /* Header Mobile - IDÊNTICO ao print */
+    .header-container { display: flex; align-items: center; justify-content: space-between; padding: 15px 5%; position: relative; }
+    .menu-icon { order: 1; flex: 1; text-align: left; }
     .logo { order: 2; flex: 2; display: flex; justify-content: center; }
     .logo img { max-height: 40px; }
-    .mobile-header-social { display: flex; order: 3; flex: 1; gap: 10px; justify-content: flex-end; }
+    .mobile-header-social { order: 3; flex: 1; gap: 10px; justify-content: flex-end; }
     .mobile-header-social a { border: 1px solid white; border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.9rem; }
     
-    /* === 3. MENU TELA CHEIA (DROPDOWN) IDÊNTICO AO PRINT === */
+    /* === MENU TELA CHEIA (DROPDOWN) === */
+    body.menu-open #page-wrapper { transform: none; } /* Reseta o efeito empurrar pro lado do desktop */
+    
     .sidebar { width: 100%; height: 100vh; left: 0; top: -100vh; transform: none; background-color: var(--bg-white); overflow-y: auto; padding: 0; display: flex; flex-direction: column; transition: top 0.4s ease; }
     .sidebar.open { top: 0; transform: none; }
     
-    .sidebar-fake-header { background-color: var(--bg-black); display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; border-bottom: 2px solid var(--primary-yellow); }
+    .sidebar-header { background-color: var(--bg-black); display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; border-bottom: 2px solid var(--primary-yellow); margin-bottom: 0; }
     .close-btn { position: static; background: transparent; color: var(--primary-yellow); opacity: 1; visibility: visible; width: auto; height: auto; font-size: 1.8rem; flex: 1; text-align: left; margin: 0; padding: 0; }
-    .sidebar-fake-header img { max-height: 40px; flex: 2; object-fit: contain; }
-    .sidebar-fake-header .mobile-header-social { flex: 1; justify-content: flex-end; }
+    .sidebar-header img { max-height: 40px; flex: 2; object-fit: contain; }
+    .mobile-sidebar-social { flex: 1; justify-content: flex-end; gap: 10px; }
+    .mobile-sidebar-social a { border: 1px solid white; border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.9rem; }
     
-    .sidebar-nav { width: 100%; background: var(--bg-white); margin-top: 0; padding: 0; }
+    .sidebar-nav { width: 100%; background: var(--bg-white); padding: 0; }
     .sidebar-nav ul { align-items: flex-start; padding: 0; margin: 0; }
-    .sidebar-nav li { margin: 0; width: 100%; text-align: left; padding: 0; }
+    .sidebar-nav li { margin: 0; width: 100%; text-align: left; padding: 0; border: none; }
     .sidebar-nav a { display: block; width: 100%; padding: 25px 5%; font-family: var(--font-menu); font-size: 1rem; color: var(--bg-black); text-transform: uppercase; border-bottom: 1px solid #f0f0f0; }
-    .sidebar-nav a::after { display: none; }
+    .sidebar-nav a::after { display: none; } /* Remove risquinho amarelo do desktop */
     .sidebar-nav a.active { background-color: var(--primary-yellow); color: var(--bg-black); }
     
     .sidebar-contact-yellow { display: flex; background-color: var(--primary-yellow); color: var(--bg-black); padding: 40px 5%; flex-grow: 1; flex-direction: column; align-items: center; text-align: center; }
@@ -269,51 +289,41 @@ p { line-height: 1.6; margin-bottom: 1rem; font-family: var(--font-main); }
     .sidebar-contact-yellow i { font-size: 1.2rem; margin-right: 8px; }
     .sidebar-footer-copy { margin-top: 50px; font-size: 0.75rem; opacity: 0.8; font-family: var(--font-main); }
     
-    /* Garante que o wrapper principal não faça aquele "push" lateral no celular */
-    body.menu-open #page-wrapper { transform: none; }
-
-    /* === 4. HERO SECTION ALINHADA À ESQUERDA === */
+    /* Hero Content alinhado à esquerda */
     .hero-content { text-align: left; align-items: flex-start; padding-bottom: 80px; max-width: 100%; }
     .hero-content h1 { font-size: 2.8rem; text-align: left; }
     .hero-content p { font-size: 1rem; text-align: left; margin-bottom: 30px; }
     
-    /* === 5. PAGINAÇÃO MOBILE (ANT/PRÓX) === */
-    .mobile-hero-nav { display: flex; justify-content: space-between; align-items: center; position: absolute; bottom: 40px; left: 5%; width: 90%; border-top: 1px solid rgba(255,255,255,0.3); padding-top: 20px; font-family: var(--font-menu); color: var(--bg-white); font-size: 1.2rem; font-weight: 600; }
+    /* Paginação Nova (ANT / PRÓX) */
+    .mobile-hero-nav { display: flex !important; justify-content: space-between; align-items: center; position: absolute; bottom: 40px; left: 5%; width: 90%; border-top: 1px solid rgba(255,255,255,0.3); padding-top: 20px; font-family: var(--font-menu); color: var(--bg-white); font-size: 1.2rem; font-weight: 600; }
     .nav-controls span { cursor: pointer; text-transform: uppercase; }
     .nav-controls .sep { color: var(--primary-yellow); margin: 0 15px; }
     .nav-counter { font-size: 1.2rem; }
 }
 
 @media (max-width: 768px) {
-    /* Ajustes Finais de Tamanho para Celulares Menores */
     h2 { font-size: 2rem; }
     .hero-content h1 { font-size: 2.2rem; }
     .section-subtitle { font-size: 0.8rem; }
     
-    /* Ajustando Margens e Paddings das Seções */
     .about-section, .services-section, .differentials-section, .gallery-section, .clients-section, .cta-section { padding: 60px 5%; }
     
-    /* Imagem do copo colar embaixo no celular também */
     .about-image { margin-bottom: -60px; margin-top: 20px; width: 100%; }
     
-    /* Container de Serviços */
     .services-container { margin-top: 30px; }
     .service-item { padding: 15px; border-radius: 20px; }
     .service-item .icon { font-size: 1.5rem; margin-right: 15px; }
     
-    /* Ajustes nos Carrosseis (Setas menores e cards em tela inteira) */
-    .card { min-width: 100%; }
-    .gallery-item { min-width: 100%; }
-    .logo-box { min-width: 100%; padding: 15px; }
+    .card, .gallery-item, .logo-box { min-width: 100%; }
+    .logo-box { padding: 15px; }
     .nav-arrow { font-size: 1.2rem; }
     
-    /* Estilos mobile para o novo bloco de contato centralizado no rodapé */
+    /* Rodapé Form/Contato (Bloco Central Amarelo) */
     .contact-block-centered { padding: 40px 5%; }
     .contact-block-centered h3 { font-size: 1.5rem; margin: 15px 0 8px; }
     .contact-block-centered p { font-size: 0.9rem; margin-bottom: 0; }
     .contact-block-centered .btn-solid-yellow { width: 100%; border-radius: 5px; font-size: 0.9rem; padding: 15px 20px; }
     
-    /* Colunas do Rodapé em 1 só */
     .footer-content { grid-template-columns: 1fr; text-align: center; }
     .footer-logo { margin: 0 auto 20px; }
     .footer-col ul li { display: flex; align-items: center; justify-content: center; flex-direction: column; }
@@ -321,7 +331,6 @@ p { line-height: 1.6; margin-bottom: 1rem; font-family: var(--font-main); }
     .footer-col.contact-col ul li { display: block; }
     .footer-col.contact-col ul li i { display: inline-block; margin-right: 10px; margin-bottom: 0; }
     
-    /* Rodapé final e Botão do Whats */
     .footer-bottom { flex-direction: column; text-align: center; gap: 20px; padding-bottom: 100px; } 
     .whatsapp-float { width: 50px; height: 50px; font-size: 1.8rem; bottom: 20px; right: 20px; }
 }
