@@ -2,21 +2,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const menuBtn = document.getElementById('menu-btn');
     const closeBtn = document.getElementById('close-btn');
-    const closeBtnMob = document.getElementById('close-btn-mob'); // Pegando o botão X do mobile
     const sidebar = document.getElementById('sidebar');
     const overlay = document.getElementById('overlay');
 
     function toggleMenu() {
         sidebar.classList.toggle('open');
         overlay.classList.toggle('show');
-        
-        // Essa classe adicionada ao body engatilha o CSS do Push Menu
         document.body.classList.toggle('menu-open'); 
     }
 
     menuBtn.addEventListener('click', toggleMenu);
-    if(closeBtn) closeBtn.addEventListener('click', toggleMenu);
-    if(closeBtnMob) closeBtnMob.addEventListener('click', toggleMenu); // O botão de fechar do mobile funciona
+    closeBtn.addEventListener('click', toggleMenu);
     overlay.addEventListener('click', toggleMenu);
 
     const serviceItems = document.querySelectorAll('.service-item');
@@ -40,9 +36,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- ANIMAÇÃO DOS BOTÕES E FUNDO DO HERO ---
     const heroSlide = document.querySelector('.hero-slider .slide');
     const pageItems = document.querySelectorAll('.hero-pagination .page-item');
-    const mobCurrent = document.querySelector('.mob-current'); // O número da paginação mobile
+    const mobileCurrentNum = document.getElementById('current-slide-num'); // Controle numero mobile
     
-    // Pré-carregamento das imagens para evitar a "tela preta" piscando
     const imageUrls = [
         'images/banner-1.jpg',
         'images/banner-2.jpg',
@@ -65,28 +60,35 @@ document.addEventListener('DOMContentLoaded', () => {
     function goToSlide(index) {
         if (!heroSlide) return;
         
-        // Desktop nav update
-        if(pageItems.length > 0){
-            pageItems.forEach(el => el.classList.remove('active'));
-            if(pageItems[index]) pageItems[index].classList.add('active');
+        // Atualiza a barra do desktop
+        pageItems.forEach(el => el.classList.remove('active'));
+        if(pageItems[index]) {
+            pageItems[index].classList.add('active');
         }
         
         heroSlide.style.backgroundImage = bgImages[index];
         currentSlide = index;
 
-        // Mobile nav update ("01", "02", "03")
-        if(mobCurrent) {
-            mobCurrent.textContent = '0' + (index + 1);
+        // Atualiza o numero na barra do Mobile
+        if(mobileCurrentNum) {
+            mobileCurrentNum.textContent = '0' + (index + 1);
         }
     }
 
     function nextSlide() {
-        let next = (currentSlide + 1) % bgImages.length;
+        // Se pageItems existir no desktop usa o tamanho dele, senão usa o array de bg
+        let limit = pageItems.length > 0 ? pageItems.length : bgImages.length;
+        let next = (currentSlide + 1) % limit;
         goToSlide(next);
     }
 
+    function prevSlide() {
+        let limit = pageItems.length > 0 ? pageItems.length : bgImages.length;
+        let prev = (currentSlide - 1 + limit) % limit;
+        goToSlide(prev);
+    }
+
     function startSlider() {
-        // Altera a imagem a cada 4 segundos
         slideInterval = setInterval(nextSlide, 4000); 
     }
 
@@ -94,7 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
         clearInterval(slideInterval);
     }
 
-    // Clique nas abas do desktop
+    // Clique nas barras do Desktop
     pageItems.forEach((item, index) => {
         item.addEventListener('click', () => {
             stopSlider(); 
@@ -102,27 +104,26 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Controles Mobile (ANT / PRÓX)
-    const mobPrev = document.querySelector('.mob-prev');
-    const mobNext = document.querySelector('.mob-next');
-    
-    if(mobPrev) {
-        mobPrev.addEventListener('click', () => {
+    // Cliques nos textos "ANT / PRÓX" do Mobile
+    const mobilePrevBtn = document.getElementById('prev-slide-btn');
+    const mobileNextBtn = document.getElementById('next-slide-btn');
+
+    if(mobilePrevBtn) {
+        mobilePrevBtn.addEventListener('click', () => {
             stopSlider();
-            let prev = (currentSlide - 1 + bgImages.length) % bgImages.length;
-            goToSlide(prev);
+            prevSlide();
         });
     }
-    
-    if(mobNext) {
-        mobNext.addEventListener('click', () => {
+
+    if(mobileNextBtn) {
+        mobileNextBtn.addEventListener('click', () => {
             stopSlider();
             nextSlide();
         });
     }
 
     // Inicia a animação se existirem os itens na tela
-    if (bgImages.length > 0) {
+    if (pageItems.length > 0 || bgImages.length > 0) {
         startSlider();
     }
 
@@ -134,9 +135,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (!container) return;
 
-        let scrollAmount = 350; // Quantidade de rolagem por clique/tick
+        let scrollAmount = 350; 
 
-        // Eventos das setas
         leftArrow.addEventListener('click', () => {
             container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
         });
@@ -145,16 +145,14 @@ document.addEventListener('DOMContentLoaded', () => {
             container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
         });
 
-        // Rolagem Automática
         let interval = setInterval(() => {
             if (container.scrollLeft + container.clientWidth >= container.scrollWidth - 10) {
-                container.scrollTo({ left: 0, behavior: 'smooth' }); // Volta pro início se chegou no fim
+                container.scrollTo({ left: 0, behavior: 'smooth' });
             } else {
                 container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
             }
         }, 3000);
 
-        // Pausar automático ao colocar o mouse em cima
         container.addEventListener('mouseenter', () => clearInterval(interval));
         container.addEventListener('mouseleave', () => {
             interval = setInterval(() => {
@@ -167,7 +165,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Ativando os carrosseis
     setupCarousel('.diff-cards', '.diff-arrow-left', '.diff-arrow-right');
     setupCarousel('.gallery-container', '.gal-arrow-left', '.gal-arrow-right');
     setupCarousel('.clients-logos', '.client-arrow-left', '.client-arrow-right');
@@ -184,7 +181,6 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentImageIndex = 0;
 
     if(lightbox && galleryImages.length > 0) {
-        // Abrir o lightbox ao clicar na imagem
         galleryImages.forEach((img, index) => {
             img.addEventListener('click', () => {
                 currentImageIndex = index;
@@ -193,7 +189,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
-        // Fechar ao clicar no botão X ou fora da imagem
         closeLightboxBtn.addEventListener('click', () => {
             lightbox.classList.remove('active');
         });
@@ -203,7 +198,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // Passar fotos
         prevLightboxBtn.addEventListener('click', () => {
             currentImageIndex = (currentImageIndex > 0) ? currentImageIndex - 1 : galleryImages.length - 1;
             updateLightboxImage();
@@ -218,4 +212,5 @@ document.addEventListener('DOMContentLoaded', () => {
             lightboxImg.src = galleryImages[currentImageIndex].src;
         }
     }
+
 });
