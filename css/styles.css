@@ -48,7 +48,8 @@ p { line-height: 1.6; margin-bottom: 1rem; }
 .btn-primary { background: transparent; border: 1px solid var(--text-light); color: var(--text-light); }
 .btn-primary:hover { background: var(--text-light); color: var(--bg-dark); }
 .btn-outline-dark { border: 2px solid var(--text-dark); color: var(--text-dark); font-weight: 700; }
-.btn-outline-dark:hover { background: var(--text-dark); color: var(--bg-white); }
+/* CORREÇÃO AQUI: Efeito hover do botão agora fica amarelo */
+.btn-outline-dark:hover { background: var(--primary-yellow); color: var(--bg-black); border-color: var(--primary-yellow); }
 .btn-outline-light { border: 1px solid var(--text-light); color: var(--text-light); }
 .btn-outline-light:hover { background: var(--text-light); color: var(--bg-dark); }
 
