@@ -83,6 +83,18 @@ p { line-height: 1.6; margin-bottom: 1rem; }
     100% { transform: translate(-50%, -50%) rotate(360deg); }
 }
 
+/* --- LIGHTBOX (GALERIA PRINT 5) --- */
+.lightbox { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.9); z-index: 9999; display: flex; justify-content: center; align-items: center; opacity: 0; visibility: hidden; transition: 0.3s; }
+.lightbox.active { opacity: 1; visibility: visible; }
+#lightbox-img { max-width: 90%; max-height: 80vh; object-fit: contain; }
+.lightbox-close { position: absolute; top: 20px; right: 30px; color: #fff; font-size: 2rem; cursor: pointer; transition: 0.3s; }
+.lightbox-close:hover { color: var(--primary-yellow); }
+.lightbox-prev, .lightbox-next { position: absolute; top: 50%; transform: translateY(-50%); background: var(--bg-white); color: var(--bg-black); border: none; width: 40px; height: 40px; font-size: 1.2rem; cursor: pointer; border-radius: 5px; transition: 0.3s; display: flex; justify-content: center; align-items: center; }
+.lightbox-prev { left: 20px; }
+.lightbox-next { right: 20px; }
+.lightbox-prev:hover, .lightbox-next:hover { background: var(--primary-yellow); }
+.gallery-item img { cursor: pointer; }
+
 /* ==========================================================================
    4. HEADER E TOP BAR 
    ========================================================================== */
@@ -169,8 +181,9 @@ body.menu-open #page-wrapper { transform: translateX(300px); }
 
 .about-section { background-color: var(--bg-white); color: var(--text-dark); padding: 100px 5%; border-radius: 0 0 100px 0; position: relative; z-index: 10; }
 .about-container { display: flex; align-items: center; gap: 50px; max-width: 1600px; margin: 0 auto; }
-.about-image { flex: 1; }
-.about-image img { width: 100%; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+/* Ajuste da imagem para tocar o limite inferior */
+.about-image { flex: 1; align-self: flex-end; margin-bottom: -100px; }
+.about-image img { width: 100%; display: block; border-radius: 0; box-shadow: none; }
 .about-text { flex: 1; }
 
 .services-section { padding: 100px 5%; margin-top: -50px; padding-top: 120px; }
@@ -195,7 +208,8 @@ body.menu-open #page-wrapper { transform: translateX(300px); }
 .nav-arrow { cursor: pointer; font-size: 1.5rem; }
 .nav-arrow.white-bg { background: var(--bg-white); color: var(--bg-dark); width: 40px; height: 40px; display: flex; justify-content: center; align-items: center; border-radius: 5px; }
 .nav-arrow.gray-bg { background: #666; color: var(--bg-white); width: 30px; height: 30px; display: flex; justify-content: center; align-items: center; border-radius: 3px; }
-.cards-container { display: flex; gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
+/* Ocultando barras de rolagem nos carrosséis */
+.cards-container { display: flex; gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; -ms-overflow-style: none; }
 .cards-container::-webkit-scrollbar { display: none; }
 .card { background-color: var(--bg-black); color: var(--text-light); padding: 40px 30px; border-radius: 10px; min-width: 280px; flex: 1; scroll-snap-align: start; }
 .card-icon { font-size: 3rem; color: var(--primary-yellow); margin-bottom: 20px; }
@@ -204,7 +218,9 @@ body.menu-open #page-wrapper { transform: translateX(300px); }
 
 .gallery-section { padding: 100px 5%; border-radius: 0 0 100px 0; background-color: var(--bg-dark); position: relative; z-index: 5; }
 .gallery-carousel { display: flex; align-items: center; gap: 20px; max-width: 1600px; margin: 40px auto 0; }
-.gallery-container { display: flex; gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory; flex: 1; }
+/* Ocultando barras de rolagem nos carrosséis */
+.gallery-container { display: flex; gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory; flex: 1; scrollbar-width: none; -ms-overflow-style: none; }
+.gallery-container::-webkit-scrollbar { display: none; }
 .gallery-item { min-width: calc(33.333% - 14px); scroll-snap-align: start; }
 .gallery-item img { width: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 5px; }
 
@@ -257,6 +273,8 @@ body.menu-open #page-wrapper { transform: translateX(300px); }
     .hero-slider { margin-top: 0; }
     .about-container, .services-container { flex-direction: column; }
     .footer-content { grid-template-columns: 1fr 1fr; }
+    /* Ajuste para a imagem no celular não sair do layout */
+    .about-image { margin-bottom: 0; align-self: center; } 
 }
 
 @media (max-width: 768px) {

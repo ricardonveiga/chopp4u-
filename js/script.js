@@ -93,4 +93,96 @@ document.addEventListener('DOMContentLoaded', () => {
         startSlider();
     }
 
+    // --- LÓGICA DOS CARROSSEIS (Diferenciais e Galeria) ---
+    function setupCarousel(containerSelector, leftArrowSelector, rightArrowSelector) {
+        const container = document.querySelector(containerSelector);
+        const leftArrow = document.querySelector(leftArrowSelector);
+        const rightArrow = document.querySelector(rightArrowSelector);
+
+        if (!container) return;
+
+        let scrollAmount = 350; // Quantidade de rolagem por clique/tick
+
+        // Eventos das setas
+        leftArrow.addEventListener('click', () => {
+            container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+        });
+
+        rightArrow.addEventListener('click', () => {
+            container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+        });
+
+        // Rolagem Automática
+        let interval = setInterval(() => {
+            if (container.scrollLeft + container.clientWidth >= container.scrollWidth - 10) {
+                container.scrollTo({ left: 0, behavior: 'smooth' }); // Volta pro início se chegou no fim
+            } else {
+                container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+            }
+        }, 3000);
+
+        // Pausar automático ao colocar o mouse em cima
+        container.addEventListener('mouseenter', () => clearInterval(interval));
+        container.addEventListener('mouseleave', () => {
+            interval = setInterval(() => {
+                if (container.scrollLeft + container.clientWidth >= container.scrollWidth - 10) {
+                    container.scrollTo({ left: 0, behavior: 'smooth' });
+                } else {
+                    container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+                }
+            }, 3000);
+        });
+    }
+
+    // Ativando os carrosseis
+    setupCarousel('.diff-cards', '.diff-arrow-left', '.diff-arrow-right');
+    setupCarousel('.gallery-container', '.gal-arrow-left', '.gal-arrow-right');
+
+
+    // --- LÓGICA DO LIGHTBOX (Galeria em tela cheia) ---
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const closeLightboxBtn = document.querySelector('.lightbox-close');
+    const prevLightboxBtn = document.querySelector('.lightbox-prev');
+    const nextLightboxBtn = document.querySelector('.lightbox-next');
+    const galleryImages = document.querySelectorAll('.gallery-item img');
+
+    let currentImageIndex = 0;
+
+    if(lightbox && galleryImages.length > 0) {
+        // Abrir o lightbox ao clicar na imagem
+        galleryImages.forEach((img, index) => {
+            img.addEventListener('click', () => {
+                currentImageIndex = index;
+                updateLightboxImage();
+                lightbox.classList.add('active');
+            });
+        });
+
+        // Fechar ao clicar no botão X ou fora da imagem
+        closeLightboxBtn.addEventListener('click', () => {
+            lightbox.classList.remove('active');
+        });
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                lightbox.classList.remove('active');
+            }
+        });
+
+        // Passar fotos
+        prevLightboxBtn.addEventListener('click', () => {
+            currentImageIndex = (currentImageIndex > 0) ? currentImageIndex - 1 : galleryImages.length - 1;
+            updateLightboxImage();
+        });
+
+        nextLightboxBtn.addEventListener('click', () => {
+            currentImageIndex = (currentImageIndex < galleryImages.length - 1) ? currentImageIndex + 1 : 0;
+            updateLightboxImage();
+        });
+
+        function updateLightboxImage() {
+            lightboxImg.src = galleryImages[currentImageIndex].src;
+        }
+    }
+
 });
