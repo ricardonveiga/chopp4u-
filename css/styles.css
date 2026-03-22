@@ -20,9 +20,6 @@ body { font-family: var(--font-main); background-color: var(--bg-dark); color: v
 ul { list-style: none; }
 a { text-decoration: none; color: inherit; transition: 0.3s ease; }
 
-/* Proteção para os elementos Mobile não sujarem o Desktop */
-.mobile-only { display: none !important; }
-
 /* ==========================================================================
    2. TIPOGRAFIA GERAL
    ========================================================================== */
@@ -43,7 +40,7 @@ p { line-height: 1.6; margin-bottom: 1rem; font-family: var(--font-main); }
 .logo img { max-height: 50px; width: auto; display: block; transition: transform 0.3s ease-in-out; cursor: pointer; }
 .logo:hover img { transform: scale(1.08); }
 
-.btn { display: inline-block; padding: 12px 24px; border-radius: 5px; font-family: var(--font-menu); font-weight: 600; font-size: 0.9rem; cursor: pointer; transition: all 0.3s ease; text-transform: uppercase; }
+.btn { display: inline-block; padding: 12px 24px; border-radius: 5px; font-family: var(--font-menu); font-weight: 600; font-size: 0.9rem; cursor: pointer; transition: all 0.3s ease; }
 .square-btn { border-radius: 0; }
 .btn-full { width: 100%; }
 
@@ -94,6 +91,8 @@ p { line-height: 1.6; margin-bottom: 1rem; font-family: var(--font-main); }
 
 #header { background-color: var(--bg-black); width: 100%; position: relative; z-index: 100; border-bottom: 2px solid var(--primary-yellow); }
 .header-container { display: flex; justify-content: space-between; align-items: center; padding: 20px 5%; max-width: 1800px; margin: 0 auto; }
+
+/* ICONE DO MENU DESKTOP (A ESQUERDA) */
 .menu-icon { color: var(--primary-yellow); font-size: 1.5rem; cursor: pointer; }
 
 .desktop-nav ul { display: flex; align-items: center; gap: 20px; }
@@ -230,12 +229,11 @@ body.menu-open #page-wrapper { transform: translateX(300px); }
 
 
 /* ==========================================================================
-   7. MEDIA QUERIES (A MÁGICA DO MOBILE COMEÇA AQUI)
+   7. MEDIA QUERIES (MOBILE) - AQUI MORA A MÁGICA SEM AFETAR O DESKTOP
    ========================================================================== */
 @media (max-width: 992px) {
-    /* Exibe os fantasmas mobile e oculta elementos fixos do desktop */
-    .mobile-only { display: flex !important; }
-    .desktop-only { display: none !important; }
+    /* Exibe os itens "fantasmas" exclusivos do Mobile e oculta os do Desktop */
+    .mobile-sidebar-social, .mobile-contact-yellow, .mobile-header-social, .mobile-hero-nav, .mobile-contact-block-centered { display: flex !important; }
     .desktop-nav, .header-btn, .sidebar-social, .hero-pagination, .newsletter-bar { display: none !important; }
     
     .btn { text-transform: uppercase; }
@@ -243,57 +241,51 @@ body.menu-open #page-wrapper { transform: translateX(300px); }
     .about-container, .services-container { flex-direction: column; }
     .footer-content { grid-template-columns: 1fr 1fr; gap: 30px; }
     
-    /* === TOP BAR === (Empilhada perfeitamente) */
-    .top-bar { padding: 10px 0; }
-    .top-bar-container { flex-direction: column; justify-content: center; align-items: center; }
+    /* Top Bar Mobile - IDÊNTICA ao print */
+    .top-bar { padding: 10px 5%; }
+    .top-bar-container { flex-direction: column; text-align: center; justify-content: center; }
     .top-social { display: none; }
-    .top-info-right { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 5px; font-size: 0.75rem; font-weight: 600; color: var(--bg-black); width: 100%; text-align: center; }
-    .top-info-right span { display: inline-flex; align-items: center; margin: 0; }
-    .top-info-right span:nth-child(1) { order: 5; width: 100%; justify-content: center; margin-top: 5px; } /* Joga o CNPJ pra linha de baixo */
-    .top-info-right span:nth-child(2) { display: none; } /* Esconde o separador depois do CNPJ */
-    .top-info-right span:nth-child(3) { order: 1; } /* Email sobe */
-    .top-info-right span:nth-child(4) { order: 2; margin: 0 5px; color: var(--bg-black); } /* Separator fica ao lado do Email */
-    .top-info-right span:nth-child(5) { order: 3; } /* Telefone fica ao lado do Separator */
+    .top-info-right { flex-direction: row; flex-wrap: wrap; justify-content: center; font-size: 0.75rem; color: var(--bg-black); font-weight: 600; line-height: 1.8; }
+    .top-info-right span { margin: 0 5px; display: inline-flex; align-items: center; }
+    .top-info-right .separator { display: none; } /* Oculta a barrinha vertical */
     
-    /* === HEADER === */
-    .header-container { padding: 15px 5%; display: flex; align-items: center; justify-content: space-between; }
-    .menu-icon { flex: 1; text-align: left; display: block; color: var(--primary-yellow); font-size: 1.8rem; }
-    .logo { flex: 2; display: flex; justify-content: center; }
+    /* Header Mobile - IDÊNTICO ao print */
+    .header-container { position: relative; display: flex; align-items: center; justify-content: space-between; padding: 15px 5%; flex-direction: row; }
+    .menu-icon { order: 1; flex: 1; text-align: left; }
+    .logo { order: 2; flex: 2; display: flex; justify-content: center; }
     .logo img { max-height: 40px; }
-    .mobile-header-social { flex: 1; display: flex; justify-content: flex-end; gap: 10px; }
-    .mobile-header-social a { width: 30px; height: 30px; border: 1px solid var(--bg-white); color: var(--bg-white); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; }
-
-    /* === MENU TELA CHEIA (DROPDOWN) === */
-    body.menu-open #page-wrapper { transform: none; } /* Reseta o push lateral */
-    .sidebar { left: 0; top: -100vh; width: 100%; height: 100vh; transform: none; background: var(--bg-white); padding: 0; display: flex; flex-direction: column; transition: top 0.4s ease; z-index: 9999; overflow-y: auto; }
-    .sidebar.open { top: 0; }
+    .mobile-header-social { order: 3; flex: 1; gap: 10px; justify-content: flex-end; }
+    .mobile-header-social a { border: 1px solid white; border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.9rem; }
     
-    .sidebar-header { background: var(--bg-black); display: flex; align-items: center; justify-content: space-between; padding: 15px 5%; border-bottom: 2px solid var(--primary-yellow); margin-bottom: 0; }
-    .close-btn { position: static; background: transparent; color: var(--primary-yellow); font-size: 1.8rem; flex: 1; text-align: left; margin: 0; padding: 0; opacity: 1; visibility: visible; }
-    .sidebar-header img { flex: 2; object-fit: contain; max-height: 40px; }
+    /* === MENU TELA CHEIA (DROPDOWN MOBILE) === */
+    body.menu-open #page-wrapper { transform: none; } /* Reseta o menu lateral de empurrar a tela */
     
-    .sidebar-nav { width: 100%; background: var(--bg-white); margin: 0; padding: 0; }
-    .sidebar-nav ul { display: flex; flex-direction: column; width: 100%; padding: 0; margin: 0; }
-    .sidebar-nav li { width: 100%; border: none; margin: 0; }
-    .sidebar-nav a { display: block; width: 100%; text-align: left; padding: 20px 5%; font-family: var(--font-menu); font-size: 1.1rem; color: var(--bg-black); text-transform: uppercase; border-bottom: 1px solid #f0f0f0; font-weight: bold; }
-    .sidebar-nav a::after { display: none; }
+    .sidebar { width: 100%; height: 100vh; left: 0; top: -100vh; transform: none; background-color: var(--bg-white); overflow-y: auto; padding: 0; display: flex; flex-direction: column; transition: top 0.4s ease; }
+    .sidebar.open { top: 0; transform: none; }
+    
+    .sidebar-header { background-color: var(--bg-black); display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; border-bottom: 2px solid var(--primary-yellow); margin-bottom: 0; }
+    .close-btn { position: static; background: transparent; color: var(--primary-yellow); opacity: 1; visibility: visible; width: auto; height: auto; font-size: 1.8rem; flex: 1; text-align: left; margin: 0; padding: 0; }
+    .sidebar-header img { max-height: 40px; flex: 2; object-fit: contain; }
+    
+    .sidebar-nav { width: 100%; background: var(--bg-white); padding: 0; }
+    .sidebar-nav ul { align-items: flex-start; padding: 0; margin: 0; }
+    .sidebar-nav li { margin: 0; width: 100%; text-align: left; padding: 0; border: none; }
+    .sidebar-nav a { display: block; width: 100%; padding: 25px 5%; font-family: var(--font-menu); font-size: 1rem; color: var(--bg-black); text-transform: uppercase; border-bottom: 1px solid #f0f0f0; }
+    .sidebar-nav a::after { display: none; } /* Esconde a linhazinha amarela */
     .sidebar-nav a.active { background-color: var(--primary-yellow); color: var(--bg-black); }
     
-    /* Bloco Amarelo do Menu Mobile */
-    .mobile-contact-yellow { background-color: var(--primary-yellow); color: var(--bg-black); padding: 40px 5%; flex-grow: 1; display: flex; flex-direction: column; align-items: center; text-align: center; }
-    .mobile-contact-yellow h4 { font-family: var(--font-menu); font-size: 1.2rem; margin-bottom: 25px; color: var(--bg-black); text-transform: uppercase; }
-    .mobile-contact-yellow ul { display: flex; flex-direction: column; gap: 20px; font-size: 0.9rem; font-weight: 500; font-family: var(--font-main); align-items: center; }
-    .mobile-contact-yellow li { display: flex; align-items: center; justify-content: center; }
+    .mobile-contact-yellow { background-color: var(--primary-yellow); color: var(--bg-black); padding: 40px 5%; flex-grow: 1; flex-direction: column; align-items: center; text-align: center; }
+    .mobile-contact-yellow h4 { font-family: var(--font-menu); font-size: 1.2rem; margin-bottom: 25px; color: var(--bg-black); }
+    .mobile-contact-yellow ul { display: flex; flex-direction: column; gap: 20px; font-size: 0.9rem; font-weight: 500; font-family: var(--font-main); }
     .mobile-contact-yellow i { font-size: 1.2rem; margin-right: 8px; }
-    .sidebar-footer-copy { margin-top: 40px; font-size: 0.75rem; opacity: 0.8; font-family: var(--font-main); }
+    .sidebar-footer-copy { margin-top: 50px; font-size: 0.75rem; opacity: 0.8; font-family: var(--font-main); }
     
-    /* === HERO BANNER TEXTO ALINHADO À ESQUERDA === */
-    .hero-content { text-align: left; align-items: flex-start; padding-bottom: 80px; max-width: 100%; display: flex; flex-direction: column; }
+    /* Hero Section (Banner alinhado à esquerda) */
+    .hero-content { text-align: left; align-items: flex-start; padding-bottom: 80px; max-width: 100%; }
     .hero-content h1 { font-size: 2.8rem; text-align: left; }
     .hero-content p { font-size: 1rem; text-align: left; margin-bottom: 30px; }
-    .hero-content .btn { align-self: flex-start; }
     
-    /* Paginação Nova (ANT / PRÓX) */
+    /* Paginação do Banner Mobile (ANT / PRÓX) */
     .mobile-hero-nav { justify-content: space-between; align-items: center; position: absolute; bottom: 40px; left: 5%; width: 90%; border-top: 1px solid rgba(255,255,255,0.3); padding-top: 20px; font-family: var(--font-menu); color: var(--bg-white); font-size: 1.2rem; font-weight: 600; z-index: 5; }
     .nav-controls span { cursor: pointer; text-transform: uppercase; }
     .nav-controls .sep { color: var(--primary-yellow); margin: 0 15px; }
@@ -315,6 +307,12 @@ body.menu-open #page-wrapper { transform: translateX(300px); }
     .card, .gallery-item, .logo-box { min-width: 100%; }
     .logo-box { padding: 15px; }
     .nav-arrow { font-size: 1.2rem; }
+    
+    /* Bloco Amarelo do Rodapé (Mobile) */
+    .mobile-contact-block-centered { text-align: center; padding: 40px 5%; border-bottom: 1px solid rgba(0,0,0,0.1); flex-direction: column; align-items: center; }
+    .mobile-contact-block-centered h3 { font-size: 1.5rem; margin: 15px 0 8px; color: var(--text-dark); }
+    .mobile-contact-block-centered p { font-size: 0.9rem; margin-bottom: 0; color: var(--text-dark); }
+    .mobile-contact-block-centered .btn-solid-yellow { width: 100%; border-radius: 5px; font-size: 0.9rem; padding: 15px 20px; background-color: var(--primary-yellow); color: var(--bg-black); border: none; font-family: var(--font-menu); font-weight: 600; cursor: pointer; text-transform: uppercase; transition: 0.3s; }
     
     .footer-content { grid-template-columns: 1fr; text-align: center; }
     .footer-logo { margin: 0 auto 20px; }

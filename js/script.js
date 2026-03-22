@@ -34,42 +34,53 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // --- ANIMAÇÃO DOS BOTÕES E FUNDO DO HERO ---
-    const heroSlides = document.querySelectorAll('.hero-slider .slide');
+    const heroSlide = document.querySelector('.hero-slider .slide');
     const pageItems = document.querySelectorAll('.hero-pagination .page-item');
     const mobileCurrentNum = document.getElementById('current-slide-num');
+    
+    const imageUrls = [
+        'images/banner-1.jpg',
+        'images/banner-2.jpg',
+        'images/banner-3.jpg'
+    ];
+    imageUrls.forEach(url => {
+        const img = new Image();
+        img.src = url;
+    });
+
+    const bgImages = [
+        `url('${imageUrls[0]}')`,
+        `url('${imageUrls[1]}')`,
+        `url('${imageUrls[2]}')`
+    ];
     
     let currentSlide = 0;
     let slideInterval;
 
     function goToSlide(index) {
-        if (heroSlides.length === 0) return;
+        if (!heroSlide) return;
         
-        // Remove a classe active de todas as fotos e links desktop
-        heroSlides.forEach(slide => slide.classList.remove('active'));
-        pageItems.forEach(item => item.classList.remove('active'));
+        pageItems.forEach(el => el.classList.remove('active'));
+        if(pageItems[index]) {
+            pageItems[index].classList.add('active');
+        }
         
-        // Adiciona active apenas no atual
-        if(heroSlides[index]) heroSlides[index].classList.add('active');
-        if(pageItems[index]) pageItems[index].classList.add('active');
-        
+        heroSlide.style.backgroundImage = bgImages[index];
         currentSlide = index;
 
-        // Atualiza a numeração do Mobile
         if(mobileCurrentNum) {
             mobileCurrentNum.textContent = '0' + (index + 1);
         }
     }
 
     function nextSlide() {
-        let limit = heroSlides.length;
-        if (limit === 0) return;
+        let limit = pageItems.length > 0 ? pageItems.length : bgImages.length;
         let next = (currentSlide + 1) % limit;
         goToSlide(next);
     }
 
     function prevSlide() {
-        let limit = heroSlides.length;
-        if (limit === 0) return;
+        let limit = pageItems.length > 0 ? pageItems.length : bgImages.length;
         let prev = (currentSlide - 1 + limit) % limit;
         goToSlide(prev);
     }
@@ -82,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
         clearInterval(slideInterval);
     }
 
-    // Clique na paginação do Desktop
+    // Clique na paginação Desktop
     pageItems.forEach((item, index) => {
         item.addEventListener('click', () => {
             stopSlider(); 
@@ -90,7 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Clique na paginação do Mobile (ANT / PRÓX)
+    // Clique na paginação Mobile (ANT / PRÓX)
     const mobilePrevBtn = document.getElementById('prev-slide-btn');
     const mobileNextBtn = document.getElementById('next-slide-btn');
 
@@ -108,8 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Inicia animação
-    if (heroSlides.length > 0) {
+    if (pageItems.length > 0 || bgImages.length > 0) {
         startSlider();
     }
 
