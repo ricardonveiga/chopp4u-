@@ -264,13 +264,13 @@ body.menu-open #page-wrapper { transform: translateX(300px); }
 .page-breadcrumb a { color: var(--text-light); font-weight: 600; }
 .page-breadcrumb a:hover { color: var(--primary-yellow); }
 
-/* Página Quem Somos */
+/* Página Quem Somos - AJUSTADO PARA DESKTOP */
 .history-section { background-color: var(--bg-white); color: var(--text-dark); padding: 40px 5% 100px; border-radius: 0 0 100px 0; position: relative; z-index: 10; }
-.history-container { display: flex; gap: 50px; max-width: 1400px; margin: 0 auto; align-items: center; }
-.history-images { flex: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+.history-container { display: flex; gap: 50px; max-width: 1400px; margin: 0 auto; align-items: stretch; } /* stretch para alinhar alturas */
+.history-images { flex: 1; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 15px; }
 .history-images .main-img { grid-row: span 2; }
 .history-images img { width: 100%; height: 100%; object-fit: cover; border-radius: 10px; min-height: 200px; }
-.history-text { flex: 1; }
+.history-text { flex: 1; display: flex; flex-direction: column; justify-content: center; }
 .history-text h2 { font-size: 3rem; margin-bottom: 30px; position: relative; display: inline-block; font-family: var(--font-menu); }
 .history-text h2::after { content: ''; position: absolute; bottom: -10px; left: 0; width: 40px; height: 3px; background: var(--primary-yellow); }
 .history-text p { margin-bottom: 20px; font-size: 0.95rem; color: #333; line-height: 1.6; }
@@ -292,6 +292,13 @@ body.menu-open #page-wrapper { transform: translateX(300px); }
 
 .bg-yellow-stripe .stripe-title-col h2::after { background: var(--bg-white); }
 .bg-white-stripe .stripe-title-col h2::after { background: var(--primary-yellow); }
+
+/* Página de Galeria (Grid) - INCLUSÃO */
+.gallery-page-section { padding: 60px 5% 100px; max-width: 1400px; margin: 0 auto; }
+.gallery-grid-container { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 50px; }
+.gallery-grid-item { aspect-ratio: 1 / 1; overflow: hidden; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+.gallery-grid-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease; cursor: pointer; }
+.gallery-grid-item:hover img { transform: scale(1.05); }
 
 /* Página de Serviços (Grid) */
 .page-services-section { padding: 40px 5% 100px; max-width: 1400px; margin: 0 auto; }
@@ -551,51 +558,16 @@ body.menu-open #page-wrapper { transform: translateX(300px); }
     .page-services-section, .page-clients-section { text-align: center; }
     .services-grid { grid-template-columns: 1fr; }
     .page-clients-grid { grid-template-columns: repeat(2, 1fr); }
-}
-.gallery-page-section {
-    padding: 60px 5% 100px;
-    max-width: 1400px;
-    margin: 0 auto;
-}
 
-.gallery-grid-container {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 4 colunas no desktop */
-    gap: 20px;
-    margin-top: 50px;
-}
-
-.gallery-grid-item {
-    aspect-ratio: 1 / 1; /* Mantém as fotos quadradas */
-    overflow: hidden;
-    border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-}
-
-.gallery-grid-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-    cursor: pointer;
-}
-
-.gallery-grid-item:hover img {
-    transform: scale(1.05);
+    /* Responsividade para Galeria */
+    .gallery-grid-container { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 576px) {
     .page-clients-grid { grid-template-columns: 1fr; }
+    .gallery-grid-container { grid-template-columns: 1fr; }
+}
 
-    .gallery-grid-container {
-        grid-template-columns: 1fr; /* 1 coluna no celular */
-    }
-}
-@media (max-width: 992px) {
-    .gallery-grid-container {
-        grid-template-columns: repeat(2, 1fr); /* 2 colunas no tablet */
-    }
-}
 /* ==========================================================================
    8. COOKIE BANNER (PRIVACY CONTROL) - INCLUSÃO
    ========================================================================== */
