@@ -253,8 +253,8 @@ body.menu-open #page-wrapper { transform: translateX(300px); }
 
 /* ==== QUEM SOMOS CORRIGIDO PARA IMAGEM ÚNICA ==== */
 .history-section { background-color: var(--bg-white); color: var(--text-dark); padding: 40px 5% 100px; border-radius: 0 0 100px 0; position: relative; z-index: 10; }
-.history-container { display: flex; gap: 50px; max-width: 1400px; margin: 0 auto; align-items: center; } /* Align center para a imagem única não deformar verticalmente */
-.history-images { flex: 0 0 45%; display: block; } /* Removido o grid, travado em 45% do espaço horizontal no desktop */
+.history-container { display: flex; gap: 50px; max-width: 1400px; margin: 0 auto; align-items: center; } 
+.history-images { flex: 0 0 45%; display: block; } 
 .history-images img { width: 100%; height: auto; object-fit: cover; border-radius: 10px; display: block; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
 .history-text { flex: 1; display: flex; flex-direction: column; justify-content: center; }
 .history-text h2 { font-size: 3rem; margin-bottom: 30px; position: relative; display: inline-block; font-family: var(--font-menu); }
@@ -293,7 +293,7 @@ body.menu-open #page-wrapper { transform: translateX(300px); }
 }
 .gallery-grid-item { 
     width: 100%; 
-    min-width: 0; /* ESSA É A REGRA QUE IMPEDE O GRID DE ESTOURAR A LARGURA */
+    min-width: 0; 
     aspect-ratio: 1 / 1; 
     overflow: hidden; 
     border-radius: 8px; 
@@ -436,6 +436,11 @@ body.menu-open #page-wrapper { transform: translateX(300px); }
     .age-denied-container { flex-direction: column; }
     .denied-right { display: none; }
     .denied-left { text-align: center; align-items: center; }
+
+    /* Correção para o fundo da CTA aparecer no celular (Bug do iOS) */
+    .cta-section {
+        background-attachment: scroll !important;
+    }
 }
 
 @media (max-width: 768px) {
@@ -501,7 +506,7 @@ body.menu-open #page-wrapper { transform: translateX(300px); }
     .footer-bottom { flex-direction: column; text-align: center; gap: 20px; padding-bottom: 100px; } 
     .whatsapp-float { width: 50px; height: 50px; font-size: 1.8rem; bottom: 20px; right: 20px; }
 
-    /* QUEM SOMOS MOBILE (MANTIDO EXATAMENTE IGUAL, CORRETO) */
+    /* QUEM SOMOS MOBILE */
     .history-container, .stripe-container { flex-direction: column; text-align: center; gap: 30px; }
     .history-text h2::after, .stripe-title-col h2::after { left: 50%; transform: translateX(-50%); }
     .history-images { display: block; width: 100%; flex: none; }
@@ -513,9 +518,9 @@ body.menu-open #page-wrapper { transform: translateX(300px); }
     .services-grid { grid-template-columns: 1fr; }
     .page-clients-grid { grid-template-columns: repeat(2, 1fr); }
 
-    /* GALERIA MOBILE (AJUSTADO FUNDO BRANCO VAZANDO NO CTA) */
+    /* GALERIA MOBILE */
     .gallery-grid-container { grid-template-columns: repeat(2, 1fr); }
-    .gallery-page-section { padding-bottom: 130px; } /* AUMENTADO PARA NÃO SOBREPOR RODAPÉ PRETO */
+    .gallery-page-section { padding-bottom: 130px; } 
 }
 
 @media (max-width: 576px) {
