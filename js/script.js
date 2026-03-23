@@ -1,14 +1,24 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // --- LÓGICA DO AGE GATE (POP-UP 18+) ---
+    // --- LÓGICA DO AGE GATE (POP-UP 18+ UMA VEZ AO DIA) ---
     const ageGate = document.getElementById('age-gate');
     if (ageGate) {
-        // Removida a memória (localStorage). Agora ele sempre vai travar a tela e aparecer no refresh!
-        document.body.style.overflow = 'hidden'; 
+        const today = new Date().toDateString(); // Pega a data de hoje
+        const lastConsentDate = localStorage.getItem('ageConsentDate');
+
+        if (lastConsentDate === today) {
+            // Se já confirmou hoje, oculta direto
+            ageGate.style.display = 'none';
+        } else {
+            // Primeira vez no dia: trava a tela e mostra
+            document.body.style.overflow = 'hidden'; 
+        }
 
         document.getElementById('btn-yes-age').addEventListener('click', () => {
+            // Salva a data de hoje na memória do navegador
+            localStorage.setItem('ageConsentDate', today);
             ageGate.style.display = 'none';
-            document.body.style.overflow = 'auto'; // Destrava a tela para rolagem
+            document.body.style.overflow = 'auto'; // Destrava a rolagem
         });
 
         document.getElementById('btn-no-age').addEventListener('click', () => {
