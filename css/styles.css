@@ -229,33 +229,64 @@ body.menu-open #page-wrapper { transform: translateX(300px); }
 
 
 /* ==========================================================================
-   7. MEDIA QUERIES (MOBILE) - AJUSTES CIRÚRGICOS
+   7. MEDIA QUERIES (MOBILE) - AQUI MORA A MÁGICA SEM AFETAR O DESKTOP
    ========================================================================== */
 @media (max-width: 992px) {
+    /* Exibe os itens "fantasmas" exclusivos do Mobile e oculta os do Desktop */
     .mobile-sidebar-social, .mobile-contact-yellow, .mobile-header-social, .mobile-hero-nav, .mobile-contact-block-centered { display: flex !important; }
     .desktop-nav, .header-btn, .sidebar-social, .hero-pagination, .newsletter-bar { display: none !important; }
     
     .btn { text-transform: uppercase; }
+    .hero-slider { margin-top: 0; }
+    
+    /* Inverte a ordem apenas da seção Sobre para o mobile (texto em cima, imagem embaixo) */
     .about-container { flex-direction: column-reverse; }
     .services-container { flex-direction: column; }
+    
     .footer-content { grid-template-columns: 1fr 1fr; gap: 30px; }
     
+    /* Top Bar Mobile */
     .top-bar { padding: 10px 2%; } 
     .top-bar-container { display: block; } 
     .top-social { display: none !important; }
     
     .top-info-right {
-        display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center; align-items: center; 
-        font-size: 0.7rem; color: var(--bg-black); font-weight: 600; line-height: 1.5; width: 100%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        font-size: 0.7rem; 
+        color: var(--bg-black);
+        font-weight: 600;
+        line-height: 1.5;
+        width: 100%;
     }
-    .top-info-right span { display: inline-flex; align-items: center; white-space: nowrap; margin: 0; }
+
+    .top-info-right span {
+        display: inline-flex;
+        align-items: center;
+        white-space: nowrap; 
+        margin: 0; 
+    }
+
     .top-info-right span:nth-child(2) { display: none !important; }
     .top-info-right span:nth-child(3) { order: 1; margin-right: 6px; }
     .top-info-right span:nth-child(4) { order: 2; opacity: 0.4; font-weight: 300; }
     .top-info-right span:nth-child(5) { order: 3; margin-left: 6px; }
-    .top-info-right span:nth-child(1) { order: 4; flex-basis: 100%; justify-content: center; margin-top: 6px; }
+    .top-info-right span:nth-child(1) {
+        order: 4;
+        flex-basis: 100%; 
+        justify-content: center;
+        margin-top: 6px;
+    }
 
-    #header { position: sticky; top: 0; z-index: 990; }
+    #header {
+        position: sticky;
+        top: 0;
+        z-index: 990;
+    }
+    
     .header-container { position: relative; display: flex; align-items: center; justify-content: space-between; padding: 15px 5%; flex-direction: row; }
     .menu-icon { order: 1; flex: 1; text-align: left; }
     .logo { order: 2; flex: 2; display: flex; justify-content: center; }
@@ -263,73 +294,136 @@ body.menu-open #page-wrapper { transform: translateX(300px); }
     .mobile-header-social { order: 3; flex: 1; gap: 10px; justify-content: flex-end; }
     .mobile-header-social a { border: 1px solid white; border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.9rem; }
     
-    /* === MENU MOBILE DROPDOWN === */
+    /* === MENU TELA CHEIA (DROPDOWN MOBILE) === */
     body.menu-open #page-wrapper { transform: none; } 
+    .overlay.show { background: rgba(0,0,0,0.6); } 
+    
     .sidebar { 
-        width: 100%; height: auto; left: 0; top: -150vh; transform: none; 
-        background-color: var(--bg-white); overflow-y: visible; padding: 0; 
-        display: flex; flex-direction: column; transition: top 0.4s ease; 
+        width: 100%; 
+        height: auto; 
+        left: 0; 
+        top: -150vh; 
+        transform: none; 
+        background-color: var(--bg-white); 
+        overflow-y: visible; 
+        padding: 0; 
+        display: flex; 
+        flex-direction: column; 
+        transition: top 0.4s ease; 
         box-shadow: 0 10px 20px rgba(0,0,0,0.3);
     }
     .sidebar.open { top: 0; transform: none; }
     
-    /* Header do Menu Aberto: X esquerda, Logo Centro, Social Direita */
+    /* AJUSTE: X à esquerda e Logo Centralizado no menu aberto */
     .sidebar-header { 
-        background-color: var(--bg-black); display: flex; justify-content: space-between; 
-        align-items: center; padding: 15px 5%; border-bottom: 2px solid var(--primary-yellow); 
-        margin-bottom: 0; position: relative; height: 70px;
+        background-color: var(--bg-black); 
+        display: flex; 
+        justify-content: space-between; 
+        align-items: center; 
+        padding: 15px 5%; 
+        border-bottom: 2px solid var(--primary-yellow); 
+        margin-bottom: 0; 
     }
     .close-btn { 
-        position: relative; order: 1; flex: 1; text-align: left; background: transparent; 
-        color: var(--primary-yellow); opacity: 1; visibility: visible; 
-        width: auto; height: auto; font-size: 1.8rem; padding: 0; margin: 0; display: flex; justify-content: flex-start;
+        position: static; 
+        background: transparent; 
+        color: var(--primary-yellow); 
+        opacity: 1; 
+        visibility: visible; 
+        width: auto; 
+        height: auto; 
+        font-size: 1.8rem; 
+        flex: 1; 
+        text-align: left; 
+        margin: 0; 
+        padding: 0; 
+        order: 1; 
     }
     .sidebar-header img { 
-        position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
-        max-height: 40px; margin: 0;
+        max-height: 40px; 
+        flex: 2; 
+        object-fit: contain; 
+        order: 2; 
+        margin: 0 auto; 
     }
-    .mobile-sidebar-social { order: 3; flex: 1; justify-content: flex-end; gap: 10px; display: flex !important; }
+    .mobile-sidebar-social { 
+        flex: 1; 
+        justify-content: flex-end; 
+        gap: 10px; 
+        display: flex !important; 
+        order: 3; 
+    }
     .mobile-sidebar-social a { border: 1px solid white; border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.9rem; }
     
-    /* Navegação do Menu Mobile */
     .sidebar-nav { width: 100%; background: var(--bg-white); padding: 0; }
-    .sidebar-nav ul { align-items: flex-start; padding: 0; }
-    .sidebar-nav li { margin: 0; width: 100%; border: none; }
+    .sidebar-nav ul { align-items: flex-start; padding: 0; margin: 0; }
+    .sidebar-nav li { margin: 0; width: 100%; text-align: left; padding: 0; border: none; }
+    
+    /* AJUSTE: Letras menores e efeito amarelo no clique/ativo */
     .sidebar-nav a { 
-        display: block; width: 100%; padding: 18px 5%; 
-        font-family: var(--font-menu); font-size: 0.75rem; /* Letra menor conforme pedido */
-        color: var(--bg-black); text-transform: uppercase; border-bottom: 1px solid #f0f0f0; 
+        display: block; 
+        width: 100%; 
+        padding: 18px 5%; 
+        font-family: var(--font-menu); 
+        font-size: 0.85rem; 
+        color: var(--bg-black); 
+        text-transform: uppercase; 
+        border-bottom: 1px solid #f0f0f0; 
     }
     .sidebar-nav a::after { display: none; } 
-    
-    /* Efeito Amarelo no Item Ativo/Clicado */
     .sidebar-nav a:active,
     .sidebar-nav a.active { 
-        background-color: var(--primary-yellow) !important; 
-        color: var(--bg-black) !important; 
+        background-color: var(--primary-yellow); 
+        color: var(--bg-black); 
     }
     
     .mobile-contact-yellow { display: none !important; }
+    
     .hero-content { display: flex; flex-direction: column; text-align: center; align-items: center; padding-bottom: 80px; max-width: 100%; }
-    .hero-content h1 { font-size: 2.6rem; font-family: var(--font-menu); font-weight: 400; }
-    .hero-content p { font-size: 1rem; margin-bottom: 30px; }
+    .hero-content h1 { font-size: 2.6rem; text-align: center; font-family: var(--font-menu); font-weight: 400; }
+    .hero-content p { font-size: 1rem; text-align: center; margin-bottom: 30px; }
+    
     .mobile-hero-nav { justify-content: space-between; align-items: center; position: absolute; bottom: 40px; left: 5%; width: 90%; border-top: 1px solid rgba(255,255,255,0.3); padding-top: 20px; font-family: var(--font-menu); color: var(--bg-white); font-size: 1.2rem; font-weight: 600; z-index: 5; }
+    .nav-controls span { cursor: pointer; text-transform: uppercase; }
     .nav-controls .sep { color: var(--primary-yellow); margin: 0 15px; }
+    .nav-counter { font-size: 1.2rem; }
 }
 
 @media (max-width: 768px) {
     h2 { font-size: 2rem; }
     .hero-content h1 { font-size: 2.2rem; }
+    .section-subtitle { font-size: 0.8rem; }
+    
     .about-section, .services-section, .differentials-section, .gallery-section, .clients-section, .cta-section { padding: 60px 5%; }
     .about-text { text-align: center; }
-    .about-text h2 { font-family: var(--font-menu); font-weight: 400; line-height: 1.2; font-size: 2.2rem; }
-    .about-text .section-subtitle { display: block; margin-bottom: 15px; }
+    .about-text h2 { font-family: var(--font-menu); font-weight: 400; line-height: 1.2; font-size: 2.2rem; text-align: center; }
+    .about-text p, .about-text h3 { text-align: center; }
+    .about-text .section-subtitle { text-align: center; display: block; margin-bottom: 15px; }
     .about-text .section-subtitle::before { display: block; margin: 0 auto 10px auto; }
-    .about-image { margin-bottom: -60px; margin-top: 40px; width: 100%; }
+    .about-text .btn { margin: 0 auto; display: inline-block; }
+    .about-image { margin-bottom: -60px; margin-top: 40px; width: 100%; text-align: center; }
+    .about-image img { margin: 0 auto; display: block; }
+
+    .services-container { margin-top: 30px; }
+    .service-item { padding: 15px; border-radius: 20px; }
+    .service-item .icon { font-size: 1.5rem; margin-right: 15px; }
+    
     .card, .gallery-item, .logo-box { min-width: 100%; }
+    .logo-box { padding: 15px; }
+    .nav-arrow { font-size: 1.2rem; }
+    
     .mobile-contact-block-centered { text-align: center; padding: 40px 5%; border-bottom: 1px solid rgba(0,0,0,0.1); flex-direction: column; align-items: center; }
+    .mobile-contact-block-centered h3 { font-size: 1.5rem; margin: 15px 0 8px; color: var(--text-dark); }
+    .mobile-contact-block-centered p { font-size: 0.9rem; margin-bottom: 0; color: var(--text-dark); }
+    .mobile-contact-block-centered .btn-solid-yellow { width: 100%; border-radius: 5px; font-size: 0.9rem; padding: 15px 20px; background-color: var(--primary-yellow); color: var(--bg-black); border: none; font-family: var(--font-menu); font-weight: 600; cursor: pointer; text-transform: uppercase; transition: 0.3s; }
+    
     .footer-content { grid-template-columns: 1fr; text-align: center; }
     .footer-logo { margin: 0 auto 20px; }
-    .footer-bottom { flex-direction: column; padding-bottom: 100px; } 
+    .footer-col ul li { display: flex; align-items: center; justify-content: center; flex-direction: column; }
+    .footer-col ul li i { margin-right: 0; margin-bottom: 5px; } 
+    .footer-col.contact-col ul li { display: block; }
+    .footer-col.contact-col ul li i { display: inline-block; margin-right: 10px; margin-bottom: 0; }
+    
+    .footer-bottom { flex-direction: column; text-align: center; gap: 20px; padding-bottom: 100px; } 
     .whatsapp-float { width: 50px; height: 50px; font-size: 1.8rem; bottom: 20px; right: 20px; }
 }
