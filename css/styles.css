@@ -289,7 +289,14 @@ body.menu-open #page-wrapper { transform: translateX(300px); }
         justify-content: center;
         margin-top: 6px;
     }
-    /* Header Mobile - Mantido idêntico com os ícones sociais vazados do lado direito */
+
+    /* Header Mobile - Cabeçalho fixo na rolagem (sticky) e mantido idêntico com os ícones sociais */
+    #header {
+        position: sticky;
+        top: 0;
+        z-index: 990; /* Fica acima das seções, abaixo do menu lateral (1000) e overlay (999) */
+    }
+    
     .header-container { position: relative; display: flex; align-items: center; justify-content: space-between; padding: 15px 5%; flex-direction: row; }
     .menu-icon { order: 1; flex: 1; text-align: left; }
     .logo { order: 2; flex: 2; display: flex; justify-content: center; }
