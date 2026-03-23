@@ -1,19 +1,43 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // --- LÓGICA DO AGE GATE (POP-UP SEMPRE APARECE PARA TESTES) ---
+    // --- LÓGICA DO AGE GATE (LEMBRAR POR 24H) ---
     const ageGate = document.getElementById('age-gate');
+    
     if (ageGate) {
-        // Como estamos em fase de testes, ele sempre vai travar a tela e exibir o pop-up
-        document.body.style.overflow = 'hidden'; 
+        const checkAgeConsent = () => {
+            const consentData = localStorage.getItem('ageConsent');
+            if (consentData) {
+                const { timestamp } = JSON.parse(consentData);
+                const now = new Date().getTime();
+                const twentyFourHours = 24 * 60 * 60 * 1000;
+
+                // Se o consentimento foi dado há menos de 24h, esconde o pop-up
+                if (now - timestamp < twentyFourHours) {
+                    ageGate.style.display = 'none';
+                    return; // Sai da função, não trava a tela
+                } else {
+                    // Se passou de 24h, limpa o registro antigo
+                    localStorage.removeItem('ageConsent');
+                }
+            }
+            
+            // Se chegou aqui, precisa mostrar o pop-up e travar a tela
+            document.body.style.overflow = 'hidden'; 
+        };
+
+        // Executa a checagem ao carregar a página
+        checkAgeConsent();
 
         document.getElementById('btn-yes-age').addEventListener('click', () => {
-            // Apenas esconde o pop-up e libera a rolagem, sem salvar memória de longo prazo
+            // Salva o consentimento com o timestamp atual
+            const consentData = { timestamp: new Date().getTime() };
+            localStorage.setItem('ageConsent', JSON.stringify(consentData));
+            
             ageGate.style.display = 'none';
             document.body.style.overflow = 'auto'; 
         });
 
         document.getElementById('btn-no-age').addEventListener('click', () => {
-            // Redireciona para a tela de bloqueio
             window.location.href = 'menor-de-idade.html';
         });
     }
@@ -243,9 +267,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnCustomizeCookie = document.getElementById('cookie-customize');
 
     if (cookieBanner) {
-        // Verifica se o usuário já escolheu algo na sessão atual ou no localStorage
         if (!localStorage.getItem('cookieConsent')) {
-            cookieBanner.style.display = 'block'; // Mostra o banner
+            cookieBanner.style.display = 'block'; 
         }
 
         btnAcceptCookie.addEventListener('click', () => {
@@ -258,7 +281,6 @@ document.addEventListener('DOMContentLoaded', () => {
             cookieBanner.style.display = 'none';
         });
 
-        // O botão customizar por enquanto apenas fecha a janela
         btnCustomizeCookie.addEventListener('click', () => {
             cookieBanner.style.display = 'none';
         });
