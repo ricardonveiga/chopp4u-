@@ -18,6 +18,32 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // --- LÓGICA DO POP-UP DE COOKIES (LGPD) ---
+    const cookieBanner = document.getElementById('cookie-banner');
+    if (cookieBanner) {
+        const hasAcceptedCookies = localStorage.getItem('cookiesAccepted');
+        
+        // Se a pessoa AINDA NÃO ACEITOU nem REJEITOU os cookies, mostra o banner
+        if (!hasAcceptedCookies) {
+            setTimeout(() => {
+                cookieBanner.classList.add('show');
+            }, 1000); // Aparece 1 segundo após carregar a página
+        }
+
+        // Se clicar em Aceitar
+        document.getElementById('btn-aceitar-cookie').addEventListener('click', () => {
+            localStorage.setItem('cookiesAccepted', 'true');
+            cookieBanner.classList.remove('show');
+        });
+
+        // Se clicar em Rejeitar
+        document.getElementById('btn-rejeitar-cookie').addEventListener('click', () => {
+            localStorage.setItem('cookiesAccepted', 'false');
+            cookieBanner.classList.remove('show');
+        });
+    }
+
+
     const menuBtn = document.getElementById('menu-btn');
     const closeBtn = document.getElementById('close-btn');
     const sidebar = document.getElementById('sidebar');
