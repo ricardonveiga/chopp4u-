@@ -142,6 +142,9 @@ p { line-height: 1.6; margin-bottom: 1rem; font-family: var(--font-main); }
 .social-icons a { display: inline-flex; justify-content: center; align-items: center; width: 35px; height: 35px; border-radius: 50%; background-color: var(--primary-yellow); border: 1px solid var(--primary-yellow); color: var(--bg-black); font-size: 1rem; transition: 0.3s ease; }
 .social-icons a:hover { background-color: var(--bg-black); color: var(--bg-white); transform: scale(1.1); }
 
+/* AQUI: Retirado o width: 80% e forçado o auto para ele não estourar a largura no menu lateral mobile */
+.sidebar-social .btn-outline { width: auto !important; }
+
 .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 999; display: none; }
 .overlay.show { display: block; }
 #page-wrapper { transition: transform 0.4s ease; width: 100%; position: relative; }
@@ -421,7 +424,10 @@ body.menu-open #page-wrapper { transform: translateX(300px); }
     .about-text p, .about-text h3 { text-align: center; }
     .about-text .section-subtitle { text-align: center; display: block; margin-bottom: 15px; }
     .about-text .section-subtitle::before { display: block; margin: 0 auto 10px auto; }
-    .about-text .btn { margin: 0 auto; display: inline-block; }
+    
+    /* AQUI: O botão Saiba Mais com mais espaço no topo para não grudar no texto */
+    .about-text .btn { margin: 40px auto 0 auto !important; display: inline-block; }
+    
     .about-image { margin-bottom: -60px; margin-top: 40px; width: 100%; text-align: center; }
     .about-image img { margin: 0 auto; display: block; }
 
