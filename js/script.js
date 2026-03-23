@@ -267,8 +267,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnCustomizeCookie = document.getElementById('cookie-customize');
 
     if (cookieBanner) {
+        // Verifica se o usuário já escolheu algo na sessão atual ou no localStorage
         if (!localStorage.getItem('cookieConsent')) {
-            cookieBanner.style.display = 'block'; 
+            cookieBanner.style.display = 'block'; // Mostra o banner
         }
 
         btnAcceptCookie.addEventListener('click', () => {
@@ -281,6 +282,7 @@ document.addEventListener('DOMContentLoaded', () => {
             cookieBanner.style.display = 'none';
         });
 
+        // O botão customizar por enquanto apenas fecha a janela
         btnCustomizeCookie.addEventListener('click', () => {
             cookieBanner.style.display = 'none';
         });
