@@ -182,13 +182,9 @@ body.menu-open #page-wrapper { transform: translateX(300px); }
 .cards-container { display: flex; gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; -ms-overflow-style: none; }
 .cards-container::-webkit-scrollbar { display: none; }
 
-/* AJUSTE: Cards forçados a exibir 4 inteiros no desktop (com o gap calculado) */
 .card { background-color: var(--bg-black); color: var(--text-light); padding: 40px 30px; border-radius: 10px; flex: 0 0 calc(25% - 15px); min-width: calc(25% - 15px); max-width: calc(25% - 15px); scroll-snap-align: start; }
 .card-icon { font-size: 3rem; color: var(--primary-yellow); margin-bottom: 20px; }
-
-/* AJUSTE: Fonte dos titulos para Righteous nas duas versões */
 .card h4 { margin-bottom: 15px; font-size: 1.2rem; font-family: var(--font-menu); font-weight: 400; letter-spacing: 1px; }
-
 .card p { font-size: 0.9rem; color: #ccc; font-family: var(--font-main); }
 
 .gallery-section { padding: 100px 5%; border-radius: 0 0 100px 0; background-color: var(--bg-dark); position: relative; z-index: 5; }
@@ -238,7 +234,42 @@ body.menu-open #page-wrapper { transform: translateX(300px); }
 .whatsapp-float:hover { transform: scale(1.1); }
 
 /* ==========================================================================
-   7. MEDIA QUERIES (MOBILE) - Ajustes finais de 1 item por vez
+   ESTILOS NOVOS DA PÁGINA "QUEM SOMOS" (INSERIDOS AQUI)
+   ========================================================================== */
+.page-breadcrumb { padding: 40px 5% 20px; max-width: 1600px; margin: 0 auto; color: var(--text-gray); font-size: 0.85rem; }
+.page-breadcrumb a { color: var(--text-light); font-weight: 600; }
+.page-breadcrumb a:hover { color: var(--primary-yellow); }
+
+.history-section { background-color: var(--bg-white); color: var(--text-dark); padding: 40px 5% 100px; border-radius: 0 0 100px 0; position: relative; z-index: 10; }
+.history-container { display: flex; gap: 50px; max-width: 1400px; margin: 0 auto; align-items: center; }
+.history-images { flex: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+.history-images .main-img { grid-row: span 2; }
+.history-images img { width: 100%; height: 100%; object-fit: cover; border-radius: 10px; min-height: 200px; }
+.history-text { flex: 1; }
+.history-text h2 { font-size: 3rem; margin-bottom: 30px; position: relative; display: inline-block; font-family: var(--font-menu); }
+.history-text h2::after { content: ''; position: absolute; bottom: -10px; left: 0; width: 40px; height: 3px; background: var(--primary-yellow); }
+.history-text p { margin-bottom: 20px; font-size: 0.95rem; color: #333; line-height: 1.6; }
+.history-text strong { color: var(--text-dark); font-weight: 700; }
+
+.stripe-section { padding: 100px 5%; margin-top: -50px; padding-top: 150px; position: relative; border-radius: 0 0 100px 0; }
+.stripe-container { display: flex; max-width: 1400px; margin: 0 auto; align-items: center; gap: 50px; }
+.stripe-title-col { flex: 1; }
+.stripe-text-col { flex: 1; }
+.stripe-title-col h2 { font-size: 3rem; position: relative; display: inline-block; margin-bottom: 20px; font-family: var(--font-menu); }
+.stripe-title-col h2::after { content: ''; position: absolute; bottom: -10px; left: 0; width: 40px; height: 3px; background: var(--primary-yellow); }
+.stripe-text-col p { font-size: 0.95rem; margin-bottom: 20px; line-height: 1.6; }
+.stripe-text-col strong { font-weight: 700; }
+
+.bg-black-stripe { background-color: var(--bg-black); color: var(--text-light); z-index: 9; }
+.bg-yellow-stripe { background-color: var(--primary-yellow); color: var(--text-dark); z-index: 8; }
+.bg-white-stripe { background-color: var(--bg-white); color: var(--text-dark); z-index: 7; }
+.bg-black-last { background-color: var(--bg-black); color: var(--text-light); z-index: 6; padding-bottom: 100px; }
+
+.bg-yellow-stripe .stripe-title-col h2::after { background: var(--bg-white); }
+.bg-white-stripe .stripe-title-col h2::after { background: var(--primary-yellow); }
+
+/* ==========================================================================
+   7. MEDIA QUERIES (MOBILE) - Ajustes finais
    ========================================================================== */
 @media (max-width: 992px) {
     .mobile-sidebar-social, .mobile-contact-yellow, .mobile-header-social, .mobile-hero-nav, .mobile-contact-block-centered { display: flex !important; }
@@ -340,7 +371,7 @@ body.menu-open #page-wrapper { transform: translateX(300px); }
     .services-gallery img, .img-large img { width: 100%; height: auto !important; max-height: none; object-fit: contain !important; }
 
     /* =========================================================================
-       OS CARROSSÉIS DO MOBILE - 100% CORRIGIDO SEM CORTAR
+       OS CARROSSÉIS DO MOBILE 
        ========================================================================= */
     .cards-carousel, .gallery-carousel, .clients-carousel {
         display: flex !important;
@@ -353,7 +384,7 @@ body.menu-open #page-wrapper { transform: translateX(300px); }
         flex: 1 1 auto !important;
         min-width: 0 !important;
         display: flex !important;
-        gap: 15px !important; /* Espaçamento PERFEITO para o JavaScript calcular */
+        gap: 15px !important; 
         overflow-x: auto !important;
         scroll-snap-type: x mandatory !important;
         padding-bottom: 5px !important;
@@ -364,7 +395,7 @@ body.menu-open #page-wrapper { transform: translateX(300px); }
     }
 
     .card, .gallery-item, .logo-box {
-        flex: 0 0 100% !important; /* Obriga a ocupar exatamente a caixa da tela */
+        flex: 0 0 100% !important; 
         min-width: 100% !important;
         max-width: 100% !important;
         scroll-snap-align: center !important;
@@ -417,4 +448,12 @@ body.menu-open #page-wrapper { transform: translateX(300px); }
     
     .footer-bottom { flex-direction: column; text-align: center; gap: 20px; padding-bottom: 100px; } 
     .whatsapp-float { width: 50px; height: 50px; font-size: 1.8rem; bottom: 20px; right: 20px; }
+
+    /* AJUSTES MOBILE DA PÁGINA QUEM SOMOS PARA CENTRALIZAR TUDO */
+    .history-container, .stripe-container { flex-direction: column !important; text-align: center !important; gap: 30px !important; }
+    .history-text h2::after, .stripe-title-col h2::after { left: 50% !important; transform: translateX(-50%) !important; }
+    .history-images { display: flex !important; flex-direction: column !important; width: 100%; gap: 10px; }
+    .history-images img { max-height: 250px; border-radius: 10px; object-fit: cover; width: 100%; }
+    .stripe-title-col h2 { font-size: 2.2rem; }
+    .stripe-text-col .btn { margin: 20px auto 0 !important; display: inline-block !important; }
 }
