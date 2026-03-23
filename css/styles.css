@@ -552,11 +552,50 @@ body.menu-open #page-wrapper { transform: translateX(300px); }
     .services-grid { grid-template-columns: 1fr; }
     .page-clients-grid { grid-template-columns: repeat(2, 1fr); }
 }
+.gallery-page-section {
+    padding: 60px 5% 100px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.gallery-grid-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 colunas no desktop */
+    gap: 20px;
+    margin-top: 50px;
+}
+
+.gallery-grid-item {
+    aspect-ratio: 1 / 1; /* Mantém as fotos quadradas */
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.gallery-grid-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.gallery-grid-item:hover img {
+    transform: scale(1.05);
+}
 
 @media (max-width: 576px) {
     .page-clients-grid { grid-template-columns: 1fr; }
-}
 
+    .gallery-grid-container {
+        grid-template-columns: 1fr; /* 1 coluna no celular */
+    }
+}
+@media (max-width: 992px) {
+    .gallery-grid-container {
+        grid-template-columns: repeat(2, 1fr); /* 2 colunas no tablet */
+    }
+}
 /* ==========================================================================
    8. COOKIE BANNER (PRIVACY CONTROL) - INCLUSÃO
    ========================================================================== */
