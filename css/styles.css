@@ -25,12 +25,12 @@ a { text-decoration: none; color: inherit; transition: 0.3s ease; }
 /* ==========================================================================
    2. TIPOGRAFIA GERAL
    ========================================================================== */
-/* Apenas Textos Principais (H1 e H2) recebem a fonte Righteous */
+/* Apenas Textos Principais (H1 e H2) fonte Righteous */
 h1, h2 { font-weight: 700; font-family: var(--font-menu); }
 h3, h4 { font-weight: 700; font-family: var(--font-main); }
 h2 { font-size: 2.5rem; margin-bottom: 1rem; }
 
-/* Parágrafos e descrições voltam para Poppins */
+/* Parágrafos e descrições Poppins */
 p { line-height: 1.6; margin-bottom: 1rem; font-family: var(--font-main); }
 .text-dark .section-subtitle { color: #666; }
 .text-center { text-align: center; }
@@ -425,9 +425,79 @@ body.menu-open #page-wrapper { transform: translateX(300px); }
     .about-image { margin-bottom: -60px; margin-top: 40px; width: 100%; text-align: center; }
     .about-image img { margin: 0 auto; display: block; }
 
-    .services-container { margin-top: 30px; }
-    .service-item { padding: 15px; border-radius: 20px; }
-    .service-item .icon { font-size: 1.5rem; margin-right: 15px; }
+    /* Centralizar o título na seção de serviços */
+    .services-section > p { text-align: center; margin-bottom: 30px; } 
+
+    /* Modificar container de serviços */
+    .services-container { margin-top: 0; flex-direction: column; gap: 20px; } /* Usei gap e removi margem topo */
+    
+    /* Modificar cards de serviços */
+    .service-item {
+        display: flex;
+        align-items: center;
+        background-color: var(--bg-white); /* Base branca */
+        color: var(--text-dark);
+        padding: 30px; /* Mais padding para o visual dos prints */
+        border-radius: 100px; /* Formato elíptico */
+        margin-bottom: 0; /* Removi margem e usei gap no container */
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    /* Cores no clique / ativo */
+    .service-item:active,
+    .service-item:focus,
+    .service-item.active { /* Removi :hover e adicionei :active, :focus, .active */
+        background-color: var(--primary-yellow);
+    }
+
+    /* Ícone grande e colorido */
+    .service-item .icon {
+        font-size: 3rem; /* Tamanho maior */
+        margin-right: 25px;
+        color: var(--primary-yellow); /* Cor padrão amarela */
+    }
+
+    /* Cor do ícone quando o card está ativo/clicado (preto) */
+    .service-item:active .icon,
+    .service-item:focus .icon,
+    .service-item.active .icon {
+        color: var(--bg-black);
+    }
+
+    .service-item .info h4 { margin-bottom: 5px; font-family: var(--font-main); }
+    .service-item .info p { font-size: 0.85rem; margin: 0; color: #444; font-family: var(--font-main); }
+
+    .service-item .arrow {
+        margin-left: auto;
+        width: 40px; /* Tamanho maior da arrow */
+        height: 40px;
+        border-radius: 50%;
+        border: 2px solid var(--text-dark); /* Borda mais grossa e preta */
+        background-color: var(--bg-white); /* Fundo branco */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-shrink: 0;
+        transition: 0.3s;
+        color: var(--text-dark); /* Cor da seta preta */
+    }
+
+    /* Comportamento da arrow quando o card está ativo/clicado (fundo preto, seta branca) */
+    .service-item:active .arrow,
+    .service-item:focus .arrow,
+    .service-item.active .arrow {
+        background: var(--bg-black);
+        color: var(--text-light); /* Seta branca */
+        border-color: var(--bg-black);
+    }
+
+    /* Centralizar o botão na seção de serviços (usando margem automática) */
+    .services-section .btn {
+        margin: 40px auto 0;
+        display: block; /* Mudei para block para usar margem automática */
+        width: fit-content; /* Para não ocupar a largura toda */
+    }
     
     .card, .gallery-item, .logo-box { min-width: 100%; }
     .logo-box { padding: 15px; }
@@ -448,4 +518,3 @@ body.menu-open #page-wrapper { transform: translateX(300px); }
     .footer-bottom { flex-direction: column; text-align: center; gap: 20px; padding-bottom: 100px; } 
     .whatsapp-float { width: 50px; height: 50px; font-size: 1.8rem; bottom: 20px; right: 20px; }
 }
-// FIM DO CSS
