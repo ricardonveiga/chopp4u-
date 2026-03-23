@@ -170,48 +170,43 @@ body.menu-open #page-wrapper { transform: translateX(300px); }
 .services-list { flex: 1; }
 
 /* -------------------------------------------------------------
-   CARDS DE SERVIÇOS (AGORA SEGUEM O PADRÃO MOBILE NO DESKTOP TAMBÉM)
+   CARDS DE SERVIÇOS
    ------------------------------------------------------------- */
 .service-item { 
     display: flex; 
     align-items: center; 
-    background-color: var(--bg-white); /* Base sempre branca */
+    background-color: var(--bg-white); 
     color: var(--text-dark); 
-    padding: 30px; /* Mais preenchimento */
-    border-radius: 100px; /* Formato elíptico */
+    padding: 30px; 
+    border-radius: 100px; 
     margin-bottom: 20px; 
     cursor: pointer; 
     transition: 0.3s; 
 }
 
-/* Fundo amarelo no hover (desktop) e active */
 .service-item.active, .service-item:hover { 
     background-color: var(--primary-yellow); 
 }
 
-/* Ícone amarelo por padrão */
 .service-item .icon { 
-    font-size: 3rem; /* Tamanho maior */
+    font-size: 3rem; 
     margin-right: 25px; 
     color: var(--primary-yellow); 
     transition: 0.3s;
 }
 
-/* Ícone preto no hover/active */
 .service-item.active .icon, .service-item:hover .icon { 
     color: var(--bg-black); 
 }
 
-/* Títulos com a fonte Righteous */
 .service-item .info h4 { 
     margin-bottom: 5px; 
-    font-family: var(--font-menu); /* Aplicando Righteous */
+    font-family: var(--font-menu); 
     font-weight: 400; 
     font-size: 1.2rem;
 }
 .service-item .info p { font-size: 0.85rem; margin: 0; color: #444; font-family: var(--font-main); }
 
-/* Seta Branca com contorno preto por padrão */
 .service-item .arrow { 
     margin-left: auto; 
     width: 40px; 
@@ -223,7 +218,6 @@ body.menu-open #page-wrapper { transform: translateX(300px); }
     display: flex; justify-content: center; align-items: center; flex-shrink: 0; transition: 0.3s; 
 }
 
-/* Seta com fundo preto e ícone branco no hover/active */
 .service-item.active .arrow, .service-item:hover .arrow { 
     background: var(--bg-black); 
     color: var(--text-light); 
@@ -304,7 +298,6 @@ body.menu-open #page-wrapper { transform: translateX(300px); }
     .btn { text-transform: uppercase; }
     .hero-slider { margin-top: 0; }
     
-    /* Inverte a ordem apenas da seção Sobre para o mobile (texto em cima, imagem embaixo) */
     .about-container { flex-direction: column-reverse; }
     .services-container { flex-direction: column; }
     
@@ -316,43 +309,17 @@ body.menu-open #page-wrapper { transform: translateX(300px); }
     .top-social { display: none !important; }
     
     .top-info-right {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
-        align-items: center;
-        font-size: 0.7rem; 
-        color: var(--bg-black);
-        font-weight: 600;
-        line-height: 1.5;
-        width: 100%;
-        font-family: var(--font-main) !important;
+        display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center; align-items: center; font-size: 0.7rem; color: var(--bg-black); font-weight: 600; line-height: 1.5; width: 100%; font-family: var(--font-main) !important;
     }
 
-    .top-info-right span {
-        display: inline-flex;
-        align-items: center;
-        white-space: nowrap; 
-        margin: 0; 
-    }
-
+    .top-info-right span { display: inline-flex; align-items: center; white-space: nowrap; margin: 0; }
     .top-info-right span:nth-child(2) { display: none !important; }
     .top-info-right span:nth-child(3) { order: 1; margin-right: 6px; }
     .top-info-right span:nth-child(4) { order: 2; opacity: 0.4; font-weight: 300; }
     .top-info-right span:nth-child(5) { order: 3; margin-left: 6px; }
-    .top-info-right span:nth-child(1) {
-        order: 4;
-        flex-basis: 100%; 
-        justify-content: center;
-        margin-top: 6px;
-    }
+    .top-info-right span:nth-child(1) { order: 4; flex-basis: 100%; justify-content: center; margin-top: 6px; }
 
-    #header {
-        position: sticky;
-        top: 0;
-        z-index: 990;
-    }
-    
+    #header { position: sticky; top: 0; z-index: 990; }
     .header-container { position: relative; display: flex; align-items: center; justify-content: space-between; padding: 15px 5%; flex-direction: row; }
     .menu-icon { order: 1; flex: 1; text-align: left; }
     .logo { order: 2; flex: 2; display: flex; justify-content: center; }
@@ -360,98 +327,36 @@ body.menu-open #page-wrapper { transform: translateX(300px); }
     .mobile-header-social { order: 3; flex: 1; gap: 10px; justify-content: flex-end; }
     .mobile-header-social a { border: 1px solid white; border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.9rem; }
     
-    /* === MENU TELA CHEIA (DROPDOWN MOBILE) === */
     body.menu-open #page-wrapper { transform: none; } 
     .overlay.show { background: rgba(0,0,0,0.6); } 
     
     .sidebar { 
-        width: 100%; 
-        height: auto; 
-        left: 0; 
-        top: -150vh; 
-        transform: none; 
-        background-color: var(--bg-white); 
-        overflow-y: visible; 
-        padding: 0; 
-        display: flex; 
-        flex-direction: column; 
-        transition: top 0.4s ease; 
-        box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-        z-index: 1005; /* Garante que fique acima de tudo */
+        width: 100%; height: auto; left: 0; top: -150vh; transform: none; background-color: var(--bg-white); overflow-y: visible; padding: 0; display: flex; flex-direction: column; transition: top 0.4s ease; box-shadow: 0 10px 20px rgba(0,0,0,0.3); z-index: 1005;
     }
     .sidebar.open { top: 0; transform: none; }
     
-    /* AJUSTE: O X e o Cabeçalho (Isolados com Posição Absoluta e Flex) */
     .sidebar-header { 
-        position: relative; /* Base para o X e Social flutuarem */
-        background-color: var(--bg-black); 
-        display: flex; 
-        justify-content: center; /* Mantém apenas o logo perfeitamente centralizado */
-        align-items: center; 
-        height: 70px; /* Altura fixa para todos os elementos alinharem */
-        padding: 0 5%; 
-        border-bottom: 2px solid var(--primary-yellow); 
-        margin-bottom: 0; 
+        position: relative; background-color: var(--bg-black); display: flex; justify-content: center; align-items: center; height: 70px; padding: 0 5%; border-bottom: 2px solid var(--primary-yellow); margin-bottom: 0; 
     }
     
     .close-btn { 
-        position: absolute; /* Flutua sobre a barra preta */
-        top: 0;
-        left: 5%; /* Alinhado à esquerda igual ao menu hambúrguer */
-        height: 70px; /* Mesma altura da barra para alinhar verticalmente */
-        display: flex;
-        align-items: center;
-        background: transparent; 
-        color: var(--primary-yellow); 
-        opacity: 1; 
-        visibility: visible; 
-        font-size: 1.8rem; 
-        border: none;
-        z-index: 1002;
-        margin: 0; 
-        padding: 0; 
+        position: absolute; top: 0; left: 5%; height: 70px; display: flex; align-items: center; background: transparent; color: var(--primary-yellow); opacity: 1; visibility: visible; font-size: 1.8rem; border: none; z-index: 1002; margin: 0; padding: 0; 
     }
     
-    .sidebar-header img { 
-        max-height: 40px; 
-        object-fit: contain; 
-        margin: 0; 
-    }
+    .sidebar-header img { max-height: 40px; object-fit: contain; margin: 0; }
     
-    .mobile-sidebar-social { 
-        position: absolute; /* Flutua à direita, não empurra o logo */
-        right: 5%;
-        display: flex !important; 
-        gap: 10px; 
-    }
+    .mobile-sidebar-social { position: absolute; right: 5%; display: flex !important; gap: 10px; }
     .mobile-sidebar-social a { border: 1px solid white; border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.9rem; }
     
     .sidebar-nav { width: 100%; background: var(--bg-white); padding: 0; }
     .sidebar-nav ul { align-items: flex-start; padding: 0; margin: 0; }
     .sidebar-nav li { margin: 0; width: 100%; text-align: left; padding: 0; border: none; }
     
-    /* AJUSTE: Letras menores e efeito amarelo no clique/ativo */
     .sidebar-nav a { 
-        display: block; 
-        width: 100%; 
-        padding: 18px 5%; 
-        font-family: var(--font-menu); 
-        font-size: 0.75rem; /* Fonte reduzida para o tamanho pedido */
-        color: var(--bg-black); 
-        text-transform: uppercase; 
-        border-bottom: 1px solid #f0f0f0; 
-        transition: background-color 0.2s ease, color 0.2s ease;
+        display: block; width: 100%; padding: 18px 5%; font-family: var(--font-menu); font-size: 0.75rem; color: var(--bg-black); text-transform: uppercase; border-bottom: 1px solid #f0f0f0; transition: background-color 0.2s ease, color 0.2s ease;
     }
     .sidebar-nav a::after { display: none; } 
-    
-    /* Fundo Amarelo no item selecionado/ativo/tocado */
-    .sidebar-nav a:hover,
-    .sidebar-nav a:focus,
-    .sidebar-nav a:active,
-    .sidebar-nav a.active { 
-        background-color: var(--primary-yellow) !important; 
-        color: var(--bg-black) !important; 
-    }
+    .sidebar-nav a:hover, .sidebar-nav a:focus, .sidebar-nav a:active, .sidebar-nav a.active { background-color: var(--primary-yellow) !important; color: var(--bg-black) !important; }
     
     .mobile-contact-yellow { display: none !important; }
     
@@ -480,39 +385,25 @@ body.menu-open #page-wrapper { transform: translateX(300px); }
     .about-image { margin-bottom: -60px; margin-top: 40px; width: 100%; text-align: center; }
     .about-image img { margin: 0 auto; display: block; }
 
-    /* =======================================================
-       CORREÇÕES APLICADAS (TEXTO E BOTÃO CENTRALIZADOS)
-       ======================================================= */
-    /* Garante a centralização absoluta de qualquer parágrafo nesta seção */
+    /* Força textos genéricos de sessão ao centro */
     .services-section p, .services-section > p, .services-container > p, .services-section .section-subtitle + p, .services-section h2 + p { 
-        text-align: center !important; 
-        margin-bottom: 30px; 
-        display: block; 
-        width: 100%; 
+        text-align: center !important; margin-bottom: 30px; display: block; width: 100%; 
     } 
 
-    /* Botão "Entre em contato" perfeitamente centralizado */
     .services-section .btn, .services-container .btn {
-        margin: 40px auto !important; 
-        display: table !important; /* Método infalível para centralizar botões com largura de conteúdo */
-        width: max-content;
-        text-align: center;
+        margin: 40px auto !important; display: table !important; width: max-content; text-align: center;
     }
 
-    /* Modificar container de serviços */
     .services-container { margin-top: 0; flex-direction: column; gap: 0; } 
     
-    /* Modificar cards de serviços */
-    .service-item {
-        margin-bottom: 20px;
-        min-height: 230px; /* Força todos os cards a terem a mesma altura mínima */
-    }
-    
-    .service-item:last-child {
-        margin-bottom: 0;
+    .service-item { margin-bottom: 20px; min-height: 230px; }
+    .service-item:last-child { margin-bottom: 0; }
+
+    /* Garante que os textos dos Cards fiquem à esquerda (Correção do Print 1) */
+    .service-item .info h4, .service-item .info p {
+        text-align: left !important;
     }
 
-    /* Regras exclusivas de touch/mobile para ignorar o hover pegajoso */
     @media (hover: none) {
         .service-item:hover { background-color: var(--bg-white); }
         .service-item:hover .icon { color: var(--primary-yellow); }
@@ -522,51 +413,59 @@ body.menu-open #page-wrapper { transform: translateX(300px); }
         .service-item:active .arrow, .service-item.active .arrow { background: var(--bg-black); color: var(--text-light); border-color: var(--bg-black); }
     }
 
-    /* =======================================================
-       CORREÇÃO APLICADA (GALERIA MOBILE - PRINT 3)
-       ======================================================= */
-    /* Empilha as imagens da galeria e exibe por inteiro sem cortes */
-    .services-gallery { 
-        flex-direction: column; 
-        width: 100%; 
-        align-items: center; 
-        gap: 20px;
-        margin-top: 30px;
-    }
-    .services-gallery img, .img-large img { 
-        width: 100%; 
-        height: auto !important; /* Libera a altura cortada do desktop */
-        max-height: none; 
-        object-fit: contain !important; /* Garante a foto 100% original aparente */
-    }
+    /* Primeira Galeria Secundária Empilhada */
+    .services-gallery { flex-direction: column; width: 100%; align-items: center; gap: 20px; margin-top: 30px; }
+    .services-gallery img, .img-large img { width: 100%; height: auto !important; max-height: none; object-fit: contain !important; }
 
-    /* =======================================================
-       CORREÇÃO APLICADA (CARROSSÉIS CORTADOS - PRINTS 4 a 7)
-       ======================================================= */
-    /* Força a parada rígida nos contêineres de rolagem */
-    .cards-container, .gallery-container, .clients-logos {
-        scroll-snap-type: x mandatory !important;
-        scroll-padding: 0;
-    }
+    /* =========================================================================
+       CORREÇÕES DOS CARROSSÉIS (Não cortar bordas e parar 1 a 1)
+       ========================================================================= */
     
-    /* Força os itens a terem exatamente a largura da tela e parar no meio */
-    .card, .gallery-item, .logo-box { 
-        min-width: 100% !important; 
-        flex: 0 0 100% !important; 
-        scroll-snap-align: center !important; 
-        scroll-snap-stop: always !important; /* Impede a rolagem de parar na metade de duas imagens */
+    /* Configuração Mestre de Rolagem */
+    .cards-container, .gallery-container, .clients-logos {
+        gap: 10px !important;
+        scroll-snap-type: x mandatory !important;
+        padding-bottom: 5px; /* Previne que o overflow devore a borda no celular */
+    }
+
+    /* Trava de Largura e Alinhamento Exato no Centro */
+    .card, .gallery-item, .logo-box {
+        min-width: 100% !important;
+        flex: 0 0 100% !important;
+        scroll-snap-align: center !important;
+        scroll-snap-stop: always !important; /* Impede a rolagem "fantasma" que para no meio */
         box-sizing: border-box;
+        transform: translateZ(0); /* Hack de hardware que impede a borda arredondada de "sumir" no iPhone */
     }
 
-    /* Permite que as imagens dos Eventos fiquem na proporção natural no celular */
+    /* 1. Diferenciais (Cards com borda preta inteira) */
+    .card {
+        border-radius: 15px !important;
+        overflow: hidden !important; 
+    }
+
+    /* 2. Galeria de Eventos (Formato Quadrado/Único para todas as fotos) */
     .gallery-item img {
-        aspect-ratio: auto !important;
-        height: auto !important;
-        object-fit: contain !important;
-        max-height: 400px;
+        width: 100% !important;
+        height: 350px !important; /* Altura padrão para forçar o formato único */
+        object-fit: cover !important; /* Preenche todo o bloco igualmente, sem distorcer */
+        border-radius: 10px !important;
     }
 
-    .logo-box { padding: 15px; }
+    /* 3. Logos dos Clientes (Centralizadas um a um) */
+    .logo-box {
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        height: 180px !important; /* Altura padrão para não quebrar o bloco */
+        padding: 20px !important;
+    }
+    .logo-box img {
+        max-width: 80% !important;
+        max-height: 100% !important;
+        object-fit: contain !important; /* Apenas contém a logo sem cortar */
+    }
+
     .nav-arrow { font-size: 1.2rem; }
     
     .mobile-contact-block-centered { text-align: center; padding: 40px 5%; border-bottom: 1px solid rgba(0,0,0,0.1); flex-direction: column; align-items: center; }
