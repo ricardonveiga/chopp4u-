@@ -245,7 +245,7 @@ body.menu-open #page-wrapper { transform: translateX(300px); }
     
     .footer-content { grid-template-columns: 1fr 1fr; gap: 30px; }
     
-    /* Top Bar Mobile - E-mail e WhatsApp lado a lado, CNPJ em baixo centralizado */
+    /* Top Bar Mobile */
     .top-bar { padding: 10px 2%; } 
     .top-bar-container { display: block; } 
     .top-social { display: none !important; }
@@ -270,19 +270,10 @@ body.menu-open #page-wrapper { transform: translateX(300px); }
         margin: 0; 
     }
 
-    /* Oculta o primeiro separador original (que ficava entre CNPJ e E-mail) */
     .top-info-right span:nth-child(2) { display: none !important; }
-
-    /* E-mail */
     .top-info-right span:nth-child(3) { order: 1; margin-right: 6px; }
-
-    /* Segundo separador | (entre E-mail e Telefone) */
     .top-info-right span:nth-child(4) { order: 2; opacity: 0.4; font-weight: 300; }
-
-    /* Telefone */
     .top-info-right span:nth-child(5) { order: 3; margin-left: 6px; }
-
-    /* CNPJ (força a quebra para a linha de baixo, ocupando 100% da largura e centralizando) */
     .top-info-right span:nth-child(1) {
         order: 4;
         flex-basis: 100%; 
@@ -290,11 +281,10 @@ body.menu-open #page-wrapper { transform: translateX(300px); }
         margin-top: 6px;
     }
 
-    /* Header Mobile - Cabeçalho fixo na rolagem (sticky) e mantido idêntico com os ícones sociais */
     #header {
         position: sticky;
         top: 0;
-        z-index: 990; /* Fica acima das seções, abaixo do menu lateral (1000) e overlay (999) */
+        z-index: 990;
     }
     
     .header-container { position: relative; display: flex; align-items: center; justify-content: space-between; padding: 15px 5%; flex-direction: row; }
@@ -306,11 +296,11 @@ body.menu-open #page-wrapper { transform: translateX(300px); }
     
     /* === MENU TELA CHEIA (DROPDOWN MOBILE) === */
     body.menu-open #page-wrapper { transform: none; } 
-    .overlay.show { background: rgba(0,0,0,0.6); } /* Fundo escurecido suave para ver a página embaixo */
+    .overlay.show { background: rgba(0,0,0,0.6); } 
     
     .sidebar { 
         width: 100%; 
-        height: auto; /* Permite ver o conteúdo da página abaixo */
+        height: auto; 
         left: 0; 
         top: -150vh; 
         transform: none; 
@@ -324,28 +314,75 @@ body.menu-open #page-wrapper { transform: translateX(300px); }
     }
     .sidebar.open { top: 0; transform: none; }
     
-    .sidebar-header { background-color: var(--bg-black); display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; border-bottom: 2px solid var(--primary-yellow); margin-bottom: 0; }
-    .close-btn { position: static; background: transparent; color: var(--primary-yellow); opacity: 1; visibility: visible; width: auto; height: auto; font-size: 1.8rem; flex: 1; text-align: left; margin: 0; padding: 0; }
-    .sidebar-header img { max-height: 40px; flex: 2; object-fit: contain; }
-    .mobile-sidebar-social { flex: 1; justify-content: flex-end; gap: 10px; display: flex !important; }
+    /* AJUSTE: X à esquerda e Logo Centralizado no menu aberto */
+    .sidebar-header { 
+        background-color: var(--bg-black); 
+        display: flex; 
+        justify-content: space-between; 
+        align-items: center; 
+        padding: 15px 5%; 
+        border-bottom: 2px solid var(--primary-yellow); 
+        margin-bottom: 0; 
+    }
+    .close-btn { 
+        position: static; 
+        background: transparent; 
+        color: var(--primary-yellow); 
+        opacity: 1; 
+        visibility: visible; 
+        width: auto; 
+        height: auto; 
+        font-size: 1.8rem; 
+        flex: 1; 
+        text-align: left; 
+        margin: 0; 
+        padding: 0; 
+        order: 1; 
+    }
+    .sidebar-header img { 
+        max-height: 40px; 
+        flex: 2; 
+        object-fit: contain; 
+        order: 2; 
+        margin: 0 auto; 
+    }
+    .mobile-sidebar-social { 
+        flex: 1; 
+        justify-content: flex-end; 
+        gap: 10px; 
+        display: flex !important; 
+        order: 3; 
+    }
     .mobile-sidebar-social a { border: 1px solid white; border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.9rem; }
     
     .sidebar-nav { width: 100%; background: var(--bg-white); padding: 0; }
     .sidebar-nav ul { align-items: flex-start; padding: 0; margin: 0; }
     .sidebar-nav li { margin: 0; width: 100%; text-align: left; padding: 0; border: none; }
-    .sidebar-nav a { display: block; width: 100%; padding: 20px 5%; font-family: var(--font-menu); font-size: 1rem; color: var(--bg-black); text-transform: uppercase; border-bottom: 1px solid #f0f0f0; }
-    .sidebar-nav a::after { display: none; } /* Esconde a linhazinha amarela */
-    .sidebar-nav a.active { background-color: var(--primary-yellow); color: var(--bg-black); }
     
-    /* Remove o bloco amarelo de contato do menu */
+    /* AJUSTE: Letras menores e efeito amarelo no clique/ativo */
+    .sidebar-nav a { 
+        display: block; 
+        width: 100%; 
+        padding: 18px 5%; 
+        font-family: var(--font-menu); 
+        font-size: 0.85rem; 
+        color: var(--bg-black); 
+        text-transform: uppercase; 
+        border-bottom: 1px solid #f0f0f0; 
+    }
+    .sidebar-nav a::after { display: none; } 
+    .sidebar-nav a:active,
+    .sidebar-nav a.active { 
+        background-color: var(--primary-yellow); 
+        color: var(--bg-black); 
+    }
+    
     .mobile-contact-yellow { display: none !important; }
     
-    /* Hero Section (Banner centralizado com a fonte Righteous) */
     .hero-content { display: flex; flex-direction: column; text-align: center; align-items: center; padding-bottom: 80px; max-width: 100%; }
     .hero-content h1 { font-size: 2.6rem; text-align: center; font-family: var(--font-menu); font-weight: 400; }
     .hero-content p { font-size: 1rem; text-align: center; margin-bottom: 30px; }
     
-    /* Paginação do Banner Mobile (ANT / PRÓX) */
     .mobile-hero-nav { justify-content: space-between; align-items: center; position: absolute; bottom: 40px; left: 5%; width: 90%; border-top: 1px solid rgba(255,255,255,0.3); padding-top: 20px; font-family: var(--font-menu); color: var(--bg-white); font-size: 1.2rem; font-weight: 600; z-index: 5; }
     .nav-controls span { cursor: pointer; text-transform: uppercase; }
     .nav-controls .sep { color: var(--primary-yellow); margin: 0 15px; }
@@ -357,29 +394,15 @@ body.menu-open #page-wrapper { transform: translateX(300px); }
     .hero-content h1 { font-size: 2.2rem; }
     .section-subtitle { font-size: 0.8rem; }
     
-    /* --- INÍCIO DAS ALTERAÇÕES NA SEÇÃO SOBRE NO MOBILE --- */
     .about-section, .services-section, .differentials-section, .gallery-section, .clients-section, .cta-section { padding: 60px 5%; }
-    
-    /* Centraliza os textos da seção */
     .about-text { text-align: center; }
-    
-    /* Aplica a fonte Righteous no título h2 e centraliza */
     .about-text h2 { font-family: var(--font-menu); font-weight: 400; line-height: 1.2; font-size: 2.2rem; text-align: center; }
-    
-    /* Centraliza os parágrafos e título menor */
     .about-text p, .about-text h3 { text-align: center; }
-    
-    /* Centraliza o subtítulo e coloca a linha amarela logo acima dele */
     .about-text .section-subtitle { text-align: center; display: block; margin-bottom: 15px; }
     .about-text .section-subtitle::before { display: block; margin: 0 auto 10px auto; }
-    
-    /* Centraliza o botão */
     .about-text .btn { margin: 0 auto; display: inline-block; }
-
-    /* Ajusta a imagem do copo para ficar no final com margem negativa, grudando na curva inferior */
     .about-image { margin-bottom: -60px; margin-top: 40px; width: 100%; text-align: center; }
     .about-image img { margin: 0 auto; display: block; }
-    /* --- FIM DAS ALTERAÇÕES NA SEÇÃO SOBRE --- */
 
     .services-container { margin-top: 30px; }
     .service-item { padding: 15px; border-radius: 20px; }
@@ -389,7 +412,6 @@ body.menu-open #page-wrapper { transform: translateX(300px); }
     .logo-box { padding: 15px; }
     .nav-arrow { font-size: 1.2rem; }
     
-    /* Bloco Amarelo do Rodapé (Mobile) */
     .mobile-contact-block-centered { text-align: center; padding: 40px 5%; border-bottom: 1px solid rgba(0,0,0,0.1); flex-direction: column; align-items: center; }
     .mobile-contact-block-centered h3 { font-size: 1.5rem; margin: 15px 0 8px; color: var(--text-dark); }
     .mobile-contact-block-centered p { font-size: 0.9rem; margin-bottom: 0; color: var(--text-dark); }
