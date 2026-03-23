@@ -232,9 +232,8 @@ body.menu-open #page-wrapper { transform: translateX(300px); }
 .whatsapp-float { position: fixed; bottom: 30px; right: 30px; background-color: #25d366; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 2rem; box-shadow: 2px 2px 10px rgba(0,0,0,0.2); z-index: 1000; transition: 0.3s; }
 .whatsapp-float:hover { transform: scale(1.1); }
 
-
 /* ==========================================================================
-   7. MEDIA QUERIES (MOBILE)
+   7. MEDIA QUERIES (MOBILE) - Ajustes finais de 1 item por vez
    ========================================================================== */
 @media (max-width: 992px) {
     .mobile-sidebar-social, .mobile-contact-yellow, .mobile-header-social, .mobile-hero-nav, .mobile-contact-block-centered { display: flex !important; }
@@ -336,44 +335,41 @@ body.menu-open #page-wrapper { transform: translateX(300px); }
     .services-gallery img, .img-large img { width: 100%; height: auto !important; max-height: none; object-fit: contain !important; }
 
     /* =========================================================================
-       CORREÇÕES DEFINITIVAS DOS CARROSSÉIS 
+       OS CARROSSÉIS DO MOBILE - 100% CORRIGIDO SEM CORTAR
        ========================================================================= */
     .cards-carousel, .gallery-carousel, .clients-carousel {
         display: flex !important;
         align-items: center !important;
         width: 100% !important;
-        max-width: 100% !important;
-        gap: 10px !important; /* Espaço paras as setinhas laterais */
+        gap: 10px !important;
     }
 
     .cards-container, .gallery-container, .clients-logos {
         flex: 1 1 auto !important;
         min-width: 0 !important;
         display: flex !important;
-        gap: 20px !important; /* Espaço EXATO entre uma foto e outra (desgruda) */
+        gap: 15px !important; /* Espaçamento PERFEITO para o JavaScript calcular */
         overflow-x: auto !important;
         scroll-snap-type: x mandatory !important;
-        padding-bottom: 5px !important; /* Evita que o iPhone corte a sombra inferior */
+        padding-bottom: 5px !important;
         scrollbar-width: none !important;
     }
     .cards-container::-webkit-scrollbar, .gallery-container::-webkit-scrollbar, .clients-logos::-webkit-scrollbar {
-        display: none !important; /* Esconde barra de rolagem chata */
+        display: none !important;
     }
 
     .card, .gallery-item, .logo-box {
-        flex: 0 0 100% !important; /* FORÇA TER EXATAMENTE 100% DA LARGURA VISÍVEL, OBRIGANDO A PARAR NO CENTRO */
+        flex: 0 0 100% !important; /* Obriga a ocupar exatamente a caixa da tela */
         min-width: 100% !important;
         max-width: 100% !important;
         scroll-snap-align: center !important;
-        scroll-snap-stop: always !important; 
+        scroll-snap-stop: always !important;
         box-sizing: border-box !important;
         margin: 0 !important;
         transform: translateZ(0); 
     }
 
-    .card {
-        border-radius: 15px !important;
-    }
+    .card { border-radius: 15px !important; }
 
     .gallery-item img {
         width: 100% !important;

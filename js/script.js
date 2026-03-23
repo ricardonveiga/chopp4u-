@@ -44,17 +44,14 @@ document.addEventListener('DOMContentLoaded', () => {
     function goToSlide(index) {
         if (heroSlides.length === 0) return;
         
-        // Remove a classe active de todas as fotos e links desktop
         heroSlides.forEach(slide => slide.classList.remove('active'));
         pageItems.forEach(item => item.classList.remove('active'));
         
-        // Adiciona active apenas no atual
         if(heroSlides[index]) heroSlides[index].classList.add('active');
         if(pageItems[index]) pageItems[index].classList.add('active');
         
         currentSlide = index;
 
-        // Atualiza a numeração do Mobile
         if(mobileCurrentNum) {
             mobileCurrentNum.textContent = '0' + (index + 1);
         }
@@ -82,7 +79,6 @@ document.addEventListener('DOMContentLoaded', () => {
         clearInterval(slideInterval);
     }
 
-    // Clique na paginação do Desktop
     pageItems.forEach((item, index) => {
         item.addEventListener('click', () => {
             stopSlider(); 
@@ -90,7 +86,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Clique na paginação do Mobile (ANT / PRÓX)
     const mobilePrevBtn = document.getElementById('prev-slide-btn');
     const mobileNextBtn = document.getElementById('next-slide-btn');
 
@@ -108,12 +103,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Inicia animação
     if (heroSlides.length > 0) {
         startSlider();
     }
 
-    // --- LÓGICA DOS CARROSSEIS CORRIGIDA ---
+    // --- LÓGICA DOS CARROSSEIS: DESKTOP INTACTO, MOBILE PERFEITO ---
     function setupCarousel(containerSelector, leftArrowSelector, rightArrowSelector) {
         const container = document.querySelector(containerSelector);
         const leftArrow = document.querySelector(leftArrowSelector);
@@ -121,27 +115,55 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (!container) return;
 
-        // Função que move pra direita calculando automaticamente a largura do celular
         const moveNext = () => {
-            // container.clientWidth pega exatamente a largura visível (um item)
-            const scrollAmount = container.clientWidth; 
+            // Verifica se está no celular
+            const isMobile = window.innerWidth <= 768;
             
-            // Verifica se está na última foto (margem de erro de 10px pro celular)
-            if (Math.ceil(container.scrollLeft + container.clientWidth) >= container.scrollWidth - 10) {
-                // Ao invés de 'smooth', usa 'auto' para um pulo seco invisível pro começo
-                container.scrollTo({ left: 0, behavior: 'auto' });
+            if (isMobile) {
+                // No Mobile: A distância exata de UMA foto + o espaço (gap)
+                const gap = parseFloat(window.getComputedStyle(container).gap) || 0;
+                const scrollAmount = container.clientWidth + gap;
+                
+                if (Math.ceil(container.scrollLeft + container.clientWidth) >= container.scrollWidth - 10) {
+                    // Pulo seco: tira o efeito suave, pula pro 0, e devolve o suave. Adeus rebobinar!
+                    container.style.setProperty('scroll-behavior', 'auto', 'important');
+                    container.scrollLeft = 0;
+                    setTimeout(() => container.style.removeProperty('scroll-behavior'), 50);
+                } else {
+                    container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+                }
             } else {
-                // Rola para o próximo
-                container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+                // No Desktop: Mantém os 350px originais que você me pediu pra não mexer
+                const scrollAmount = 350;
+                if (Math.ceil(container.scrollLeft + container.clientWidth) >= container.scrollWidth - 10) {
+                    container.scrollTo({ left: 0, behavior: 'smooth' });
+                } else {
+                    container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+                }
             }
         };
 
         const movePrev = () => {
-            const scrollAmount = container.clientWidth;
-            if (container.scrollLeft <= 10) {
-                container.scrollTo({ left: container.scrollWidth, behavior: 'auto' });
+            const isMobile = window.innerWidth <= 768;
+            
+            if (isMobile) {
+                const gap = parseFloat(window.getComputedStyle(container).gap) || 0;
+                const scrollAmount = container.clientWidth + gap;
+
+                if (container.scrollLeft <= 10) {
+                    container.style.setProperty('scroll-behavior', 'auto', 'important');
+                    container.scrollLeft = container.scrollWidth;
+                    setTimeout(() => container.style.removeProperty('scroll-behavior'), 50);
+                } else {
+                    container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+                }
             } else {
-                container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+                const scrollAmount = 350;
+                if (container.scrollLeft <= 10) {
+                    container.scrollTo({ left: container.scrollWidth, behavior: 'smooth' });
+                } else {
+                    container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+                }
             }
         };
 
@@ -155,7 +177,6 @@ document.addEventListener('DOMContentLoaded', () => {
             interval = setInterval(moveNext, 3000);
         });
         
-        // Pausa a rolagem se o usuário colocar o dedo na tela do celular
         container.addEventListener('touchstart', () => clearInterval(interval));
         container.addEventListener('touchend', () => {
             interval = setInterval(moveNext, 3000);
@@ -209,5 +230,4 @@ document.addEventListener('DOMContentLoaded', () => {
             lightboxImg.src = galleryImages[currentImageIndex].src;
         }
     }
-
 });
