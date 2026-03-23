@@ -241,15 +241,19 @@ body.menu-open #page-wrapper { transform: translateX(300px); }
     .about-container, .services-container { flex-direction: column; }
     .footer-content { grid-template-columns: 1fr 1fr; gap: 30px; }
     
-    /* Top Bar Mobile - IDÊNTICA ao print */
+    /* Top Bar Mobile - IDÊNTICA à primeira imagem */
     .top-bar { padding: 10px 5%; }
     .top-bar-container { flex-direction: column; text-align: center; justify-content: center; }
     .top-social { display: none; }
-    .top-info-right { flex-direction: row; flex-wrap: wrap; justify-content: center; font-size: 0.75rem; color: var(--bg-black); font-weight: 600; line-height: 1.8; }
+    .top-info-right { display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center; font-size: 0.75rem; color: var(--bg-black); font-weight: 600; line-height: 1.8; }
     .top-info-right span { margin: 0 5px; display: inline-flex; align-items: center; }
-    .top-info-right .separator { display: none; } /* Oculta a barrinha vertical */
+    .top-info-right span:nth-child(3) { order: 1; } 
+    .top-info-right span:nth-child(4) { order: 2; display: inline-flex !important; } 
+    .top-info-right span:nth-child(5) { order: 3; } 
+    .top-info-right span:nth-child(1) { order: 4; flex-basis: 100%; justify-content: center; margin-top: 5px; } 
+    .top-info-right span:nth-child(2) { display: none; } 
     
-    /* Header Mobile - IDÊNTICO ao print */
+    /* Header Mobile - Mantido idêntico com os ícones sociais vazados do lado direito */
     .header-container { position: relative; display: flex; align-items: center; justify-content: space-between; padding: 15px 5%; flex-direction: row; }
     .menu-icon { order: 1; flex: 1; text-align: left; }
     .logo { order: 2; flex: 2; display: flex; justify-content: center; }
@@ -280,10 +284,10 @@ body.menu-open #page-wrapper { transform: translateX(300px); }
     .mobile-contact-yellow i { font-size: 1.2rem; margin-right: 8px; }
     .sidebar-footer-copy { margin-top: 50px; font-size: 0.75rem; opacity: 0.8; font-family: var(--font-main); }
     
-    /* Hero Section (Banner alinhado à esquerda) */
-    .hero-content { text-align: left; align-items: flex-start; padding-bottom: 80px; max-width: 100%; }
-    .hero-content h1 { font-size: 2.8rem; text-align: left; }
-    .hero-content p { font-size: 1rem; text-align: left; margin-bottom: 30px; }
+    /* Hero Section (Banner centralizado com a fonte Righteous) */
+    .hero-content { display: flex; flex-direction: column; text-align: center; align-items: center; padding-bottom: 80px; max-width: 100%; }
+    .hero-content h1 { font-size: 2.6rem; text-align: center; font-family: var(--font-menu); font-weight: 400; }
+    .hero-content p { font-size: 1rem; text-align: center; margin-bottom: 30px; }
     
     /* Paginação do Banner Mobile (ANT / PRÓX) */
     .mobile-hero-nav { justify-content: space-between; align-items: center; position: absolute; bottom: 40px; left: 5%; width: 90%; border-top: 1px solid rgba(255,255,255,0.3); padding-top: 20px; font-family: var(--font-menu); color: var(--bg-white); font-size: 1.2rem; font-weight: 600; z-index: 5; }
