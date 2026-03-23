@@ -544,3 +544,126 @@ body.menu-open #page-wrapper { transform: translateX(300px); }
 @media (max-width: 576px) {
     .page-clients-grid { grid-template-columns: 1fr; }
 }
+
+/* ==========================================================================
+   8. COOKIE BANNER (PRIVACY CONTROL) - INCLUSÃO
+   ========================================================================== */
+.cookie-banner-container {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    width: 90%;
+    max-width: 450px;
+    background-color: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    padding: 24px;
+    z-index: 10001;
+    font-family: Arial, sans-serif; /* Para ficar fiel ao print */
+    color: #333333;
+    border: 2px solid #222222;
+}
+
+.cookie-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.cookie-header h4 {
+    color: #7A52CC; /* Roxo igual ao print */
+    margin: 0;
+    font-size: 1.15rem;
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+}
+
+.adopt-badge {
+    color: #7A52CC;
+    font-size: 0.95rem;
+    opacity: 0.9;
+}
+
+.cookie-desc {
+    font-size: 0.95rem;
+    color: #333;
+    margin-bottom: 16px;
+    font-family: Arial, sans-serif;
+}
+
+.cookie-box {
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    padding: 12px;
+    margin-bottom: 16px;
+}
+
+.cookie-box p {
+    font-size: 0.9rem;
+    color: #444;
+    font-style: italic;
+    margin: 0;
+    line-height: 1.4;
+    font-family: Arial, sans-serif;
+}
+
+.cookie-links {
+    font-size: 0.85rem;
+    margin-bottom: 20px;
+    color: #7A52CC;
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+}
+
+.cookie-links a {
+    color: #7A52CC;
+    text-decoration: underline;
+}
+
+.cookie-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btn-customize {
+    background: none;
+    border: none;
+    color: #222;
+    font-weight: bold;
+    font-size: 0.9rem;
+    text-decoration: underline;
+    cursor: pointer;
+    padding: 0;
+}
+
+.cookie-buttons-right {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-reject, .btn-accept {
+    background-color: #7A52CC;
+    color: #ffffff;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.3s;
+}
+
+.btn-reject:hover, .btn-accept:hover {
+    background-color: #633eb0;
+}
+
+@media (max-width: 576px) {
+    .cookie-banner-container {
+        left: 5%;
+        bottom: 15px;
+        width: 90%;
+        padding: 20px;
+    }
+}

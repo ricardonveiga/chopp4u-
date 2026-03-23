@@ -235,4 +235,33 @@ document.addEventListener('DOMContentLoaded', () => {
             lightboxImg.src = galleryImages[currentImageIndex].src;
         }
     }
+
+    // --- LÓGICA DO COOKIE BANNER ---
+    const cookieBanner = document.getElementById('cookie-banner');
+    const btnAcceptCookie = document.getElementById('cookie-accept');
+    const btnRejectCookie = document.getElementById('cookie-reject');
+    const btnCustomizeCookie = document.getElementById('cookie-customize');
+
+    if (cookieBanner) {
+        // Verifica se o usuário já escolheu algo na sessão atual ou no localStorage
+        if (!localStorage.getItem('cookieConsent')) {
+            cookieBanner.style.display = 'block'; // Mostra o banner
+        }
+
+        btnAcceptCookie.addEventListener('click', () => {
+            localStorage.setItem('cookieConsent', 'accepted');
+            cookieBanner.style.display = 'none';
+        });
+
+        btnRejectCookie.addEventListener('click', () => {
+            localStorage.setItem('cookieConsent', 'rejected');
+            cookieBanner.style.display = 'none';
+        });
+
+        // O botão customizar por enquanto apenas fecha a janela
+        btnCustomizeCookie.addEventListener('click', () => {
+            cookieBanner.style.display = 'none';
+        });
+    }
+
 });
