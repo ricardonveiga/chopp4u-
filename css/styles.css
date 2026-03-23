@@ -238,7 +238,11 @@ body.menu-open #page-wrapper { transform: translateX(300px); }
     
     .btn { text-transform: uppercase; }
     .hero-slider { margin-top: 0; }
-    .about-container, .services-container { flex-direction: column; }
+    
+    /* Inverte a ordem apenas da seção Sobre para o mobile (texto em cima, imagem embaixo) */
+    .about-container { flex-direction: column-reverse; }
+    .services-container { flex-direction: column; }
+    
     .footer-content { grid-template-columns: 1fr 1fr; gap: 30px; }
     
     /* Top Bar Mobile - E-mail e WhatsApp lado a lado, CNPJ em baixo centralizado */
@@ -336,20 +340,25 @@ body.menu-open #page-wrapper { transform: translateX(300px); }
     /* --- INÍCIO DAS ALTERAÇÕES NA SEÇÃO SOBRE NO MOBILE --- */
     .about-section, .services-section, .differentials-section, .gallery-section, .clients-section, .cta-section { padding: 60px 5%; }
     
-    /* Reseta a margem negativa e ajusta a imagem para não estourar e ficar alinhada à esquerda */
-    .about-image { margin-bottom: 20px; margin-top: 20px; width: 100%; text-align: left; }
+    /* Centraliza os textos da seção */
+    .about-text { text-align: center; }
     
-    /* Garante que o texto fique alinhado à esquerda como na imagem 4 */
-    .about-text { text-align: left; }
+    /* Aplica a fonte Righteous no título h2 e centraliza */
+    .about-text h2 { font-family: var(--font-menu); font-weight: 400; line-height: 1.2; font-size: 2.2rem; text-align: center; }
     
-    /* Aplica a fonte Righteous no título h2 da seção Sobre */
-    .about-text h2 { font-family: var(--font-menu); font-weight: 400; line-height: 1.2; font-size: 2.2rem; }
+    /* Centraliza os parágrafos e título menor */
+    .about-text p, .about-text h3 { text-align: center; }
     
-    /* Ajusta os parágrafos para alinhamento à esquerda */
-    .about-text p { text-align: left; }
+    /* Centraliza o subtítulo e coloca a linha amarela logo acima dele */
+    .about-text .section-subtitle { text-align: center; display: block; margin-bottom: 15px; }
+    .about-text .section-subtitle::before { display: block; margin: 0 auto 10px auto; }
     
-    /* Ajusta o subtítulo para garantir alinhamento à esquerda */
-    .about-text .section-subtitle { text-align: left; display: block; margin-bottom: 15px; }
+    /* Centraliza o botão */
+    .about-text .btn { margin: 0 auto; display: inline-block; }
+
+    /* Ajusta a imagem do copo para ficar no final com margem negativa, grudando na curva inferior */
+    .about-image { margin-bottom: -60px; margin-top: 40px; width: 100%; text-align: center; }
+    .about-image img { margin: 0 auto; display: block; }
     /* --- FIM DAS ALTERAÇÕES NA SEÇÃO SOBRE --- */
 
     .services-container { margin-top: 30px; }
