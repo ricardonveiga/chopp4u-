@@ -1,84 +1,390 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Acqua Cup - Categorias</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap');
-        
-        body {
-            font-family: 'Montserrat', sans-serif;
-            background-color: #f3f4f6;
-        }
-
-        .category-card {
-            transition: all 0.3s ease;
-            cursor: pointer;
-            background-color: white; /* Todos começam brancos */
-        }
-
-        /* Hover no Desktop e Focus/Active no Mobile */
-        .category-card:hover, 
-        .category-card:active,
-        .category-card:focus {
-            background-color: #FFD700 !important;
-            transform: translateY(-5px);
-        }
-
-        .category-card:hover i, 
-        .category-card:active i,
-        .category-card:focus i {
-            color: white !important;
-        }
-
-        .category-card i {
-            transition: color 0.3s ease;
-            color: #FFD700;
-        }
-    </style>
+    <title>Chopp 4u!</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Righteous&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
 </head>
-<body class="p-4 md:p-8">
+<body>
 
-    <div class="max-w-6xl mx-auto">
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            
-            <div class="category-card p-6 rounded-2xl shadow-sm flex flex-col items-center text-center border border-gray-100" tabindex="0">
-                <div class="mb-4">
-                    <i class="fas fa-swimmer text-4xl"></i>
-                </div>
-                <h3 class="font-black text-gray-800 uppercase text-sm tracking-tighter">Pré-Mirim a Petiz</h3>
-                <p class="text-xs text-gray-500 mt-1 font-bold">5 a 12 anos</p>
+    <aside id="sidebar" class="sidebar">
+        <button id="close-btn" class="close-btn"><i class="fas fa-times"></i></button>
+        
+        <div class="sidebar-header">
+            <img src="images/logo-chopp-4u-atualizado.svg" alt="Chopp 4U! Logo">
+            <div class="mobile-sidebar-social" style="display: none;">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
             </div>
-
-            <div class="category-card p-6 rounded-2xl shadow-sm flex flex-col items-center text-center border border-gray-100" tabindex="0">
-                <div class="mb-4">
-                    <i class="fas fa-water text-4xl"></i>
-                </div>
-                <h3 class="font-black text-gray-800 uppercase text-sm tracking-tighter">Infantil a Juvenil</h3>
-                <p class="text-xs text-gray-500 mt-1 font-bold">13 a 16 anos</p>
-            </div>
-
-            <div class="category-card p-6 rounded-2xl shadow-sm flex flex-col items-center text-center border border-gray-100" tabindex="0">
-                <div class="mb-4">
-                    <i class="fas fa-medal text-4xl"></i>
-                </div>
-                <h3 class="font-black text-gray-800 uppercase text-sm tracking-tighter">Junior a Sênior</h3>
-                <p class="text-xs text-gray-500 mt-1 font-bold">17 a 24 anos</p>
-            </div>
-
-            <div class="category-card p-6 rounded-2xl shadow-sm flex flex-col items-center text-center border border-gray-100" tabindex="0">
-                <div class="mb-4">
-                    <i class="fas fa-trophy text-4xl"></i>
-                </div>
-                <h3 class="font-black text-gray-800 uppercase text-sm tracking-tighter">Master</h3>
-                <p class="text-xs text-gray-500 mt-1 font-bold">25+ anos</p>
-            </div>
-
         </div>
+        
+        <nav class="sidebar-nav">
+            <ul>
+                <li><a href="#hero" class="active">HOME</a></li>
+                <li><a href="#about">QUEM SOMOS</a></li>
+                <li><a href="#services">SERVIÇOS</a></li>
+                <li><a href="#gallery">GALERIA</a></li>
+                <li><a href="clientes.html">CLIENTES</a></li>
+            </ul>
+        </nav>
+        
+        <div class="sidebar-social">
+            <p>REDES SOCIAIS</p>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+            <a href="https://wa.me/5511922886539?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20um%20or%C3%A7amento%21" target="_blank" class="btn btn-outline btn-full">→ ENTRE EM CONTATO</a>
+        </div>
+
+        <div class="mobile-contact-yellow" style="display: none;">
+            <h4>ENTRE EM CONTATO</h4>
+            <ul>
+                <li><i class="fab fa-whatsapp"></i> +55 11 92288-6539</li>
+                <li><i class="far fa-envelope"></i> vendas@chopp4u.com.br</li>
+                <li><i class="fab fa-instagram"></i> @chopp4u</li>
+                <li><i class="far fa-check-square"></i> Chopp4U - CNPJ 31.854.260/0001-58</li>
+                <li><i class="fas fa-map-marker-alt"></i> Rua Raul Pompéia 800, São Paulo - SP</li>
+            </ul>
+            <div class="sidebar-footer-copy">© Copyright 2025 | Chopp4U! | ADM | Desenvolvido por smsites.com.br</div>
+        </div>
+    </aside>
+    
+    <div id="overlay" class="overlay"></div>
+
+    <div id="page-wrapper">
+        
+        <div class="top-bar" id="top-bar">
+            <div class="top-bar-container">
+                <div class="top-social">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+                <div class="top-info-right">
+                    <span><i class="fas fa-check"></i> CNPJ 31.854.260/0001-58</span>
+                    <span class="separator">|</span>
+                    <span><i class="far fa-envelope"></i> vendas@chopp4u.com.br</span>
+                    <span class="separator">|</span>
+                    <span class="phone-number">
+                        <a href="https://wa.me/5511922886539?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20um%20or%C3%A7amento%21" target="_blank" style="color: inherit;"><i class="fab fa-whatsapp"></i> +55 11 92288-6539</a>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <header id="header">
+            <div class="header-container">
+                <div class="menu-icon" id="menu-btn">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <div class="logo">
+                    <img src="images/logo-chopp-4u-atualizado.svg" alt="Chopp 4U! Logo">
+                </div>
+                <div class="mobile-header-social" style="display: none;">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+                <nav class="desktop-nav">
+                    <ul>
+                        <li><a href="#hero" class="active">HOME</a></li>
+                        <li><a href="#about">QUEM SOMOS</a></li>
+                        <li><a href="#services">SERVIÇOS</a></li>
+                        <li><a href="#gallery">GALERIA</a></li>
+                        <li><a href="clientes.html">CLIENTES</a></li>
+                    </ul>
+                </nav>
+                <div class="header-btn">
+                    <a href="https://wa.me/5511922886539?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20um%20or%C3%A7amento%21" target="_blank" class="btn btn-outline">→ PEÇA SEU CHOPE AQUI</a>
+                </div>
+            </div>
+        </header>
+
+        <section id="hero" class="hero-slider">
+            <div class="slide active" style="background-image: url('images/banner-1.jpg'); transition: background-image 0.5s ease-in-out;">
+                <div class="hero-content">
+                    <h1>O sabor que torna seus momentos inesquecíveis.</h1>
+                    <p>A Chopp4U! leva até você o Chope perfeito, gelado e cremoso, para brindar com quem mais importa.</p>
+                    <a href="https://wa.me/5511922886539?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20um%20or%C3%A7amento%21" target="_blank" class="btn btn-primary">SOLICITE UM ORÇAMENTO</a>
+                </div>
+            </div>
+            
+            <div class="slide" style="background-image: url('images/banner-2.jpg');">
+                <div class="hero-content">
+                    <h1>A solução completa para seu evento.</h1>
+                    <p>Chope gelado, estrutura completa e atendimento de qualidade.</p>
+                    <a href="https://wa.me/5511922886539?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20um%20or%C3%A7amento%21" target="_blank" class="btn btn-primary">SOLICITE UM ORÇAMENTO</a>
+                </div>
+            </div>
+
+            <div class="slide" style="background-image: url('images/banner-3.jpg');">
+                <div class="hero-content">
+                    <h1>Sua festa, nosso compromisso.</h1>
+                    <p>A melhor experiência em chope artesanal, direto na sua casa ou empresa.</p>
+                    <a href="https://wa.me/5511922886539?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20um%20or%C3%A7amento%21" target="_blank" class="btn btn-primary">SOLICITE UM ORÇAMENTO</a>
+                </div>
+            </div>
+            
+            <div class="hero-pagination">
+                <div class="page-item active">
+                    <span class="num">01</span>
+                    <span class="text">FAÇA O SEU EVENTO</span>
+                </div>
+                <div class="page-item">
+                    <span class="num">02</span>
+                    <span class="text">EVENTOS PARTICULARES</span>
+                </div>
+                <div class="page-item">
+                    <span class="num">03</span>
+                    <span class="text">EVENTOS CORPORATIVOS</span>
+                </div>
+            </div>
+
+            <div class="mobile-hero-nav" style="display: none;">
+                <div class="nav-controls">
+                    <span id="prev-slide-btn">ANT</span> <span class="sep">/</span> <span id="next-slide-btn">PRÓX</span>
+                </div>
+                <div class="nav-counter"><span id="current-slide-num">01</span></div>
+            </div>
+        </section>
+
+        <section id="about" class="about-section">
+            <div class="about-container">
+                <div class="about-image">
+                    <img src="images/img-sobre-atualizado.png" alt="Copo de Chope Perfeito">
+                </div>
+                <div class="about-text">
+                    <span class="section-subtitle">Chopp4U! - O Chope perfeito para seu evento</span>
+                    <h2>Mais sabor, mais diversão, mais momentos para brindar!</h2>
+                    <p>Sabemos que um dos maiores prazeres da vida é estar junto às pessoas que mais gostamos, nestas ocasiões, nada melhor que um bom Chope para acompanhar sua confraternização.</p>
+                    <p>Pensando nisso, a <strong>Chopp4U!</strong> oferece Chope de alta qualidade e diversos estilos, além de excelência em prestação de serviço, contribuindo para que seu evento seja ainda mais prazeroso.</p>
+                    <h3>Venha brindar com a gente!!!</h3>
+                    <a href="#about" class="btn btn-outline-dark">SAIBA MAIS</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="services" class="services-section">
+            <div class="section-header text-center">
+                <span class="section-subtitle">Chopp4U! - Nossos Serviços</span>
+                <h2>Tudo para deixar seu evento inesquecível!</h2>
+            </div>
+            <div class="services-container">
+                <div class="services-list">
+                    <p>Faça um orçamento completo.</p>
+                    <div class="service-item active" data-target="chope">
+                        <div class="icon"><i class="fas fa-beer-mug-empty"></i></div>
+                        <div class="info">
+                            <h4>Venda de Chope Artesanal</h4>
+                            <p>Venda de Chope Pilsen, Lager, Hoppy Lager, American IPA, Black, Weiss e Vinho.</p>
+                        </div>
+                        <div class="arrow"><i class="fas fa-chevron-right"></i></div>
+                    </div>
+                    <div class="service-item" data-target="staff">
+                        <div class="icon"><i class="fas fa-users"></i></div>
+                        <div class="info">
+                            <h4>Serviços de Staff</h4>
+                            <p>Para eventos de médio e grande porte, contrate nossos Staffs que proporcionarão maior comodidade e tranquilidade.</p>
+                        </div>
+                        <div class="arrow"><i class="fas fa-chevron-right"></i></div>
+                    </div>
+                    <div class="service-item" data-target="growlers">
+                        <div class="icon"><i class="fas fa-wine-bottle"></i></div>
+                        <div class="info">
+                            <h4>Venda de Growlers</h4>
+                            <p>De Quarta à Domingo, experimente nossos Growlers sempre frescos e gelados! Atendemos por encomenda.</p>
+                        </div>
+                        <div class="arrow"><i class="fas fa-chevron-right"></i></div>
+                    </div>
+                    <br>
+                    <a href="https://wa.me/5511922886539?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20um%20or%C3%A7amento%21" target="_blank" class="btn btn-outline-light">ENTRE EM CONTATO</a>
+                </div>
+                
+                <div class="services-gallery">
+                    <div class="img-large">
+                        <img src="images/Tudo-para-deixar-seu-evento-inesquecIvel 1.png" alt="Serviço 1">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="differentials" class="differentials-section">
+            <div class="section-header text-center text-dark">
+                <span class="section-subtitle dark-line">Chopp4U! - Nossos Diferenciais</span>
+                <h2>Porque seu evento merece mais do que apenas chope.</h2>
+            </div>
+            <div class="cards-carousel">
+                <div class="nav-arrow left diff-arrow-left"><i class="fas fa-chevron-left"></i></div>
+                <div class="cards-container diff-cards">
+                    <div class="card">
+                        <div class="card-icon"><i class="fas fa-beer"></i></div>
+                        <h4>Experiência comprovada</h4>
+                        <p>Desde 2017 levando chope artesanal para eventos de todos os tipos e tamanhos.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon"><i class="fas fa-handshake"></i></div>
+                        <h4>Parcerias exclusivas</h4>
+                        <p>Trabalhamos com cervejarias renomadas, garantindo o melhor produto para nossos Clientes.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon"><i class="fas fa-people-carry-box"></i></div>
+                        <h4>Atendimento completo</h4>
+                        <p>Equipamentos, copos, entrega, instalação e suporte no local, para você não se preocupar com nada.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon"><i class="fas fa-champagne-glasses"></i></div>
+                        <h4>Variedade de estilos</h4>
+                        <p>Pilsen, IPA, Weiss, Hoppy Lager, Black e até Chope de Vinho.</p>
+                    </div>
+                </div>
+                <div class="nav-arrow right diff-arrow-right"><i class="fas fa-chevron-right"></i></div>
+            </div>
+        </section>
+
+        <section id="gallery" class="gallery-section">
+            <div class="section-header text-center">
+                <span class="section-subtitle">Chopp4U! - Eventos</span>
+                <h2>Realize seu evento conosco</h2>
+            </div>
+            <div class="gallery-carousel">
+                <div class="nav-arrow left white-bg gal-arrow-left"><i class="fas fa-chevron-left"></i></div>
+                <div class="gallery-container">
+                    <div class="gallery-item"><img src="images/evento01.jpg" alt="Evento 1"></div>
+                    <div class="gallery-item"><img src="images/evento02.jpg" alt="Evento 2"></div>
+                    <div class="gallery-item"><img src="images/evento03.jpg" alt="Evento 3"></div>
+                    <div class="gallery-item"><img src="images/evento04.jpg" alt="Evento 4"></div>
+                    <div class="gallery-item"><img src="images/evento05.jpg" alt="Evento 5"></div>
+                    <div class="gallery-item"><img src="images/evento06.jpg" alt="Evento 6"></div>
+                    <div class="gallery-item"><img src="images/evento07.jpg" alt="Evento 7"></div>
+                    <div class="gallery-item"><img src="images/evento08.jpg" alt="Evento 8"></div>
+                    <div class="gallery-item"><img src="images/evento09.jpg" alt="Evento 9"></div>
+                </div>
+                <div class="nav-arrow right white-bg gal-arrow-right"><i class="fas fa-chevron-right"></i></div>
+            </div>
+        </section>
+
+        <section id="clients" class="clients-section">
+            <div class="section-header text-center text-dark">
+                <span class="section-subtitle dark-line">Chopp4U! - Clientes</span>
+                <h2>Nossos Clientes</h2>
+            </div>
+            <div class="clients-carousel">
+                <div class="nav-arrow left gray-bg client-arrow-left"><i class="fas fa-chevron-left"></i></div>
+                <div class="clients-logos">
+                    <div class="logo-box"><img src="images/logo-bnp.png" alt="BNP Paribas"></div>
+                    <div class="logo-box"><img src="images/logo-localiza.png" alt="Localiza"></div>
+                    <div class="logo-box"><img src="images/logo-celebrar.png" alt="Celebrar"></div>
+                    <div class="logo-box"><img src="images/logo-you-inc.png" alt="You,inc"></div>
+                    <div class="logo-box"><img src="images/img-raro-burger.png" alt="Raro Burger"></div>
+                    <div class="logo-box"><img src="images/logo-cubo-itau.png" alt="Cubo Itaú"></div>
+                    <div class="logo-box"><img src="images/logo-pink-eventos.png" alt="Pink Eventos"></div>
+                    <div class="logo-box"><img src="images/logo-quinto-andar.png" alt="Quinto Andar"></div>
+                    <div class="logo-box"><img src="images/logo-nubank.png" alt="Nubank"></div>
+                    <div class="logo-box"><img src="images/logo-tiktok.png" alt="TikTok"></div>
+                    <div class="logo-box"><img src="images/logo-wework.png" alt="We Work"></div>
+                    <div class="logo-box"><img src="images/logo-uber.png" alt="Uber"></div>
+                </div>
+                <div class="nav-arrow right gray-bg client-arrow-right"><i class="fas fa-chevron-right"></i></div>
+            </div>
+            <div class="text-center mt-4">
+                <a href="clientes.html" class="btn btn-outline-dark square-btn">VER TODOS</a>
+            </div>
+        </section>
+
+        <section class="cta-section" style="background-image: url('https://via.placeholder.com/1920x600?text=Brinde+Escuro');">
+            <div class="cta-overlay">
+                <h2>Garanta agora o chope perfeito para<br>o seu evento!</h2>
+                <p>Tudo o que seu evento precisa para um brinde perfeito.</p>
+                <a href="https://wa.me/5511922886539?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20um%20or%C3%A7amento%21" target="_blank" class="btn btn-outline-light square-btn">ENTRE EM CONTATO</a>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <div class="newsletter-bar">
+                <div>
+                    <h4>FIQUE CONECTADO</h4>
+                    <p>Leve o melhor chope para seu evento com a Chopp4U!</p>
+                </div>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Insira seu e-mail" required>
+                    <button type="submit">CADASTRAR</button>
+                </form>
+            </div>
+
+            <div class="mobile-contact-block-centered" style="display: none;">
+                <a href="https://wa.me/5511922886539?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20um%20or%C3%A7amento%21" target="_blank" class="btn btn-solid-yellow btn-cadastrar">CADASTRAR</a>
+                <h3>FIQUE CONECTADO</h3>
+                <p>Leve o melhor chope para seu evento com a Chopp4U!</p>
+            </div>
+
+            <div class="footer-content">
+                <div class="footer-col brand-col">
+                    <img src="images/logo-chopp-4u-rodape.svg" alt="Chopp 4U! Logo" class="footer-logo">
+                    <p>A Chopp4U oferece Chope de alta qualidade e diversos estilos, além de excelência em prestação de serviço, contribuindo para que seu evento seja ainda mais prazeroso.</p>
+                    <p class="warning">Aviso: Produto destinado a maiores de 18 anos.</p>
+                    <div class="footer-social">
+                        <p>REDES SOCIAIS</p>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>PÁGINAS</h4>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-plus"></i> Home</a></li>
+                        <li><a href="#"><i class="fas fa-plus"></i> Quem Somos</a></li>
+                        <li><a href="#"><i class="fas fa-plus"></i> Serviços</a></li>
+                        <li><a href="#"><i class="fas fa-plus"></i> Galeria</a></li>
+                        <li><a href="#"><i class="fas fa-plus"></i> Contato</a></li>
+                        <li><a href="#"><i class="fas fa-plus"></i> Política de Privacidade e Termos de Uso</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>SERVIÇOS</h4>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-arrow-right"></i> Venda de Chope Artesanal</a></li>
+                        <li><a href="#"><i class="fas fa-arrow-right"></i> Serviços de Staff</a></li>
+                        <li><a href="#"><i class="fas fa-arrow-right"></i> Venda de Growlers</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col contact-col">
+                    <h4>ENTRE EM CONTATO</h4>
+                    <ul>
+                        <li><i class="fab fa-whatsapp"></i> +55 11 92288-6539</li>
+                        <li><i class="far fa-envelope"></i> vendas@chopp4u.com.br</li>
+                        <li><i class="fab fa-instagram"></i> @chopp4u</li>
+                        <li><i class="far fa-check-square"></i> Chopp4U - D.A. Brambilla Serviços e Comércio de Bebidas - CNPJ 31.854.260/0001-58</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Endereço Administrativo: Rua Raul Pompéia 800, São Paulo - SP</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© Copyright 2025 | Chopp4U! | ADM | Desenvolvido por smsites.com.br</p>
+                <a href="#hero" class="scroll-top"><i class="fas fa-arrow-up"></i></a>
+            </div>
+        </footer>
+    
     </div>
 
+    <div id="lightbox" class="lightbox">
+        <span class="lightbox-close"><i class="fas fa-times"></i></span>
+        <button class="lightbox-prev"><i class="fas fa-chevron-left"></i></button>
+        <img id="lightbox-img" src="" alt="Imagem Ampliada">
+        <button class="lightbox-next"><i class="fas fa-chevron-right"></i></button>
+    </div>
+
+    <a href="https://wa.me/5511922886539?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20um%20or%C3%A7amento%21" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script src="js/script.js"></script>
 </body>
 </html>
