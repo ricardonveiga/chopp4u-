@@ -238,13 +238,17 @@ body.menu-open #page-wrapper { transform: translateX(300px); }
     
     .btn { text-transform: uppercase; }
     .hero-slider { margin-top: 0; }
-    .about-container, .services-container { flex-direction: column; }
+    
+    /* Inverte a ordem apenas da seção Sobre para o mobile (texto em cima, imagem embaixo) */
+    .about-container { flex-direction: column-reverse; }
+    .services-container { flex-direction: column; }
+    
     .footer-content { grid-template-columns: 1fr 1fr; gap: 30px; }
     
-    /* Top Bar Mobile - E-mail e WhatsApp lado a lado, CNPJ em baixo */
-    .top-bar { padding: 10px 5%; }
-    .top-bar-container { flex-direction: column; text-align: center; justify-content: center; }
-    .top-social { display: none; }
+    /* Top Bar Mobile - E-mail e WhatsApp lado a lado, CNPJ em baixo centralizado */
+    .top-bar { padding: 10px 2%; } 
+    .top-bar-container { display: block; } 
+    .top-social { display: none !important; }
     
     .top-info-right {
         display: flex;
@@ -252,25 +256,47 @@ body.menu-open #page-wrapper { transform: translateX(300px); }
         flex-wrap: wrap;
         justify-content: center;
         align-items: center;
-        font-size: 0.75rem;
+        font-size: 0.7rem; 
         color: var(--bg-black);
         font-weight: 600;
-        line-height: 1.8;
+        line-height: 1.5;
         width: 100%;
     }
 
     .top-info-right span {
         display: inline-flex;
         align-items: center;
+        white-space: nowrap; 
+        margin: 0; 
     }
 
+    /* Oculta o primeiro separador original (que ficava entre CNPJ e E-mail) */
     .top-info-right span:nth-child(2) { display: none !important; }
-    .top-info-right span:nth-child(3) { order: 1; margin-right: 5px; }
-    .top-info-right span:nth-child(4) { order: 2; margin: 0 5px; opacity: 0.3; font-weight: 300; }
-    .top-info-right span:nth-child(5) { order: 3; margin-left: 5px; }
-    .top-info-right span:nth-child(1) { order: 4; flex-basis: 100%; justify-content: center; margin-top: 5px; }
 
-    /* Header Mobile Original (visível quando o menu está fechado) */
+    /* E-mail */
+    .top-info-right span:nth-child(3) { order: 1; margin-right: 6px; }
+
+    /* Segundo separador | (entre E-mail e Telefone) */
+    .top-info-right span:nth-child(4) { order: 2; opacity: 0.4; font-weight: 300; }
+
+    /* Telefone */
+    .top-info-right span:nth-child(5) { order: 3; margin-left: 6px; }
+
+    /* CNPJ (força a quebra para a linha de baixo, ocupando 100% da largura e centralizando) */
+    .top-info-right span:nth-child(1) {
+        order: 4;
+        flex-basis: 100%; 
+        justify-content: center;
+        margin-top: 6px;
+    }
+
+    /* Header Mobile - Cabeçalho fixo na rolagem (sticky) e mantido idêntico com os ícones sociais */
+    #header {
+        position: sticky;
+        top: 0;
+        z-index: 990; /* Fica acima das seções, abaixo do menu lateral (1000) e overlay (999) */
+    }
+    
     .header-container { position: relative; display: flex; align-items: center; justify-content: space-between; padding: 15px 5%; flex-direction: row; }
     .menu-icon { order: 1; flex: 1; text-align: left; }
     .logo { order: 2; flex: 2; display: flex; justify-content: center; }
@@ -279,134 +305,40 @@ body.menu-open #page-wrapper { transform: translateX(300px); }
     .mobile-header-social a { border: 1px solid white; border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.9rem; }
     
     /* === MENU TELA CHEIA (DROPDOWN MOBILE) === */
-    body.menu-open #page-wrapper { transform: none; } /* Reseta o menu lateral de empurrar a tela */
-    .overlay.show { background: transparent; } /* Evita escurecer o fundo, para ver a galeria limpa como no Print 4 */
+    body.menu-open #page-wrapper { transform: none; } 
+    .overlay.show { background: rgba(0,0,0,0.6); } /* Fundo escurecido suave para ver a página embaixo */
     
     .sidebar { 
         width: 100%; 
-        height: auto; /* Permite ver o conteúdo da página abaixo do menu */
+        height: auto; /* Permite ver o conteúdo da página abaixo */
         left: 0; 
-        top: -100vh; 
-        position: fixed; 
-        background-color: transparent; /* Remove o fundo branco total da tela */
+        top: -150vh; 
+        transform: none; 
+        background-color: var(--bg-white); 
         overflow-y: visible; 
-        padding: 70px 0 0 0; /* Espaço para o cabeçalho preto absoluto do menu */
+        padding: 0; 
         display: flex; 
         flex-direction: column; 
         transition: top 0.4s ease; 
-        z-index: 1005; 
-        box-shadow: 0 10px 20px rgba(0,0,0,0.1); 
+        box-shadow: 0 10px 20px rgba(0,0,0,0.3);
     }
-    .sidebar.open { 
-        top: 0; 
-        transform: none; 
-    }
+    .sidebar.open { top: 0; transform: none; }
     
-    /* Cria o cabeçalho preto do menu com o 'X' */
-    .close-btn { 
-        position: absolute; 
-        top: 0; 
-        left: 5%; 
-        height: 70px; 
-        background: transparent; 
-        color: var(--primary-yellow); 
-        opacity: 1; 
-        visibility: visible; 
-        width: auto; 
-        font-size: 1.8rem; 
-        display: flex; 
-        align-items: center; 
-        justify-content: flex-start; 
-        border: none; 
-        z-index: 10; 
-        margin: 0; 
-        padding: 0; 
-    }
+    .sidebar-header { background-color: var(--bg-black); display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; border-bottom: 2px solid var(--primary-yellow); margin-bottom: 0; }
+    .close-btn { position: static; background: transparent; color: var(--primary-yellow); opacity: 1; visibility: visible; width: auto; height: auto; font-size: 1.8rem; flex: 1; text-align: left; margin: 0; padding: 0; }
+    .sidebar-header img { max-height: 40px; flex: 2; object-fit: contain; }
+    .mobile-sidebar-social { flex: 1; justify-content: flex-end; gap: 10px; display: flex !important; }
+    .mobile-sidebar-social a { border: 1px solid white; border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.9rem; }
     
-    .sidebar-header { 
-        position: absolute; 
-        top: 0; 
-        left: 0; 
-        width: 100%; 
-        height: 70px; 
-        background-color: var(--bg-black); 
-        display: block; /* Tira o flex para alinhar absolutamente logo e social */
-        border-bottom: 2px solid var(--primary-yellow); 
-        margin-bottom: 0; 
-        padding: 0; 
-    }
+    .sidebar-nav { width: 100%; background: var(--bg-white); padding: 0; }
+    .sidebar-nav ul { align-items: flex-start; padding: 0; margin: 0; }
+    .sidebar-nav li { margin: 0; width: 100%; text-align: left; padding: 0; border: none; }
+    .sidebar-nav a { display: block; width: 100%; padding: 20px 5%; font-family: var(--font-menu); font-size: 1rem; color: var(--bg-black); text-transform: uppercase; border-bottom: 1px solid #f0f0f0; }
+    .sidebar-nav a::after { display: none; } /* Esconde a linhazinha amarela */
+    .sidebar-nav a.active { background-color: var(--primary-yellow); color: var(--bg-black); }
     
-    .sidebar-header img { 
-        position: absolute; 
-        top: 50%; 
-        left: 50%; 
-        transform: translate(-50%, -50%); 
-        max-height: 40px; 
-        object-fit: contain; 
-    }
-    
-    .mobile-sidebar-social { 
-        position: absolute; 
-        top: 50%; 
-        right: 5%; 
-        transform: translateY(-50%); 
-        display: flex !important; 
-        gap: 10px; 
-    }
-    
-    .mobile-sidebar-social a { 
-        border: 1px solid white; 
-        border-radius: 50%; 
-        width: 32px; 
-        height: 32px; 
-        display: flex; 
-        align-items: center; 
-        justify-content: center; 
-        color: white; 
-        font-size: 0.9rem; 
-    }
-    
-    /* Configura os links do menu (fundo branco, dropdown) */
-    .sidebar-nav { 
-        width: 100%; 
-        background: var(--bg-white); 
-        padding: 0; 
-    }
-    .sidebar-nav ul { 
-        align-items: flex-start; 
-        padding: 0; 
-        margin: 0; 
-    }
-    .sidebar-nav li { 
-        margin: 0; 
-        width: 100%; 
-        text-align: left; 
-        padding: 0; 
-        border: none; 
-    }
-    .sidebar-nav a { 
-        display: block; 
-        width: 100%; 
-        padding: 20px 5%; 
-        font-family: var(--font-menu); 
-        font-size: 1rem; 
-        color: var(--bg-black); 
-        text-transform: uppercase; 
-        border-bottom: 1px solid #f0f0f0; /* Linha sutil separadora como no Print 4 */
-    }
-    .sidebar-nav a::after { display: none; } /* Remove o tracejado antigo */
-    
-    /* Item ativo com fundo amarelo e texto preto (Print 4) */
-    .sidebar-nav a.active { 
-        background-color: var(--primary-yellow); 
-        color: var(--bg-black); 
-    }
-    
-    /* Remove o bloco amarelo e as redes sociais extra do menu */
-    .mobile-contact-yellow, 
-    .sidebar-social { 
-        display: none !important; 
-    }
+    /* Remove o bloco amarelo de contato do menu */
+    .mobile-contact-yellow { display: none !important; }
     
     /* Hero Section (Banner centralizado com a fonte Righteous) */
     .hero-content { display: flex; flex-direction: column; text-align: center; align-items: center; padding-bottom: 80px; max-width: 100%; }
@@ -418,97 +350,6 @@ body.menu-open #page-wrapper { transform: translateX(300px); }
     .nav-controls span { cursor: pointer; text-transform: uppercase; }
     .nav-controls .sep { color: var(--primary-yellow); margin: 0 15px; }
     .nav-counter { font-size: 1.2rem; }
-
-    /*
-       ==========================================================================
-       === INÍCIO DAS MODIFICAÇÕES PARA A SEÇÃO 'QUEM SOMOS' (SOMENTE MOBILE) ===
-       ==========================================================================
-    */
-    #about {
-        position: relative; 
-        text-align: center; 
-    }
-
-    /* Inverte a ordem: texto antes da imagem */
-    #about .about-container {
-        display: flex;
-        flex-direction: column-reverse; 
-    }
-
-    #about .about-text {
-        text-align: center; 
-    }
-
-    #about .about-text .section-subtitle {
-        display: block; 
-        margin: 0 auto 10px; 
-        text-align: center;
-        font-family: var(--font-menu); 
-        font-weight: 400; 
-        border: none; 
-    }
-
-    #about .section-subtitle::before {
-        position: relative;
-        left: -10px;
-    }
-
-    #about .about-text h2 {
-        display: block;
-        text-align: center;
-        font-family: var(--font-menu); 
-        font-weight: 400; 
-        margin: 0 auto 20px;
-    }
-
-    #about .about-text p {
-        display: block;
-        text-align: center;
-        margin: 0 auto 20px;
-    }
-
-    #about .about-text h3 {
-        display: block;
-        text-align: center;
-        margin: 20px auto;
-    }
-
-    #about .about-text .btn {
-        display: block;
-        width: fit-content;
-        margin: 20px auto 0;
-        text-align: center;
-    }
-
-    /* Imagem centralizada sobre a curva */
-    #about .about-image {
-        margin: 20px auto -100px; 
-        position: relative; 
-    }
-
-    .about-image img {
-        margin: 0 auto;
-        display: block;
-    }
-
-    /* Cria a máscara curva preta no fundo para cobrir a base do copo */
-    #about::after {
-        content: '';
-        position: absolute;
-        width: 100%;
-        height: 120px; 
-        background-color: var(--bg-dark); 
-        bottom: 0;
-        left: 0;
-        border-radius: 100% 100% 0 0 / 100% 100% 0 0; 
-        z-index: 1; 
-        pointer-events: none; 
-    }
-
-    #about .about-container {
-        position: relative;
-        z-index: 2; 
-    }
 }
 
 @media (max-width: 768px) {
@@ -516,10 +357,30 @@ body.menu-open #page-wrapper { transform: translateX(300px); }
     .hero-content h1 { font-size: 2.2rem; }
     .section-subtitle { font-size: 0.8rem; }
     
+    /* --- INÍCIO DAS ALTERAÇÕES NA SEÇÃO SOBRE NO MOBILE --- */
     .about-section, .services-section, .differentials-section, .gallery-section, .clients-section, .cta-section { padding: 60px 5%; }
-    /* Evite sobrescrever as margens específicas aplicadas no 'about-image' no block 992px */
-    .about-image { width: 100%; }
     
+    /* Centraliza os textos da seção */
+    .about-text { text-align: center; }
+    
+    /* Aplica a fonte Righteous no título h2 e centraliza */
+    .about-text h2 { font-family: var(--font-menu); font-weight: 400; line-height: 1.2; font-size: 2.2rem; text-align: center; }
+    
+    /* Centraliza os parágrafos e título menor */
+    .about-text p, .about-text h3 { text-align: center; }
+    
+    /* Centraliza o subtítulo e coloca a linha amarela logo acima dele */
+    .about-text .section-subtitle { text-align: center; display: block; margin-bottom: 15px; }
+    .about-text .section-subtitle::before { display: block; margin: 0 auto 10px auto; }
+    
+    /* Centraliza o botão */
+    .about-text .btn { margin: 0 auto; display: inline-block; }
+
+    /* Ajusta a imagem do copo para ficar no final com margem negativa, grudando na curva inferior */
+    .about-image { margin-bottom: -60px; margin-top: 40px; width: 100%; text-align: center; }
+    .about-image img { margin: 0 auto; display: block; }
+    /* --- FIM DAS ALTERAÇÕES NA SEÇÃO SOBRE --- */
+
     .services-container { margin-top: 30px; }
     .service-item { padding: 15px; border-radius: 20px; }
     .service-item .icon { font-size: 1.5rem; margin-right: 15px; }
