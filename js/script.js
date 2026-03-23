@@ -1,5 +1,26 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+    // --- LÓGICA DO AGE GATE (POP-UP 18+) ---
+    const ageGate = document.getElementById('age-gate');
+    if (ageGate) {
+        const hasConsented = localStorage.getItem('ageConsent');
+        if (hasConsented === 'true') {
+            ageGate.style.display = 'none';
+        } else {
+            document.body.style.overflow = 'hidden'; // Trava a tela atrás
+        }
+
+        document.getElementById('btn-yes-age').addEventListener('click', () => {
+            localStorage.setItem('ageConsent', 'true');
+            ageGate.style.display = 'none';
+            document.body.style.overflow = 'auto'; // Destrava a tela
+        });
+
+        document.getElementById('btn-no-age').addEventListener('click', () => {
+            window.location.href = 'menor-de-idade.html';
+        });
+    }
+
     const menuBtn = document.getElementById('menu-btn');
     const closeBtn = document.getElementById('close-btn');
     const sidebar = document.getElementById('sidebar');
@@ -107,7 +128,7 @@ document.addEventListener('DOMContentLoaded', () => {
         startSlider();
     }
 
-    // --- LÓGICA DOS CARROSSEIS: DESKTOP INTACTO, MOBILE PERFEITO ---
+    // --- LÓGICA DOS CARROSSEIS ---
     function setupCarousel(containerSelector, leftArrowSelector, rightArrowSelector) {
         const container = document.querySelector(containerSelector);
         const leftArrow = document.querySelector(leftArrowSelector);
@@ -116,16 +137,11 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!container) return;
 
         const moveNext = () => {
-            // Verifica se está no celular
             const isMobile = window.innerWidth <= 768;
-            
             if (isMobile) {
-                // No Mobile: A distância exata de UMA foto + o espaço (gap)
                 const gap = parseFloat(window.getComputedStyle(container).gap) || 0;
                 const scrollAmount = container.clientWidth + gap;
-                
                 if (Math.ceil(container.scrollLeft + container.clientWidth) >= container.scrollWidth - 10) {
-                    // Pulo seco: tira o efeito suave, pula pro 0, e devolve o suave. Adeus rebobinar!
                     container.style.setProperty('scroll-behavior', 'auto', 'important');
                     container.scrollLeft = 0;
                     setTimeout(() => container.style.removeProperty('scroll-behavior'), 50);
@@ -133,7 +149,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
                 }
             } else {
-                // No Desktop: Mantém os 350px originais que você me pediu pra não mexer
                 const scrollAmount = 350;
                 if (Math.ceil(container.scrollLeft + container.clientWidth) >= container.scrollWidth - 10) {
                     container.scrollTo({ left: 0, behavior: 'smooth' });
@@ -145,11 +160,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const movePrev = () => {
             const isMobile = window.innerWidth <= 768;
-            
             if (isMobile) {
                 const gap = parseFloat(window.getComputedStyle(container).gap) || 0;
                 const scrollAmount = container.clientWidth + gap;
-
                 if (container.scrollLeft <= 10) {
                     container.style.setProperty('scroll-behavior', 'auto', 'important');
                     container.scrollLeft = container.scrollWidth;
@@ -167,8 +180,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         };
 
-        leftArrow.addEventListener('click', movePrev);
-        rightArrow.addEventListener('click', moveNext);
+        if(leftArrow) leftArrow.addEventListener('click', movePrev);
+        if(rightArrow) rightArrow.addEventListener('click', moveNext);
 
         let interval = setInterval(moveNext, 3000);
 
@@ -186,7 +199,6 @@ document.addEventListener('DOMContentLoaded', () => {
     setupCarousel('.diff-cards', '.diff-arrow-left', '.diff-arrow-right');
     setupCarousel('.gallery-container', '.gal-arrow-left', '.gal-arrow-right');
     setupCarousel('.clients-logos', '.client-arrow-left', '.client-arrow-right');
-
 
     // --- LÓGICA DO LIGHTBOX ---
     const lightbox = document.getElementById('lightbox');
@@ -207,13 +219,9 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
-        closeLightboxBtn.addEventListener('click', () => {
-            lightbox.classList.remove('active');
-        });
+        closeLightboxBtn.addEventListener('click', () => lightbox.classList.remove('active'));
         lightbox.addEventListener('click', (e) => {
-            if (e.target === lightbox) {
-                lightbox.classList.remove('active');
-            }
+            if (e.target === lightbox) lightbox.classList.remove('active');
         });
 
         prevLightboxBtn.addEventListener('click', () => {
@@ -231,4 +239,3 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 });
-// fim //
