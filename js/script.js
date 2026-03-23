@@ -113,7 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
         startSlider();
     }
 
-    // --- LÓGICA DOS CARROSSEIS ---
+    // --- LÓGICA DOS CARROSSEIS CORRIGIDA ---
     function setupCarousel(containerSelector, leftArrowSelector, rightArrowSelector) {
         const container = document.querySelector(containerSelector);
         const leftArrow = document.querySelector(leftArrowSelector);
@@ -121,33 +121,44 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (!container) return;
 
-        let scrollAmount = 350; 
-
-        leftArrow.addEventListener('click', () => {
-            container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-        });
-
-        rightArrow.addEventListener('click', () => {
-            container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-        });
-
-        let interval = setInterval(() => {
-            if (container.scrollLeft + container.clientWidth >= container.scrollWidth - 10) {
-                container.scrollTo({ left: 0, behavior: 'smooth' });
+        // Função que move pra direita calculando automaticamente a largura do celular
+        const moveNext = () => {
+            // container.clientWidth pega exatamente a largura visível (um item)
+            const scrollAmount = container.clientWidth; 
+            
+            // Verifica se está na última foto (margem de erro de 10px pro celular)
+            if (Math.ceil(container.scrollLeft + container.clientWidth) >= container.scrollWidth - 10) {
+                // Ao invés de 'smooth', usa 'auto' para um pulo seco invisível pro começo
+                container.scrollTo({ left: 0, behavior: 'auto' });
             } else {
+                // Rola para o próximo
                 container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
             }
-        }, 3000);
+        };
+
+        const movePrev = () => {
+            const scrollAmount = container.clientWidth;
+            if (container.scrollLeft <= 10) {
+                container.scrollTo({ left: container.scrollWidth, behavior: 'auto' });
+            } else {
+                container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+            }
+        };
+
+        leftArrow.addEventListener('click', movePrev);
+        rightArrow.addEventListener('click', moveNext);
+
+        let interval = setInterval(moveNext, 3000);
 
         container.addEventListener('mouseenter', () => clearInterval(interval));
         container.addEventListener('mouseleave', () => {
-            interval = setInterval(() => {
-                if (container.scrollLeft + container.clientWidth >= container.scrollWidth - 10) {
-                    container.scrollTo({ left: 0, behavior: 'smooth' });
-                } else {
-                    container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-                }
-            }, 3000);
+            interval = setInterval(moveNext, 3000);
+        });
+        
+        // Pausa a rolagem se o usuário colocar o dedo na tela do celular
+        container.addEventListener('touchstart', () => clearInterval(interval));
+        container.addEventListener('touchend', () => {
+            interval = setInterval(moveNext, 3000);
         });
     }
 

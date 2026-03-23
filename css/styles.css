@@ -336,36 +336,39 @@ body.menu-open #page-wrapper { transform: translateX(300px); }
     .services-gallery img, .img-large img { width: 100%; height: auto !important; max-height: none; object-fit: contain !important; }
 
     /* =========================================================================
-       CORREÇÕES DEFINITIVAS DOS CARROSSÉIS (DESGRUDAR E CENTRALIZAR 100%)
+       CORREÇÕES DEFINITIVAS DOS CARROSSÉIS 
        ========================================================================= */
     .cards-carousel, .gallery-carousel, .clients-carousel {
         display: flex !important;
         align-items: center !important;
         width: 100% !important;
         max-width: 100% !important;
-        gap: 15px !important; /* Espaço entre as setinhas e o conteúdo */
+        gap: 10px !important; /* Espaço paras as setinhas laterais */
     }
 
     .cards-container, .gallery-container, .clients-logos {
         flex: 1 1 auto !important;
-        min-width: 0 !important; /* Trava de segurança para não empurrar as setas */
+        min-width: 0 !important;
         display: flex !important;
-        gap: 20px !important; /* DESGRUDA UM ITEM DO OUTRO */
+        gap: 20px !important; /* Espaço EXATO entre uma foto e outra (desgruda) */
         overflow-x: auto !important;
         scroll-snap-type: x mandatory !important;
-        scroll-behavior: auto !important; /* Tenta cortar a animação de "rebobinar" do Javascript */
-        padding-bottom: 5px !important; /* Dá espaço pras sombras/bordas */
+        padding-bottom: 5px !important; /* Evita que o iPhone corte a sombra inferior */
+        scrollbar-width: none !important;
+    }
+    .cards-container::-webkit-scrollbar, .gallery-container::-webkit-scrollbar, .clients-logos::-webkit-scrollbar {
+        display: none !important; /* Esconde barra de rolagem chata */
     }
 
     .card, .gallery-item, .logo-box {
-        flex: 0 0 100% !important; /* Faz cada item ter EXATOS 100% do espaço de rolagem */
+        flex: 0 0 100% !important; /* FORÇA TER EXATAMENTE 100% DA LARGURA VISÍVEL, OBRIGANDO A PARAR NO CENTRO */
         min-width: 100% !important;
         max-width: 100% !important;
         scroll-snap-align: center !important;
-        scroll-snap-stop: always !important; /* Obriga a parada exata no centro */
+        scroll-snap-stop: always !important; 
         box-sizing: border-box !important;
         margin: 0 !important;
-        transform: translateZ(0); /* Evita bordas sumindo no iOS */
+        transform: translateZ(0); 
     }
 
     .card {
@@ -374,7 +377,7 @@ body.menu-open #page-wrapper { transform: translateX(300px); }
 
     .gallery-item img {
         width: 100% !important;
-        height: 350px !important; /* Formato único para todas as fotos de eventos */
+        height: 350px !important; 
         object-fit: cover !important;
         border-radius: 10px !important;
         display: block !important;
@@ -382,7 +385,7 @@ body.menu-open #page-wrapper { transform: translateX(300px); }
 
     .logo-box {
         background: #fff !important;
-        height: 180px !important; /* Formato único para logos */
+        height: 180px !important; 
         display: flex !important;
         justify-content: center !important;
         align-items: center !important;
