@@ -16,23 +16,21 @@
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
-/* Aplicação global da fonte Righteous no body */
-body { font-family: var(--font-menu); background-color: var(--bg-dark); color: var(--text-light); overflow-x: hidden; }
+body { font-family: var(--font-main); background-color: var(--bg-dark); color: var(--text-light); overflow-x: hidden; }
 ul { list-style: none; }
 a { text-decoration: none; color: inherit; transition: 0.3s ease; }
 
 /* ==========================================================================
    2. TIPOGRAFIA GERAL
    ========================================================================== */
-/* Aplicação global da fonte Righteous nos títulos e parágrafos */
-h1, h2, h3, h4 { font-weight: 700; font-family: var(--font-menu); }
+h1, h2, h3, h4 { font-weight: 700; font-family: var(--font-main); }
 h2 { font-size: 2.5rem; margin-bottom: 1rem; }
-p { line-height: 1.6; margin-bottom: 1rem; font-family: var(--font-menu); }
+p { line-height: 1.6; margin-bottom: 1rem; font-family: var(--font-main); }
 .text-dark .section-subtitle { color: #666; }
 .text-center { text-align: center; }
 .mt-4 { margin-top: 2rem; }
 
-.section-subtitle { display: inline-block; font-size: 0.9rem; color: var(--text-gray); margin-bottom: 10px; position: relative; font-family: var(--font-menu);}
+.section-subtitle { display: inline-block; font-size: 0.9rem; color: var(--text-gray); margin-bottom: 10px; position: relative; font-family: var(--font-main);}
 .section-subtitle::before { content: ''; display: inline-block; width: 30px; height: 2px; background-color: var(--primary-yellow); vertical-align: middle; margin-right: 10px; }
 
 /* ==========================================================================
@@ -163,8 +161,8 @@ body.menu-open #page-wrapper { transform: translateX(300px); }
 .service-item { display: flex; align-items: center; background-color: var(--bg-white); color: var(--text-dark); padding: 20px; border-radius: 40px; margin-bottom: 20px; cursor: pointer; transition: 0.3s; }
 .service-item.active, .service-item:hover { background-color: var(--primary-yellow); }
 .service-item .icon { font-size: 2rem; margin-right: 20px; }
-.service-item .info h4 { margin-bottom: 5px; font-family: var(--font-menu); }
-.service-item .info p { font-size: 0.85rem; margin: 0; color: #444; font-family: var(--font-menu); }
+.service-item .info h4 { margin-bottom: 5px; font-family: var(--font-main); }
+.service-item .info p { font-size: 0.85rem; margin: 0; color: #444; font-family: var(--font-main); }
 .service-item .arrow { margin-left: auto; width: 30px; height: 30px; border-radius: 50%; border: 1px solid var(--text-dark); display: flex; justify-content: center; align-items: center; flex-shrink: 0;}
 .service-item.active .arrow { background: var(--bg-black); color: var(--text-light); border-color: var(--bg-black); }
 .services-gallery { flex: 1; display: flex; gap: 20px; }
@@ -180,8 +178,8 @@ body.menu-open #page-wrapper { transform: translateX(300px); }
 .cards-container::-webkit-scrollbar { display: none; }
 .card { background-color: var(--bg-black); color: var(--text-light); padding: 40px 30px; border-radius: 10px; min-width: 280px; flex: 1; scroll-snap-align: start; }
 .card-icon { font-size: 3rem; color: var(--primary-yellow); margin-bottom: 20px; }
-.card h4 { margin-bottom: 15px; font-size: 1.2rem; font-family: var(--font-menu);}
-.card p { font-size: 0.9rem; color: #ccc; font-family: var(--font-menu); }
+.card h4 { margin-bottom: 15px; font-size: 1.2rem; font-family: var(--font-main);}
+.card p { font-size: 0.9rem; color: #ccc; font-family: var(--font-main); }
 
 .gallery-section { padding: 100px 5%; border-radius: 0 0 100px 0; background-color: var(--bg-dark); position: relative; z-index: 5; }
 .gallery-carousel { display: flex; align-items: center; gap: 20px; max-width: 1600px; margin: 40px auto 0; }
@@ -205,18 +203,8 @@ body.menu-open #page-wrapper { transform: translateX(300px); }
 .cta-overlay h2 { font-size: 2.5rem; }
 
 /* ==========================================================================
-   6. FOOTER E WHATSAPP (RODAPÉS PROTEGIDOS COM A FONTE POPPINS)
+   6. FOOTER E WHATSAPP
    ========================================================================= */
-.footer, 
-.footer h4, 
-.footer p, 
-.footer ul li, 
-.footer a, 
-.footer-bottom, 
-.brand-col .warning { 
-    font-family: var(--font-main) !important; 
-}
-
 .footer { background: var(--gradient-yellow); color: var(--text-dark); padding-top: 60px; position: relative; }
 .newsletter-bar { display: flex; justify-content: space-between; align-items: center; max-width: 1600px; margin: 0 auto; padding: 0 5% 40px; border-bottom: 1px solid rgba(0,0,0,0.1); }
 .newsletter-form { display: flex; }
@@ -273,7 +261,6 @@ body.menu-open #page-wrapper { transform: translateX(300px); }
         font-weight: 600;
         line-height: 1.5;
         width: 100%;
-        font-family: var(--font-menu) !important;
     }
 
     .top-info-right span {
@@ -434,13 +421,6 @@ body.menu-open #page-wrapper { transform: translateX(300px); }
     .card, .gallery-item, .logo-box { min-width: 100%; }
     .logo-box { padding: 15px; }
     .nav-arrow { font-size: 1.2rem; }
-    
-    /* Proteção do rodapé mobile para continuar usando Poppins */
-    .mobile-contact-block-centered, 
-    .mobile-contact-block-centered h3, 
-    .mobile-contact-block-centered p {
-        font-family: var(--font-main) !important;
-    }
     
     .mobile-contact-block-centered { text-align: center; padding: 40px 5%; border-bottom: 1px solid rgba(0,0,0,0.1); flex-direction: column; align-items: center; }
     .mobile-contact-block-centered h3 { font-size: 1.5rem; margin: 15px 0 8px; color: var(--text-dark); }
