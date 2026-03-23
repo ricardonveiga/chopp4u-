@@ -336,75 +336,65 @@ body.menu-open #page-wrapper { transform: translateX(300px); }
     .services-gallery img, .img-large img { width: 100%; height: auto !important; max-height: none; object-fit: contain !important; }
 
     /* =========================================================================
-       CORREÇÕES DEFINITIVAS DOS CARROSSÉIS (TRAVA DO FLEXBOX E LARGURAS)
+       CORREÇÕES DEFINITIVAS DOS CARROSSÉIS (DESGRUDAR E CENTRALIZAR 100%)
        ========================================================================= */
-    
-    /* Configuração Mestra: O container de fora precisa segurar as setas firmes */
     .cards-carousel, .gallery-carousel, .clients-carousel {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        width: 100%;
-        max-width: 100%;
-        gap: 15px; /* Espaço entre setas e o bloco móvel */
-        padding: 0;
+        display: flex !important;
+        align-items: center !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        gap: 15px !important; /* Espaço entre as setinhas e o conteúdo */
     }
 
-    /* O container de dentro que rola: min-width: 0 impede o bug que empurra as setas pra fora */
     .cards-container, .gallery-container, .clients-logos {
-        flex: 1;
-        min-width: 0; /* A TRAVA MÁGICA PARA O BUG DE ROLAGEM */
-        display: flex;
-        gap: 0 !important; /* Remove gap interno para 100% de largura caber certinho */
-        overflow-x: auto;
+        flex: 1 1 auto !important;
+        min-width: 0 !important; /* Trava de segurança para não empurrar as setas */
+        display: flex !important;
+        gap: 20px !important; /* DESGRUDA UM ITEM DO OUTRO */
+        overflow-x: auto !important;
         scroll-snap-type: x mandatory !important;
-        scrollbar-width: none;
-        padding: 5px 0; /* Espaço extra para sombras de bordas não cortarem */
+        scroll-behavior: auto !important; /* Tenta cortar a animação de "rebobinar" do Javascript */
+        padding-bottom: 5px !important; /* Dá espaço pras sombras/bordas */
     }
 
-    /* O item a ser exibido: travado cravado em 100% do bloco móvel */
     .card, .gallery-item, .logo-box {
-        flex: 0 0 100% !important;
+        flex: 0 0 100% !important; /* Faz cada item ter EXATOS 100% do espaço de rolagem */
         min-width: 100% !important;
         max-width: 100% !important;
         scroll-snap-align: center !important;
-        scroll-snap-stop: always !important; /* Para exatamente nele, nunca no meio */
-        box-sizing: border-box;
+        scroll-snap-stop: always !important; /* Obriga a parada exata no centro */
+        box-sizing: border-box !important;
         margin: 0 !important;
-        transform: translateZ(0); /* Evita bug do iOS comer a bordinha */
+        transform: translateZ(0); /* Evita bordas sumindo no iOS */
     }
 
-    /* Ajuste Fino - Card Diferenciais */
     .card {
         border-radius: 15px !important;
-        overflow: hidden !important; 
     }
 
-    /* Ajuste Fino - Fotos dos Eventos (Quadrado exato) */
     .gallery-item img {
         width: 100% !important;
-        height: 350px !important; 
-        object-fit: cover !important; 
+        height: 350px !important; /* Formato único para todas as fotos de eventos */
+        object-fit: cover !important;
         border-radius: 10px !important;
-        display: block;
+        display: block !important;
     }
 
-    /* Ajuste Fino - Logos dos Clientes */
     .logo-box {
+        background: #fff !important;
+        height: 180px !important; /* Formato único para logos */
         display: flex !important;
         justify-content: center !important;
         align-items: center !important;
-        height: 180px !important; 
         padding: 20px !important;
-        background: #fff;
-        border-radius: 10px;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        border-radius: 10px !important;
     }
+
     .logo-box img {
-        max-width: 100% !important;
-        max-height: 100px !important; 
-        object-fit: contain !important; 
-        display: block;
+        max-width: 80% !important;
+        max-height: 100px !important;
+        object-fit: contain !important;
+        display: block !important;
     }
 
     .nav-arrow { font-size: 1.2rem; }
