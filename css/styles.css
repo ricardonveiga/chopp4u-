@@ -160,8 +160,48 @@ body.menu-open #page-wrapper { transform: translateX(300px); }
 
 .service-item { display: flex; align-items: center; background-color: var(--bg-white); color: var(--text-dark); padding: 30px; border-radius: 100px; margin-bottom: 20px; cursor: pointer; transition: 0.3s; }
 .service-item.active, .service-item:hover { background-color: var(--primary-yellow); }
-.service-item .icon { font-size: 3rem; margin-right: 25px; color: var(--primary-yellow); transition: 0.3s; }
-.service-item.active .icon, .service-item:hover .icon { color: var(--bg-black); }
+
+.service-item .icon, 
+.srv-content .icon { 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    width: 70px; 
+    height: 70px; 
+    border-radius: 50%; 
+    background-color: transparent; 
+    transition: 0.3s; 
+    overflow: hidden; 
+    flex-shrink: 0;
+}
+
+.srv-content .icon {
+    position: absolute; 
+    top: -35px; 
+    left: 50%; 
+    transform: translateX(-50%); 
+    background: var(--bg-white); 
+    border: 5px solid var(--bg-white); 
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+.service-item .icon {
+    margin-right: 25px;
+    font-size: 3rem;
+    color: var(--primary-yellow);
+}
+
+.service-item .icon img,
+.srv-content .icon img {
+    width: 60%; 
+    height: auto; 
+    max-height: 60%; 
+    display: block; 
+    object-fit: contain; 
+}
+
+.service-item.active .icon i, .service-item:hover .icon i { color: var(--bg-black); }
+
 .service-item .info h4 { margin-bottom: 5px; font-family: var(--font-menu); font-weight: 400; font-size: 1.2rem; }
 .service-item .info p { font-size: 0.85rem; margin: 0; color: #444; font-family: var(--font-main); }
 .service-item .arrow { margin-left: auto; width: 40px; height: 40px; border-radius: 50%; border: 2px solid var(--text-dark); background-color: var(--bg-white); color: var(--text-dark); display: flex; justify-content: center; align-items: center; flex-shrink: 0; transition: 0.3s; }
@@ -266,10 +306,6 @@ body.menu-open #page-wrapper { transform: translateX(300px); }
 .srv-card { background: var(--bg-white); border-radius: 15px; overflow: hidden; display: flex; flex-direction: column; }
 .srv-card > img { width: 100%; height: 250px; object-fit: cover; }
 .srv-content { padding: 40px 30px 30px; text-align: center; flex: 1; color: var(--text-dark); position: relative; background: var(--bg-white); border-radius: 0 0 15px 15px; }
-
-/* AJUSTE AQUI: Fundo branco para os ícones e limite de tamanho para não estourar */
-.srv-content .icon { position: absolute; top: -35px; left: 50%; transform: translateX(-50%); width: 70px; height: 70px; background: var(--bg-white); border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 1.8rem; color: var(--bg-black); border: 5px solid var(--bg-white); overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.08); }
-.srv-content .icon img, .service-item .icon img { width: 60%; height: auto; max-height: 60%; display: block; object-fit: contain; }
 
 .srv-content h4 { font-family: var(--font-menu); font-size: 1.4rem; margin-bottom: 15px; font-weight: 400; }
 .srv-content p { font-size: 0.9rem; color: #555; }
@@ -404,7 +440,10 @@ body.menu-open #page-wrapper { transform: translateX(300px); }
     .about-text p, .about-text h3 { text-align: center; }
     .about-text .section-subtitle { text-align: center; display: block; margin-bottom: 15px; }
     .about-text .section-subtitle::before { display: block; margin: 0 auto 10px auto; }
-    .about-text .btn { margin: 0 auto; display: inline-block; }
+    
+    /* AJUSTE BOTÃO SAIBA MAIS (DESGRUDANDO) */
+    .about-text .btn { margin: 25px auto 0 !important; display: inline-block; }
+    
     .about-image { margin-bottom: -60px; margin-top: 40px; width: 100%; text-align: center; }
     .about-image img { margin: 0 auto; display: block; }
 
@@ -412,16 +451,24 @@ body.menu-open #page-wrapper { transform: translateX(300px); }
     .services-section .btn, .services-container .btn { margin: 40px auto !important; display: table !important; width: max-content; text-align: center; }
     .services-container { margin-top: 0; flex-direction: column; gap: 0; } 
     
-    .service-item { margin-bottom: 20px; min-height: 230px; }
+    /* AJUSTE CARDS SERVIÇOS HOME (MESMO TAMANHO E ALTURA TRAVADA) */
+    .service-item { margin-bottom: 20px; min-height: 250px; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 40px 20px; border-radius: 40px; }
     .service-item:last-child { margin-bottom: 0; }
-    .service-item .info h4, .service-item .info p { text-align: left !important; }
+    .service-item .info h4, .service-item .info p { text-align: center !important; }
+    
+    /* AJUSTE ÍCONE SVG NA HOME MOBILE PARA FICAR DENTRO DA BOLINHA E HARMONIOSO */
+    .service-item .icon { margin: 0 auto 20px auto; width: 70px; height: 70px; border-radius: 50%; display: flex; justify-content: center; align-items: center; flex-shrink: 0; overflow: hidden; background-color: var(--primary-yellow); transition: 0.3s; }
+    .service-item .icon img { width: 60%; height: auto; object-fit: contain; }
+    .service-item .arrow { display: none; } /* Oculta a seta no mobile para ficar mais limpo igual aos cards da página serviços */
 
     @media (hover: none) {
         .service-item:hover { background-color: var(--bg-white); }
-        .service-item:hover .icon { color: var(--primary-yellow); }
+        .service-item:hover .icon { background-color: var(--primary-yellow); }
+        .service-item:hover .icon img { filter: none; }
         .service-item:hover .arrow { background: var(--bg-white); color: var(--text-dark); border-color: var(--text-dark); }
+        
         .service-item:active, .service-item.active { background-color: var(--primary-yellow); }
-        .service-item:active .icon, .service-item.active .icon { color: var(--bg-black); }
+        .service-item:active .icon, .service-item.active .icon { background-color: var(--bg-black); }
         .service-item:active .arrow, .service-item.active .arrow { background: var(--bg-black); color: var(--text-light); border-color: var(--bg-black); }
     }
 
