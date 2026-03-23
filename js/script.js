@@ -231,4 +231,3 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 });
-// --- FIM DO SCRIPT ----

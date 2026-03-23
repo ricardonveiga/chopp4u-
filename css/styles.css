@@ -181,9 +181,14 @@ body.menu-open #page-wrapper { transform: translateX(300px); }
 .nav-arrow.gray-bg { background: #666; color: var(--bg-white); width: 30px; height: 30px; display: flex; justify-content: center; align-items: center; border-radius: 3px; }
 .cards-container { display: flex; gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; -ms-overflow-style: none; }
 .cards-container::-webkit-scrollbar { display: none; }
-.card { background-color: var(--bg-black); color: var(--text-light); padding: 40px 30px; border-radius: 10px; min-width: 280px; flex: 1; scroll-snap-align: start; }
+
+/* AJUSTE: Cards forçados a exibir 4 inteiros no desktop (com o gap calculado) */
+.card { background-color: var(--bg-black); color: var(--text-light); padding: 40px 30px; border-radius: 10px; flex: 0 0 calc(25% - 15px); min-width: calc(25% - 15px); max-width: calc(25% - 15px); scroll-snap-align: start; }
 .card-icon { font-size: 3rem; color: var(--primary-yellow); margin-bottom: 20px; }
-.card h4 { margin-bottom: 15px; font-size: 1.2rem; font-family: var(--font-main);}
+
+/* AJUSTE: Fonte dos titulos para Righteous nas duas versões */
+.card h4 { margin-bottom: 15px; font-size: 1.2rem; font-family: var(--font-menu); font-weight: 400; letter-spacing: 1px; }
+
 .card p { font-size: 0.9rem; color: #ccc; font-family: var(--font-main); }
 
 .gallery-section { padding: 100px 5%; border-radius: 0 0 100px 0; background-color: var(--bg-dark); position: relative; z-index: 5; }
