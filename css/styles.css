@@ -237,7 +237,6 @@ body.menu-open #page-wrapper { transform: translateX(300px); }
 .whatsapp-float { position: fixed; bottom: 30px; right: 30px; background-color: #25d366; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 2rem; box-shadow: 2px 2px 10px rgba(0,0,0,0.2); z-index: 1000; transition: 0.3s; }
 .whatsapp-float:hover { transform: scale(1.1); }
 
-
 /* ==========================================================================
    7. MEDIA QUERIES (MOBILE) - AQUI MORA A MÁGICA SEM AFETAR O DESKTOP
    ========================================================================== */
@@ -249,165 +248,196 @@ body.menu-open #page-wrapper { transform: translateX(300px); }
     .btn { text-transform: uppercase; }
     .hero-slider { margin-top: 0; }
     
-    /* Inverte a ordem apenas da seção Sobre para o mobile (texto em cima, imagem embaixo) */
-    .about-container { flex-direction: column-reverse; }
-    .services-container { flex-direction: column; }
-    
-    .footer-content { grid-template-columns: 1fr 1fr; gap: 30px; }
-    
-    /* Top Bar Mobile */
-    .top-bar { padding: 10px 2%; } 
-    .top-bar-container { display: block; } 
-    .top-social { display: none !important; }
-    
-    .top-info-right {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
-        align-items: center;
-        font-size: 0.7rem; 
-        color: var(--bg-black);
-        font-weight: 600;
-        line-height: 1.5;
-        width: 100%;
-        font-family: var(--font-main) !important;
+    /* TOP BAR MOBILE - E-mail e WhatsApp em cima, CNPJ embaixo */
+    .top-bar { padding: 10px 5%; }
+    .top-bar-container { flex-direction: column; text-align: center; justify-content: center; }
+    .top-social { display: none; }
+    .top-info-right { 
+        display: flex; 
+        flex-direction: row; 
+        flex-wrap: wrap; 
+        justify-content: center; 
+        align-items: center; 
+        font-size: 0.75rem; 
+        color: var(--bg-black); 
+        font-weight: 600; 
+        line-height: 1.8; 
+        width: 100%; 
     }
+    .top-info-right span { display: inline-flex; align-items: center; }
+    .top-info-right span:nth-child(2) { display: none !important; } /* Esconde 1º separador */
+    .top-info-right span:nth-child(3) { order: 1; margin-right: 5px; } /* E-mail */
+    .top-info-right span:nth-child(4) { order: 2; margin: 0 5px; opacity: 0.3; font-weight: 300; display: inline-flex !important; } /* 2º Separador */
+    .top-info-right span:nth-child(5) { order: 3; margin-left: 5px; } /* Telefone */
+    .top-info-right span:nth-child(1) { order: 4; flex-basis: 100%; justify-content: center; margin-top: 5px; } /* CNPJ */
 
-    .top-info-right span {
-        display: inline-flex;
-        align-items: center;
-        white-space: nowrap; 
-        margin: 0; 
-    }
-
-    .top-info-right span:nth-child(2) { display: none !important; }
-    .top-info-right span:nth-child(3) { order: 1; margin-right: 6px; }
-    .top-info-right span:nth-child(4) { order: 2; opacity: 0.4; font-weight: 300; }
-    .top-info-right span:nth-child(5) { order: 3; margin-left: 6px; }
-    .top-info-right span:nth-child(1) {
-        order: 4;
-        flex-basis: 100%; 
-        justify-content: center;
-        margin-top: 6px;
-    }
-
-    #header {
-        position: sticky;
-        top: 0;
-        z-index: 990;
-    }
-    
+    /* HEADER MOBILE (Fechado) */
     .header-container { position: relative; display: flex; align-items: center; justify-content: space-between; padding: 15px 5%; flex-direction: row; }
     .menu-icon { order: 1; flex: 1; text-align: left; }
     .logo { order: 2; flex: 2; display: flex; justify-content: center; }
     .logo img { max-height: 40px; }
-    .mobile-header-social { order: 3; flex: 1; gap: 10px; justify-content: flex-end; }
+    .mobile-header-social { order: 3; flex: 1; display: flex; gap: 10px; justify-content: flex-end; }
     .mobile-header-social a { border: 1px solid white; border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.9rem; }
     
-    /* === MENU TELA CHEIA (DROPDOWN MOBILE) === */
-    body.menu-open #page-wrapper { transform: none; } 
-    .overlay.show { background: rgba(0,0,0,0.6); } 
+    /* === MENU DROPDOWN MOBILE === */
+    body.menu-open #page-wrapper { transform: none; }
+    .overlay.show { background: rgba(0,0,0,0.5); }
     
     .sidebar { 
         width: 100%; 
         height: auto; 
         left: 0; 
-        top: -150vh; 
-        transform: none; 
+        top: -100vh; 
+        position: fixed; 
         background-color: var(--bg-white); 
-        overflow-y: visible; 
-        padding: 0; 
+        padding: 0;
         display: flex; 
         flex-direction: column; 
         transition: top 0.4s ease; 
-        box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-        z-index: 1005; /* Garante que fique acima de tudo */
+        z-index: 1005; 
+        box-shadow: 0 10px 20px rgba(0,0,0,0.2); 
+        transform: none; /* Reseta o transform do desktop */
     }
     .sidebar.open { top: 0; transform: none; }
-    
-    /* AJUSTE: O X e o Cabeçalho (Isolados com Posição Absoluta e Flex) */
+
+    /* Cabeçalho do Menu (Preto) */
     .sidebar-header { 
-        position: relative; /* Base para o X e Social flutuarem */
+        position: relative; 
+        width: 100%; 
+        height: 70px; 
         background-color: var(--bg-black); 
-        display: flex; 
-        justify-content: center; /* Mantém apenas o logo perfeitamente centralizado */
-        align-items: center; 
-        height: 70px; /* Altura fixa para todos os elementos alinharem */
-        padding: 0 5%; 
         border-bottom: 2px solid var(--primary-yellow); 
-        margin-bottom: 0; 
+        display: flex; 
+        align-items: center; 
+        justify-content: center; /* Centraliza o logo */
+        padding: 0 5%;
+        margin-bottom: 0;
     }
-    
+
     .close-btn { 
-        position: absolute; /* Flutua sobre a barra preta */
-        top: 0;
-        left: 5%; /* Alinhado à esquerda igual ao menu hambúrguer */
-        height: 70px; /* Mesma altura da barra para alinhar verticalmente */
-        display: flex;
-        align-items: center;
-        background: transparent; 
-        color: var(--primary-yellow); 
+        position: absolute; 
+        left: 5%; 
+        top: 50%;
+        transform: translateY(-50%);
         opacity: 1; 
         visibility: visible; 
+        color: var(--primary-yellow); 
         font-size: 1.8rem; 
+        background: transparent;
         border: none;
-        z-index: 1002;
-        margin: 0; 
-        padding: 0; 
+        cursor: pointer;
+        height: auto;
+        width: auto;
+        margin: 0;
     }
-    
+
     .sidebar-header img { 
         max-height: 40px; 
-        object-fit: contain; 
-        margin: 0; 
+        margin: 0;
+        position: relative; 
     }
-    
+
     .mobile-sidebar-social { 
-        position: absolute; /* Flutua à direita, não empurra o logo */
+        position: absolute; 
         right: 5%;
+        top: 50%;
+        transform: translateY(-50%);
         display: flex !important; 
         gap: 10px; 
     }
-    .mobile-sidebar-social a { border: 1px solid white; border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.9rem; }
-    
+
     .sidebar-nav { width: 100%; background: var(--bg-white); padding: 0; }
     .sidebar-nav ul { align-items: flex-start; padding: 0; margin: 0; }
-    .sidebar-nav li { margin: 0; width: 100%; text-align: left; padding: 0; border: none; }
-    
-    /* AJUSTE: Letras menores e efeito amarelo no clique/ativo */
+    .sidebar-nav li { margin: 0; width: 100%; text-align: left; padding: 0; border: none !important; }
     .sidebar-nav a { 
         display: block; 
         width: 100%; 
         padding: 18px 5%; 
         font-family: var(--font-menu); 
-        font-size: 0.75rem; /* Fonte reduzida para o tamanho pedido */
+        font-size: 0.85rem; /* Fonte reduzida */
         color: var(--bg-black); 
         text-transform: uppercase; 
         border-bottom: 1px solid #f0f0f0; 
-        transition: background-color 0.2s ease, color 0.2s ease;
     }
-    .sidebar-nav a::after { display: none; } 
+    .sidebar-nav a::after { display: none; }
     
-    /* Fundo Amarelo no item selecionado/ativo/tocado */
-    .sidebar-nav a:hover,
-    .sidebar-nav a:focus,
-    .sidebar-nav a:active,
-    .sidebar-nav a.active { 
+    /* Fundo amarelo no item ativo */
+    .sidebar-nav a.active, 
+    .sidebar-nav a:hover, 
+    .sidebar-nav a:focus { 
         background-color: var(--primary-yellow) !important; 
         color: var(--bg-black) !important; 
     }
+
+    .mobile-contact-yellow, .sidebar-social { display: none !important; }
     
-    .mobile-contact-yellow { display: none !important; }
-    
+    /* HERO SECTION */
     .hero-content { display: flex; flex-direction: column; text-align: center; align-items: center; padding-bottom: 80px; max-width: 100%; }
     .hero-content h1 { font-size: 2.6rem; text-align: center; font-family: var(--font-menu); font-weight: 400; }
     .hero-content p { font-size: 1rem; text-align: center; margin-bottom: 30px; }
-    
     .mobile-hero-nav { justify-content: space-between; align-items: center; position: absolute; bottom: 40px; left: 5%; width: 90%; border-top: 1px solid rgba(255,255,255,0.3); padding-top: 20px; font-family: var(--font-menu); color: var(--bg-white); font-size: 1.2rem; font-weight: 600; z-index: 5; }
-    .nav-controls span { cursor: pointer; text-transform: uppercase; }
-    .nav-controls .sep { color: var(--primary-yellow); margin: 0 15px; }
-    .nav-counter { font-size: 1.2rem; }
+    
+    /* SEÇÃO SOBRE (QUEM SOMOS) */
+    #about { position: relative; padding-bottom: 0; } 
+    
+    #about .about-container { 
+        display: flex; 
+        flex-direction: column-reverse; /* Inverte texto e imagem */
+        align-items: center; 
+        width: 100%; 
+    }
+    
+    #about .about-text { 
+        display: flex; 
+        flex-direction: column; 
+        align-items: center; /* Trava todos os itens no centro horizontalmente */
+        text-align: center; 
+        width: 100%; 
+    }
+    
+    #about .about-text h2 { text-align: center; font-family: var(--font-menu); font-weight: 400; line-height: 1.2; font-size: 2.2rem; margin-bottom: 20px; }
+    #about .about-text p { text-align: center; }
+    
+    /* Subtítulo centralizado */
+    #about .about-text .section-subtitle { display: inline-block; margin: 0 auto 15px auto; text-align: center; font-family: var(--font-menu); font-weight: 400; border: none; }
+    #about .about-text .section-subtitle::before { position: relative; left: -10px; }
+    
+    /* H3 travado para não pular o botão (Animação de digitação) */
+    #about .about-text h3 { 
+        text-align: center; 
+        width: 100%; 
+        min-height: 60px; /* Previne pulo da altura ao digitar */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 20px 0;
+    }
+    
+    /* Trava o botão no centro */
+    #about .about-text .btn { margin: 0 auto !important; display: block; }
+    
+    /* Imagem com corte curvo */
+    #about .about-image { margin: 30px auto -60px; width: 100%; text-align: center; position: relative; z-index: 0; }
+    #about .about-image img { margin: 0 auto; display: block; max-width: 100%; }
+    
+    /* Curva preta */
+    #about::after { 
+        content: ''; 
+        position: absolute; 
+        width: 100%; 
+        height: 80px; 
+        background-color: var(--bg-dark); 
+        bottom: 0; 
+        left: 0; 
+        border-radius: 100% 100% 0 0 / 100% 100% 0 0; 
+        z-index: 1; 
+        pointer-events: none; 
+    }
+    #about .about-container { position: relative; z-index: 2; }
+
+    /* OUTRAS SEÇÕES */
+    .services-container { flex-direction: column; }
+    .footer-content { grid-template-columns: 1fr 1fr; gap: 30px; }
 }
 
 @media (max-width: 768px) {
@@ -416,15 +446,7 @@ body.menu-open #page-wrapper { transform: translateX(300px); }
     .section-subtitle { font-size: 0.8rem; }
     
     .about-section, .services-section, .differentials-section, .gallery-section, .clients-section, .cta-section { padding: 60px 5%; }
-    .about-text { text-align: center; }
-    .about-text h2 { font-family: var(--font-menu); font-weight: 400; line-height: 1.2; font-size: 2.2rem; text-align: center; }
-    .about-text p, .about-text h3 { text-align: center; }
-    .about-text .section-subtitle { text-align: center; display: block; margin-bottom: 15px; }
-    .about-text .section-subtitle::before { display: block; margin: 0 auto 10px auto; }
-    .about-text .btn { margin: 0 auto; display: inline-block; }
-    .about-image { margin-bottom: -60px; margin-top: 40px; width: 100%; text-align: center; }
-    .about-image img { margin: 0 auto; display: block; }
-
+    
     .services-container { margin-top: 30px; }
     .service-item { padding: 15px; border-radius: 20px; }
     .service-item .icon { font-size: 1.5rem; margin-right: 15px; }
@@ -448,4 +470,3 @@ body.menu-open #page-wrapper { transform: translateX(300px); }
     .footer-bottom { flex-direction: column; text-align: center; gap: 20px; padding-bottom: 100px; } 
     .whatsapp-float { width: 50px; height: 50px; font-size: 1.8rem; bottom: 20px; right: 20px; }
 }
-// FIM DO CSS
