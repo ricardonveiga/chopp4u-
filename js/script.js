@@ -3,17 +3,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- LÓGICA DO AGE GATE (POP-UP 18+) ---
     const ageGate = document.getElementById('age-gate');
     if (ageGate) {
-        const hasConsented = localStorage.getItem('ageConsent');
-        if (hasConsented === 'true') {
-            ageGate.style.display = 'none';
-        } else {
-            document.body.style.overflow = 'hidden'; // Trava a tela atrás
-        }
+        // Removida a memória (localStorage). Agora ele sempre vai travar a tela e aparecer no refresh!
+        document.body.style.overflow = 'hidden'; 
 
         document.getElementById('btn-yes-age').addEventListener('click', () => {
-            localStorage.setItem('ageConsent', 'true');
             ageGate.style.display = 'none';
-            document.body.style.overflow = 'auto'; // Destrava a tela
+            document.body.style.overflow = 'auto'; // Destrava a tela para rolagem
         });
 
         document.getElementById('btn-no-age').addEventListener('click', () => {
