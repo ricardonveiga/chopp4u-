@@ -168,13 +168,68 @@ body.menu-open #page-wrapper { transform: translateX(300px); }
 .services-section { padding: 100px 5%; margin-top: -50px; padding-top: 120px; }
 .services-container { display: flex; gap: 50px; max-width: 1600px; margin: 50px auto 0; }
 .services-list { flex: 1; }
-.service-item { display: flex; align-items: center; background-color: var(--bg-white); color: var(--text-dark); padding: 20px; border-radius: 40px; margin-bottom: 20px; cursor: pointer; transition: 0.3s; }
-.service-item.active, .service-item:hover { background-color: var(--primary-yellow); }
-.service-item .icon { font-size: 2rem; margin-right: 20px; }
-.service-item .info h4 { margin-bottom: 5px; font-family: var(--font-main); }
+
+/* -------------------------------------------------------------
+   CARDS DE SERVIÇOS (AGORA SEGUEM O PADRÃO MOBILE NO DESKTOP TAMBÉM)
+   ------------------------------------------------------------- */
+.service-item { 
+    display: flex; 
+    align-items: center; 
+    background-color: var(--bg-white); /* Base sempre branca */
+    color: var(--text-dark); 
+    padding: 30px; /* Mais preenchimento */
+    border-radius: 100px; /* Formato elíptico */
+    margin-bottom: 20px; 
+    cursor: pointer; 
+    transition: 0.3s; 
+}
+
+/* Fundo amarelo no hover (desktop) e active */
+.service-item.active, .service-item:hover { 
+    background-color: var(--primary-yellow); 
+}
+
+/* Ícone amarelo por padrão */
+.service-item .icon { 
+    font-size: 3rem; /* Tamanho maior */
+    margin-right: 25px; 
+    color: var(--primary-yellow); 
+    transition: 0.3s;
+}
+
+/* Ícone preto no hover/active */
+.service-item.active .icon, .service-item:hover .icon { 
+    color: var(--bg-black); 
+}
+
+/* Títulos com a fonte Righteous */
+.service-item .info h4 { 
+    margin-bottom: 5px; 
+    font-family: var(--font-menu); /* Aplicando Righteous */
+    font-weight: 400; 
+    font-size: 1.2rem;
+}
 .service-item .info p { font-size: 0.85rem; margin: 0; color: #444; font-family: var(--font-main); }
-.service-item .arrow { margin-left: auto; width: 30px; height: 30px; border-radius: 50%; border: 1px solid var(--text-dark); display: flex; justify-content: center; align-items: center; flex-shrink: 0;}
-.service-item.active .arrow { background: var(--bg-black); color: var(--text-light); border-color: var(--bg-black); }
+
+/* Seta Branca com contorno preto por padrão */
+.service-item .arrow { 
+    margin-left: auto; 
+    width: 40px; 
+    height: 40px; 
+    border-radius: 50%; 
+    border: 2px solid var(--text-dark); 
+    background-color: var(--bg-white); 
+    color: var(--text-dark);
+    display: flex; justify-content: center; align-items: center; flex-shrink: 0; transition: 0.3s; 
+}
+
+/* Seta com fundo preto e ícone branco no hover/active */
+.service-item.active .arrow, .service-item:hover .arrow { 
+    background: var(--bg-black); 
+    color: var(--text-light); 
+    border-color: var(--bg-black); 
+}
+
 .services-gallery { flex: 1; display: flex; gap: 20px; }
 .services-gallery img { width: 100%; border-radius: 10px; object-fit: cover; }
 .img-large img { height: 600px; }
@@ -239,7 +294,7 @@ body.menu-open #page-wrapper { transform: translateX(300px); }
 
 
 /* ==========================================================================
-   7. MEDIA QUERIES (MOBILE) - AQUI MORA A MÁGICA SEM AFETAR O DESKTOP
+   7. MEDIA QUERIES (MOBILE)
    ========================================================================== */
 @media (max-width: 992px) {
     /* Exibe os itens "fantasmas" exclusivos do Mobile e oculta os do Desktop */
@@ -425,81 +480,43 @@ body.menu-open #page-wrapper { transform: translateX(300px); }
     .about-image { margin-bottom: -60px; margin-top: 40px; width: 100%; text-align: center; }
     .about-image img { margin: 0 auto; display: block; }
 
-    /* Centralizar o título na seção de serviços */
-    .services-section > p { text-align: center; margin-bottom: 30px; } 
+    /* Centralizar o texto 'Faça um orçamento completo.' */
+    .services-section > p, .services-container > p, .services-section .section-subtitle + p { 
+        text-align: center !important; 
+        margin-bottom: 30px; 
+        display: block; 
+        width: 100%; 
+    } 
 
     /* Modificar container de serviços */
     .services-container { margin-top: 0; flex-direction: column; gap: 0; } 
     
     /* Modificar cards de serviços */
     .service-item {
-        display: flex;
-        align-items: center;
-        background-color: var(--bg-white); /* Base SEMPRE branca */
-        color: var(--text-dark);
-        padding: 30px; 
-        border-radius: 100px; /* Formato elíptico */
-        margin-bottom: 20px; /* Desgruda os cards no mobile */
-        cursor: pointer;
-        transition: 0.3s;
+        margin-bottom: 20px;
+        min-height: 230px; /* Força todos os cards a terem a mesma altura mínima */
     }
     
-    /* Remove a margem do último card para não somar com a margem do botão */
     .service-item:last-child {
         margin-bottom: 0;
     }
 
-    /* Cores no clique / ativo (Fica amarelo apenas nestes estados) */
-    .service-item:active,
-    .service-item:focus,
-    .service-item.active { 
-        background-color: var(--primary-yellow);
+    /* Regras exclusivas de touch/mobile para ignorar o hover pegajoso */
+    @media (hover: none) {
+        /* Desativa o hover forçado do desktop */
+        .service-item:hover { background-color: var(--bg-white); }
+        .service-item:hover .icon { color: var(--primary-yellow); }
+        .service-item:hover .arrow { background: var(--bg-white); color: var(--text-dark); border-color: var(--text-dark); }
+        
+        /* Aplica o amarelo apenas no clique real */
+        .service-item:active, .service-item.active { background-color: var(--primary-yellow); }
+        .service-item:active .icon, .service-item.active .icon { color: var(--bg-black); }
+        .service-item:active .arrow, .service-item.active .arrow { background: var(--bg-black); color: var(--text-light); border-color: var(--bg-black); }
     }
 
-    /* Ícone grande e colorido */
-    .service-item .icon {
-        font-size: 3rem; 
-        margin-right: 25px;
-        color: var(--primary-yellow); 
-    }
-
-    /* Cor do ícone quando o card está ativo/clicado (preto) */
-    .service-item:active .icon,
-    .service-item:focus .icon,
-    .service-item.active .icon {
-        color: var(--bg-black);
-    }
-
-    .service-item .info h4 { margin-bottom: 5px; font-family: var(--font-main); }
-    .service-item .info p { font-size: 0.85rem; margin: 0; color: #444; font-family: var(--font-main); }
-
-    .service-item .arrow {
-        margin-left: auto;
-        width: 40px; 
-        height: 40px;
-        border-radius: 50%;
-        border: 2px solid var(--text-dark); 
-        background-color: var(--bg-white); 
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-shrink: 0;
-        transition: 0.3s;
-        color: var(--text-dark); 
-    }
-
-    /* Comportamento da arrow quando o card está ativo/clicado (fundo preto, seta branca) */
-    .service-item:active .arrow,
-    .service-item:focus .arrow,
-    .service-item.active .arrow {
-        background: var(--bg-black);
-        color: var(--text-light); 
-        border-color: var(--bg-black);
-    }
-
-    /* Centralizar o botão na seção de serviços (usando margem automática) */
+    /* Posicionar o botão centralizado no espaço entre a lista e a galeria */
     .services-section .btn {
-        margin: 30px auto; /* Centraliza horizontalmente e dá respiro em cima e embaixo */
+        margin: 50px auto 0 auto; /* Empurra para baixo criando o respiro exato pedido */
         display: block; 
         width: fit-content; 
     }
