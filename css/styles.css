@@ -241,10 +241,10 @@ body.menu-open #page-wrapper { transform: translateX(300px); }
     .about-container, .services-container { flex-direction: column; }
     .footer-content { grid-template-columns: 1fr 1fr; gap: 30px; }
     
-    /* Top Bar Mobile - E-mail e WhatsApp lado a lado, CNPJ em baixo */
-    .top-bar { padding: 10px 5%; }
-    .top-bar-container { flex-direction: column; text-align: center; justify-content: center; }
-    .top-social { display: none; }
+    /* Top Bar Mobile - E-mail e WhatsApp lado a lado, CNPJ em baixo centralizado */
+    .top-bar { padding: 10px 2%; } /* Reduzi o padding lateral para dar mais espaço ao texto */
+    .top-bar-container { display: block; } /* Remove o flex column do container pai */
+    .top-social { display: none !important; }
     
     .top-info-right {
         display: flex;
@@ -252,38 +252,39 @@ body.menu-open #page-wrapper { transform: translateX(300px); }
         flex-wrap: wrap;
         justify-content: center;
         align-items: center;
-        font-size: 0.75rem;
+        font-size: 0.7rem; /* Fonte ligeiramente menor para caber E-mail + Tel na mesma linha */
         color: var(--bg-black);
         font-weight: 600;
-        line-height: 1.8;
+        line-height: 1.5;
         width: 100%;
     }
 
     .top-info-right span {
         display: inline-flex;
         align-items: center;
+        white-space: nowrap; /* Evita que o próprio texto quebre ao meio */
+        margin: 0; /* Zera as margens para termos controle exato */
     }
 
-    /* Oculta o primeiro separador original (entre CNPJ e E-mail) */
+    /* Oculta o primeiro separador original (que ficava entre CNPJ e E-mail) */
     .top-info-right span:nth-child(2) { display: none !important; }
 
     /* E-mail */
-    .top-info-right span:nth-child(3) { order: 1; margin-right: 5px; }
+    .top-info-right span:nth-child(3) { order: 1; margin-right: 6px; }
 
-    /* Segundo separador (entre E-mail e Telefone) */
-    .top-info-right span:nth-child(4) { order: 2; margin: 0 5px; opacity: 0.3; font-weight: 300; }
+    /* Segundo separador | (entre E-mail e Telefone) */
+    .top-info-right span:nth-child(4) { order: 2; opacity: 0.4; font-weight: 300; }
 
     /* Telefone */
-    .top-info-right span:nth-child(5) { order: 3; margin-left: 5px; }
+    .top-info-right span:nth-child(5) { order: 3; margin-left: 6px; }
 
-    /* CNPJ (força a quebra para a linha de baixo com flex-basis: 100%) */
+    /* CNPJ (força a quebra para a linha de baixo, ocupando 100% da largura e centralizando) */
     .top-info-right span:nth-child(1) {
         order: 4;
-        flex-basis: 100%;
+        flex-basis: 100%; /* Força ele a ficar sozinho numa nova linha */
         justify-content: center;
-        margin-top: 5px;
+        margin-top: 6px;
     }
-
     /* Header Mobile - Mantido idêntico com os ícones sociais vazados do lado direito */
     .header-container { position: relative; display: flex; align-items: center; justify-content: space-between; padding: 15px 5%; flex-direction: row; }
     .menu-icon { order: 1; flex: 1; text-align: left; }
