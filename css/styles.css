@@ -16,6 +16,8 @@
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
+
+/* Corpo do site volta para a fonte limpa (Poppins) */
 body { font-family: var(--font-main); background-color: var(--bg-dark); color: var(--text-light); overflow-x: hidden; }
 ul { list-style: none; }
 a { text-decoration: none; color: inherit; transition: 0.3s ease; }
@@ -23,13 +25,18 @@ a { text-decoration: none; color: inherit; transition: 0.3s ease; }
 /* ==========================================================================
    2. TIPOGRAFIA GERAL
    ========================================================================== */
-h1, h2, h3, h4 { font-weight: 700; font-family: var(--font-main); }
+/* Apenas Textos Principais (H1 e H2) recebem a fonte Righteous */
+h1, h2 { font-weight: 700; font-family: var(--font-menu); }
+h3, h4 { font-weight: 700; font-family: var(--font-main); }
 h2 { font-size: 2.5rem; margin-bottom: 1rem; }
+
+/* Parágrafos e descrições voltam para Poppins */
 p { line-height: 1.6; margin-bottom: 1rem; font-family: var(--font-main); }
 .text-dark .section-subtitle { color: #666; }
 .text-center { text-align: center; }
 .mt-4 { margin-top: 2rem; }
 
+/* Subtítulos em Poppins */
 .section-subtitle { display: inline-block; font-size: 0.9rem; color: var(--text-gray); margin-bottom: 10px; position: relative; font-family: var(--font-main);}
 .section-subtitle::before { content: ''; display: inline-block; width: 30px; height: 2px; background-color: var(--primary-yellow); vertical-align: middle; margin-right: 10px; }
 
@@ -40,6 +47,7 @@ p { line-height: 1.6; margin-bottom: 1rem; font-family: var(--font-main); }
 .logo img { max-height: 50px; width: auto; display: block; transition: transform 0.3s ease-in-out; cursor: pointer; }
 .logo:hover img { transform: scale(1.08); }
 
+/* Botões recebem Righteous */
 .btn { display: inline-block; padding: 12px 24px; border-radius: 5px; font-family: var(--font-menu); font-weight: 600; font-size: 0.9rem; cursor: pointer; transition: all 0.3s ease; }
 .square-btn { border-radius: 0; }
 .btn-full { width: 100%; }
@@ -51,6 +59,7 @@ p { line-height: 1.6; margin-bottom: 1rem; font-family: var(--font-main); }
 .btn-outline-light { border: 1px solid var(--text-light); color: var(--text-light); }
 .btn-outline-light:hover { background: var(--text-light); color: var(--bg-dark); }
 
+/* Botão Amarelo recebe Righteous */
 .btn-solid-yellow { background-color: var(--primary-yellow); color: var(--bg-black); border: none; padding: 12px 25px; border-radius: 5px; font-family: var(--font-menu); font-weight: 600; cursor: pointer; display: inline-block; transition: background-color 0.3s ease, color 0.3s ease; text-transform: uppercase; }
 .btn-solid-yellow:hover { background-color: #f1a91a; color: var(--bg-black); }
 
@@ -95,6 +104,7 @@ p { line-height: 1.6; margin-bottom: 1rem; font-family: var(--font-main); }
 /* ICONE DO MENU DESKTOP (A ESQUERDA) */
 .menu-icon { color: var(--primary-yellow); font-size: 1.5rem; cursor: pointer; }
 
+/* Menu recebe Righteous */
 .desktop-nav ul { display: flex; align-items: center; gap: 20px; }
 .desktop-nav li { display: flex; align-items: center; gap: 20px; }
 .desktop-nav li:not(:last-child)::after { content: '|'; color: rgba(255,255,255,0.2); font-size: 0.8rem; font-weight: 300; }
@@ -203,7 +213,7 @@ body.menu-open #page-wrapper { transform: translateX(300px); }
 .cta-overlay h2 { font-size: 2.5rem; }
 
 /* ==========================================================================
-   6. FOOTER E WHATSAPP
+   6. FOOTER E WHATSAPP 
    ========================================================================= */
 .footer { background: var(--gradient-yellow); color: var(--text-dark); padding-top: 60px; position: relative; }
 .newsletter-bar { display: flex; justify-content: space-between; align-items: center; max-width: 1600px; margin: 0 auto; padding: 0 5% 40px; border-bottom: 1px solid rgba(0,0,0,0.1); }
@@ -261,6 +271,7 @@ body.menu-open #page-wrapper { transform: translateX(300px); }
         font-weight: 600;
         line-height: 1.5;
         width: 100%;
+        font-family: var(--font-main) !important;
     }
 
     .top-info-right span {
