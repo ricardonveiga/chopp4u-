@@ -311,47 +311,52 @@ body.menu-open #page-wrapper { transform: translateX(300px); }
         flex-direction: column; 
         transition: top 0.4s ease; 
         box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        z-index: 1005; /* Garante que fique acima de tudo */
     }
     .sidebar.open { top: 0; transform: none; }
     
-    /* AJUSTE: X à esquerda e Logo Centralizado no menu aberto */
+    /* AJUSTE: O X e o Cabeçalho (Isolados com Posição Absoluta e Flex) */
     .sidebar-header { 
+        position: relative; /* Base para o X e Social flutuarem */
         background-color: var(--bg-black); 
         display: flex; 
-        justify-content: space-between; 
+        justify-content: center; /* Mantém apenas o logo perfeitamente centralizado */
         align-items: center; 
-        padding: 15px 5%; 
+        height: 70px; /* Altura fixa para todos os elementos alinharem */
+        padding: 0 5%; 
         border-bottom: 2px solid var(--primary-yellow); 
         margin-bottom: 0; 
     }
+    
     .close-btn { 
-        position: static; 
+        position: absolute; /* Flutua sobre a barra preta */
+        top: 0;
+        left: 5%; /* Alinhado à esquerda igual ao menu hambúrguer */
+        height: 70px; /* Mesma altura da barra para alinhar verticalmente */
+        display: flex;
+        align-items: center;
         background: transparent; 
         color: var(--primary-yellow); 
         opacity: 1; 
         visibility: visible; 
-        width: auto; 
-        height: auto; 
         font-size: 1.8rem; 
-        flex: 1; 
-        text-align: left; 
+        border: none;
+        z-index: 1002;
         margin: 0; 
         padding: 0; 
-        order: 1; 
     }
+    
     .sidebar-header img { 
         max-height: 40px; 
-        flex: 2; 
         object-fit: contain; 
-        order: 2; 
-        margin: 0 auto; 
+        margin: 0; 
     }
+    
     .mobile-sidebar-social { 
-        flex: 1; 
-        justify-content: flex-end; 
-        gap: 10px; 
+        position: absolute; /* Flutua à direita, não empurra o logo */
+        right: 5%;
         display: flex !important; 
-        order: 3; 
+        gap: 10px; 
     }
     .mobile-sidebar-social a { border: 1px solid white; border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.9rem; }
     
@@ -365,16 +370,21 @@ body.menu-open #page-wrapper { transform: translateX(300px); }
         width: 100%; 
         padding: 18px 5%; 
         font-family: var(--font-menu); 
-        font-size: 0.85rem; 
+        font-size: 0.75rem; /* Fonte reduzida para o tamanho pedido */
         color: var(--bg-black); 
         text-transform: uppercase; 
         border-bottom: 1px solid #f0f0f0; 
+        transition: background-color 0.2s ease, color 0.2s ease;
     }
     .sidebar-nav a::after { display: none; } 
+    
+    /* Fundo Amarelo no item selecionado/ativo/tocado */
+    .sidebar-nav a:hover,
+    .sidebar-nav a:focus,
     .sidebar-nav a:active,
     .sidebar-nav a.active { 
-        background-color: var(--primary-yellow); 
-        color: var(--bg-black); 
+        background-color: var(--primary-yellow) !important; 
+        color: var(--bg-black) !important; 
     }
     
     .mobile-contact-yellow { display: none !important; }
