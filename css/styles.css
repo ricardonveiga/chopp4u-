@@ -17,7 +17,6 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 
-/* Corpo do site volta para a fonte limpa (Poppins) */
 body { font-family: var(--font-main); background-color: var(--bg-dark); color: var(--text-light); overflow-x: hidden; }
 ul { list-style: none; }
 a { text-decoration: none; color: inherit; transition: 0.3s ease; }
@@ -25,18 +24,15 @@ a { text-decoration: none; color: inherit; transition: 0.3s ease; }
 /* ==========================================================================
    2. TIPOGRAFIA GERAL
    ========================================================================== */
-/* Apenas Textos Principais (H1 e H2) fonte Righteous */
 h1, h2 { font-weight: 700; font-family: var(--font-menu); }
 h3, h4 { font-weight: 700; font-family: var(--font-main); }
 h2 { font-size: 2.5rem; margin-bottom: 1rem; }
 
-/* Parágrafos e descrições Poppins */
 p { line-height: 1.6; margin-bottom: 1rem; font-family: var(--font-main); }
 .text-dark .section-subtitle { color: #666; }
 .text-center { text-align: center; }
 .mt-4 { margin-top: 2rem; }
 
-/* Subtítulos em Poppins */
 .section-subtitle { display: inline-block; font-size: 0.9rem; color: var(--text-gray); margin-bottom: 10px; position: relative; font-family: var(--font-main);}
 .section-subtitle::before { content: ''; display: inline-block; width: 30px; height: 2px; background-color: var(--primary-yellow); vertical-align: middle; margin-right: 10px; }
 
@@ -47,7 +43,6 @@ p { line-height: 1.6; margin-bottom: 1rem; font-family: var(--font-main); }
 .logo img { max-height: 50px; width: auto; display: block; transition: transform 0.3s ease-in-out; cursor: pointer; }
 .logo:hover img { transform: scale(1.08); }
 
-/* Botões recebem Righteous */
 .btn { display: inline-block; padding: 12px 24px; border-radius: 5px; font-family: var(--font-menu); font-weight: 600; font-size: 0.9rem; cursor: pointer; transition: all 0.3s ease; }
 .square-btn { border-radius: 0; }
 .btn-full { width: 100%; }
@@ -59,11 +54,10 @@ p { line-height: 1.6; margin-bottom: 1rem; font-family: var(--font-main); }
 .btn-outline-light { border: 1px solid var(--text-light); color: var(--text-light); }
 .btn-outline-light:hover { background: var(--text-light); color: var(--bg-dark); }
 
-/* Botão Amarelo recebe Righteous */
 .btn-solid-yellow { background-color: var(--primary-yellow); color: var(--bg-black); border: none; padding: 12px 25px; border-radius: 5px; font-family: var(--font-menu); font-weight: 600; cursor: pointer; display: inline-block; transition: background-color 0.3s ease, color 0.3s ease; text-transform: uppercase; }
 .btn-solid-yellow:hover { background-color: #f1a91a; color: var(--bg-black); }
 
-/* --- EFEITO: LINHA CONTÍNUA NOS BOTÕES --- */
+/* EFEITO: LINHA CONTÍNUA NOS BOTÕES */
 .header-btn .btn-outline, .sidebar-social .btn-outline {
     position: relative; border: none; background-color: transparent; color: var(--text-light); border-radius: 5px; padding: 10px 20px; display: inline-flex; justify-content: center; align-items: center; z-index: 1; overflow: hidden; transition: color 0.3s ease;
 }
@@ -73,7 +67,7 @@ p { line-height: 1.6; margin-bottom: 1rem; font-family: var(--font-main); }
 .header-btn .btn-outline:hover::after, .sidebar-social .btn-outline:hover::after { background-color: #1f1f1f; }
 @keyframes traceBorder { 0% { transform: translate(-50%, -50%) rotate(0deg); } 100% { transform: translate(-50%, -50%) rotate(360deg); } }
 
-/* --- LIGHTBOX --- */
+/* LIGHTBOX */
 .lightbox { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.9); z-index: 9999; display: flex; justify-content: center; align-items: center; opacity: 0; visibility: hidden; transition: 0.3s; }
 .lightbox.active { opacity: 1; visibility: visible; }
 #lightbox-img { max-width: 90%; max-height: 80vh; object-fit: contain; }
@@ -101,10 +95,8 @@ p { line-height: 1.6; margin-bottom: 1rem; font-family: var(--font-main); }
 #header { background-color: var(--bg-black); width: 100%; position: relative; z-index: 100; border-bottom: 2px solid var(--primary-yellow); }
 .header-container { display: flex; justify-content: space-between; align-items: center; padding: 20px 5%; max-width: 1800px; margin: 0 auto; }
 
-/* ICONE DO MENU DESKTOP (A ESQUERDA) */
 .menu-icon { color: var(--primary-yellow); font-size: 1.5rem; cursor: pointer; }
 
-/* Menu recebe Righteous */
 .desktop-nav ul { display: flex; align-items: center; gap: 20px; }
 .desktop-nav li { display: flex; align-items: center; gap: 20px; }
 .desktop-nav li:not(:last-child)::after { content: '|'; color: rgba(255,255,255,0.2); font-size: 0.8rem; font-weight: 300; }
@@ -169,60 +161,14 @@ body.menu-open #page-wrapper { transform: translateX(300px); }
 .services-container { display: flex; gap: 50px; max-width: 1600px; margin: 50px auto 0; }
 .services-list { flex: 1; }
 
-/* -------------------------------------------------------------
-   CARDS DE SERVIÇOS
-   ------------------------------------------------------------- */
-.service-item { 
-    display: flex; 
-    align-items: center; 
-    background-color: var(--bg-white); 
-    color: var(--text-dark); 
-    padding: 30px; 
-    border-radius: 100px; 
-    margin-bottom: 20px; 
-    cursor: pointer; 
-    transition: 0.3s; 
-}
-
-.service-item.active, .service-item:hover { 
-    background-color: var(--primary-yellow); 
-}
-
-.service-item .icon { 
-    font-size: 3rem; 
-    margin-right: 25px; 
-    color: var(--primary-yellow); 
-    transition: 0.3s;
-}
-
-.service-item.active .icon, .service-item:hover .icon { 
-    color: var(--bg-black); 
-}
-
-.service-item .info h4 { 
-    margin-bottom: 5px; 
-    font-family: var(--font-menu); 
-    font-weight: 400; 
-    font-size: 1.2rem;
-}
+.service-item { display: flex; align-items: center; background-color: var(--bg-white); color: var(--text-dark); padding: 30px; border-radius: 100px; margin-bottom: 20px; cursor: pointer; transition: 0.3s; }
+.service-item.active, .service-item:hover { background-color: var(--primary-yellow); }
+.service-item .icon { font-size: 3rem; margin-right: 25px; color: var(--primary-yellow); transition: 0.3s; }
+.service-item.active .icon, .service-item:hover .icon { color: var(--bg-black); }
+.service-item .info h4 { margin-bottom: 5px; font-family: var(--font-menu); font-weight: 400; font-size: 1.2rem; }
 .service-item .info p { font-size: 0.85rem; margin: 0; color: #444; font-family: var(--font-main); }
-
-.service-item .arrow { 
-    margin-left: auto; 
-    width: 40px; 
-    height: 40px; 
-    border-radius: 50%; 
-    border: 2px solid var(--text-dark); 
-    background-color: var(--bg-white); 
-    color: var(--text-dark);
-    display: flex; justify-content: center; align-items: center; flex-shrink: 0; transition: 0.3s; 
-}
-
-.service-item.active .arrow, .service-item:hover .arrow { 
-    background: var(--bg-black); 
-    color: var(--text-light); 
-    border-color: var(--bg-black); 
-}
+.service-item .arrow { margin-left: auto; width: 40px; height: 40px; border-radius: 50%; border: 2px solid var(--text-dark); background-color: var(--bg-white); color: var(--text-dark); display: flex; justify-content: center; align-items: center; flex-shrink: 0; transition: 0.3s; }
+.service-item.active .arrow, .service-item:hover .arrow { background: var(--bg-black); color: var(--text-light); border-color: var(--bg-black); }
 
 .services-gallery { flex: 1; display: flex; gap: 20px; }
 .services-gallery img { width: 100%; border-radius: 10px; object-fit: cover; }
@@ -291,7 +237,6 @@ body.menu-open #page-wrapper { transform: translateX(300px); }
    7. MEDIA QUERIES (MOBILE)
    ========================================================================== */
 @media (max-width: 992px) {
-    /* Exibe os itens "fantasmas" exclusivos do Mobile e oculta os do Desktop */
     .mobile-sidebar-social, .mobile-contact-yellow, .mobile-header-social, .mobile-hero-nav, .mobile-contact-block-centered { display: flex !important; }
     .desktop-nav, .header-btn, .sidebar-social, .hero-pagination, .newsletter-bar { display: none !important; }
     
@@ -303,15 +248,11 @@ body.menu-open #page-wrapper { transform: translateX(300px); }
     
     .footer-content { grid-template-columns: 1fr 1fr; gap: 30px; }
     
-    /* Top Bar Mobile */
     .top-bar { padding: 10px 2%; } 
     .top-bar-container { display: block; } 
     .top-social { display: none !important; }
     
-    .top-info-right {
-        display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center; align-items: center; font-size: 0.7rem; color: var(--bg-black); font-weight: 600; line-height: 1.5; width: 100%; font-family: var(--font-main) !important;
-    }
-
+    .top-info-right { display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center; align-items: center; font-size: 0.7rem; color: var(--bg-black); font-weight: 600; line-height: 1.5; width: 100%; font-family: var(--font-main) !important; }
     .top-info-right span { display: inline-flex; align-items: center; white-space: nowrap; margin: 0; }
     .top-info-right span:nth-child(2) { display: none !important; }
     .top-info-right span:nth-child(3) { order: 1; margin-right: 6px; }
@@ -330,19 +271,11 @@ body.menu-open #page-wrapper { transform: translateX(300px); }
     body.menu-open #page-wrapper { transform: none; } 
     .overlay.show { background: rgba(0,0,0,0.6); } 
     
-    .sidebar { 
-        width: 100%; height: auto; left: 0; top: -150vh; transform: none; background-color: var(--bg-white); overflow-y: visible; padding: 0; display: flex; flex-direction: column; transition: top 0.4s ease; box-shadow: 0 10px 20px rgba(0,0,0,0.3); z-index: 1005;
-    }
+    .sidebar { width: 100%; height: auto; left: 0; top: -150vh; transform: none; background-color: var(--bg-white); overflow-y: visible; padding: 0; display: flex; flex-direction: column; transition: top 0.4s ease; box-shadow: 0 10px 20px rgba(0,0,0,0.3); z-index: 1005; }
     .sidebar.open { top: 0; transform: none; }
     
-    .sidebar-header { 
-        position: relative; background-color: var(--bg-black); display: flex; justify-content: center; align-items: center; height: 70px; padding: 0 5%; border-bottom: 2px solid var(--primary-yellow); margin-bottom: 0; 
-    }
-    
-    .close-btn { 
-        position: absolute; top: 0; left: 5%; height: 70px; display: flex; align-items: center; background: transparent; color: var(--primary-yellow); opacity: 1; visibility: visible; font-size: 1.8rem; border: none; z-index: 1002; margin: 0; padding: 0; 
-    }
-    
+    .sidebar-header { position: relative; background-color: var(--bg-black); display: flex; justify-content: center; align-items: center; height: 70px; padding: 0 5%; border-bottom: 2px solid var(--primary-yellow); margin-bottom: 0; }
+    .close-btn { position: absolute; top: 0; left: 5%; height: 70px; display: flex; align-items: center; background: transparent; color: var(--primary-yellow); opacity: 1; visibility: visible; font-size: 1.8rem; border: none; z-index: 1002; margin: 0; padding: 0; }
     .sidebar-header img { max-height: 40px; object-fit: contain; margin: 0; }
     
     .mobile-sidebar-social { position: absolute; right: 5%; display: flex !important; gap: 10px; }
@@ -351,10 +284,7 @@ body.menu-open #page-wrapper { transform: translateX(300px); }
     .sidebar-nav { width: 100%; background: var(--bg-white); padding: 0; }
     .sidebar-nav ul { align-items: flex-start; padding: 0; margin: 0; }
     .sidebar-nav li { margin: 0; width: 100%; text-align: left; padding: 0; border: none; }
-    
-    .sidebar-nav a { 
-        display: block; width: 100%; padding: 18px 5%; font-family: var(--font-menu); font-size: 0.75rem; color: var(--bg-black); text-transform: uppercase; border-bottom: 1px solid #f0f0f0; transition: background-color 0.2s ease, color 0.2s ease;
-    }
+    .sidebar-nav a { display: block; width: 100%; padding: 18px 5%; font-family: var(--font-menu); font-size: 0.75rem; color: var(--bg-black); text-transform: uppercase; border-bottom: 1px solid #f0f0f0; transition: background-color 0.2s ease, color 0.2s ease; }
     .sidebar-nav a::after { display: none; } 
     .sidebar-nav a:hover, .sidebar-nav a:focus, .sidebar-nav a:active, .sidebar-nav a.active { background-color: var(--primary-yellow) !important; color: var(--bg-black) !important; }
     
@@ -385,24 +315,13 @@ body.menu-open #page-wrapper { transform: translateX(300px); }
     .about-image { margin-bottom: -60px; margin-top: 40px; width: 100%; text-align: center; }
     .about-image img { margin: 0 auto; display: block; }
 
-    /* Força textos genéricos de sessão ao centro */
-    .services-section p, .services-section > p, .services-container > p, .services-section .section-subtitle + p, .services-section h2 + p { 
-        text-align: center !important; margin-bottom: 30px; display: block; width: 100%; 
-    } 
-
-    .services-section .btn, .services-container .btn {
-        margin: 40px auto !important; display: table !important; width: max-content; text-align: center;
-    }
-
+    .services-section p, .services-section > p, .services-container > p, .services-section .section-subtitle + p, .services-section h2 + p { text-align: center !important; margin-bottom: 30px; display: block; width: 100%; } 
+    .services-section .btn, .services-container .btn { margin: 40px auto !important; display: table !important; width: max-content; text-align: center; }
     .services-container { margin-top: 0; flex-direction: column; gap: 0; } 
     
     .service-item { margin-bottom: 20px; min-height: 230px; }
     .service-item:last-child { margin-bottom: 0; }
-
-    /* Garante que os textos dos Cards fiquem à esquerda (Correção do Print 1) */
-    .service-item .info h4, .service-item .info p {
-        text-align: left !important;
-    }
+    .service-item .info h4, .service-item .info p { text-align: left !important; }
 
     @media (hover: none) {
         .service-item:hover { background-color: var(--bg-white); }
@@ -413,57 +332,79 @@ body.menu-open #page-wrapper { transform: translateX(300px); }
         .service-item:active .arrow, .service-item.active .arrow { background: var(--bg-black); color: var(--text-light); border-color: var(--bg-black); }
     }
 
-    /* Primeira Galeria Secundária Empilhada */
     .services-gallery { flex-direction: column; width: 100%; align-items: center; gap: 20px; margin-top: 30px; }
     .services-gallery img, .img-large img { width: 100%; height: auto !important; max-height: none; object-fit: contain !important; }
 
     /* =========================================================================
-       CORREÇÕES DOS CARROSSÉIS (Não cortar bordas e parar 1 a 1)
+       CORREÇÕES DEFINITIVAS DOS CARROSSÉIS (TRAVA DO FLEXBOX E LARGURAS)
        ========================================================================= */
     
-    /* Configuração Mestre de Rolagem */
+    /* Configuração Mestra: O container de fora precisa segurar as setas firmes */
+    .cards-carousel, .gallery-carousel, .clients-carousel {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        max-width: 100%;
+        gap: 15px; /* Espaço entre setas e o bloco móvel */
+        padding: 0;
+    }
+
+    /* O container de dentro que rola: min-width: 0 impede o bug que empurra as setas pra fora */
     .cards-container, .gallery-container, .clients-logos {
-        gap: 10px !important;
+        flex: 1;
+        min-width: 0; /* A TRAVA MÁGICA PARA O BUG DE ROLAGEM */
+        display: flex;
+        gap: 0 !important; /* Remove gap interno para 100% de largura caber certinho */
+        overflow-x: auto;
         scroll-snap-type: x mandatory !important;
-        padding-bottom: 5px; /* Previne que o overflow devore a borda no celular */
+        scrollbar-width: none;
+        padding: 5px 0; /* Espaço extra para sombras de bordas não cortarem */
     }
 
-    /* Trava de Largura e Alinhamento Exato no Centro */
+    /* O item a ser exibido: travado cravado em 100% do bloco móvel */
     .card, .gallery-item, .logo-box {
-        min-width: 100% !important;
         flex: 0 0 100% !important;
+        min-width: 100% !important;
+        max-width: 100% !important;
         scroll-snap-align: center !important;
-        scroll-snap-stop: always !important; /* Impede a rolagem "fantasma" que para no meio */
+        scroll-snap-stop: always !important; /* Para exatamente nele, nunca no meio */
         box-sizing: border-box;
-        transform: translateZ(0); /* Hack de hardware que impede a borda arredondada de "sumir" no iPhone */
+        margin: 0 !important;
+        transform: translateZ(0); /* Evita bug do iOS comer a bordinha */
     }
 
-    /* 1. Diferenciais (Cards com borda preta inteira) */
+    /* Ajuste Fino - Card Diferenciais */
     .card {
         border-radius: 15px !important;
         overflow: hidden !important; 
     }
 
-    /* 2. Galeria de Eventos (Formato Quadrado/Único para todas as fotos) */
+    /* Ajuste Fino - Fotos dos Eventos (Quadrado exato) */
     .gallery-item img {
         width: 100% !important;
-        height: 350px !important; /* Altura padrão para forçar o formato único */
-        object-fit: cover !important; /* Preenche todo o bloco igualmente, sem distorcer */
+        height: 350px !important; 
+        object-fit: cover !important; 
         border-radius: 10px !important;
+        display: block;
     }
 
-    /* 3. Logos dos Clientes (Centralizadas um a um) */
+    /* Ajuste Fino - Logos dos Clientes */
     .logo-box {
         display: flex !important;
         justify-content: center !important;
         align-items: center !important;
-        height: 180px !important; /* Altura padrão para não quebrar o bloco */
+        height: 180px !important; 
         padding: 20px !important;
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
     }
     .logo-box img {
-        max-width: 80% !important;
-        max-height: 100% !important;
-        object-fit: contain !important; /* Apenas contém a logo sem cortar */
+        max-width: 100% !important;
+        max-height: 100px !important; 
+        object-fit: contain !important; 
+        display: block;
     }
 
     .nav-arrow { font-size: 1.2rem; }
