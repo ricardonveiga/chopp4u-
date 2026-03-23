@@ -242,8 +242,8 @@ body.menu-open #page-wrapper { transform: translateX(300px); }
     .footer-content { grid-template-columns: 1fr 1fr; gap: 30px; }
     
     /* Top Bar Mobile - E-mail e WhatsApp lado a lado, CNPJ em baixo centralizado */
-    .top-bar { padding: 10px 2%; } /* Reduzi o padding lateral para dar mais espaço ao texto */
-    .top-bar-container { display: block; } /* Remove o flex column do container pai */
+    .top-bar { padding: 10px 2%; } 
+    .top-bar-container { display: block; } 
     .top-social { display: none !important; }
     
     .top-info-right {
@@ -252,7 +252,7 @@ body.menu-open #page-wrapper { transform: translateX(300px); }
         flex-wrap: wrap;
         justify-content: center;
         align-items: center;
-        font-size: 0.7rem; /* Fonte ligeiramente menor para caber E-mail + Tel na mesma linha */
+        font-size: 0.7rem; 
         color: var(--bg-black);
         font-weight: 600;
         line-height: 1.5;
@@ -262,8 +262,8 @@ body.menu-open #page-wrapper { transform: translateX(300px); }
     .top-info-right span {
         display: inline-flex;
         align-items: center;
-        white-space: nowrap; /* Evita que o próprio texto quebre ao meio */
-        margin: 0; /* Zera as margens para termos controle exato */
+        white-space: nowrap; 
+        margin: 0; 
     }
 
     /* Oculta o primeiro separador original (que ficava entre CNPJ e E-mail) */
@@ -281,7 +281,7 @@ body.menu-open #page-wrapper { transform: translateX(300px); }
     /* CNPJ (força a quebra para a linha de baixo, ocupando 100% da largura e centralizando) */
     .top-info-right span:nth-child(1) {
         order: 4;
-        flex-basis: 100%; /* Força ele a ficar sozinho numa nova linha */
+        flex-basis: 100%; 
         justify-content: center;
         margin-top: 6px;
     }
@@ -333,9 +333,25 @@ body.menu-open #page-wrapper { transform: translateX(300px); }
     .hero-content h1 { font-size: 2.2rem; }
     .section-subtitle { font-size: 0.8rem; }
     
+    /* --- INÍCIO DAS ALTERAÇÕES NA SEÇÃO SOBRE NO MOBILE --- */
     .about-section, .services-section, .differentials-section, .gallery-section, .clients-section, .cta-section { padding: 60px 5%; }
-    .about-image { margin-bottom: -60px; margin-top: 20px; width: 100%; }
     
+    /* Reseta a margem negativa e ajusta a imagem para não estourar e ficar alinhada à esquerda */
+    .about-image { margin-bottom: 20px; margin-top: 20px; width: 100%; text-align: left; }
+    
+    /* Garante que o texto fique alinhado à esquerda como na imagem 4 */
+    .about-text { text-align: left; }
+    
+    /* Aplica a fonte Righteous no título h2 da seção Sobre */
+    .about-text h2 { font-family: var(--font-menu); font-weight: 400; line-height: 1.2; font-size: 2.2rem; }
+    
+    /* Ajusta os parágrafos para alinhamento à esquerda */
+    .about-text p { text-align: left; }
+    
+    /* Ajusta o subtítulo para garantir alinhamento à esquerda */
+    .about-text .section-subtitle { text-align: left; display: block; margin-bottom: 15px; }
+    /* --- FIM DAS ALTERAÇÕES NA SEÇÃO SOBRE --- */
+
     .services-container { margin-top: 30px; }
     .service-item { padding: 15px; border-radius: 20px; }
     .service-item .icon { font-size: 1.5rem; margin-right: 15px; }
