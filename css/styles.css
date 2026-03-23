@@ -429,33 +429,38 @@ body.menu-open #page-wrapper { transform: translateX(300px); }
     .services-section > p { text-align: center; margin-bottom: 30px; } 
 
     /* Modificar container de serviços */
-    .services-container { margin-top: 0; flex-direction: column; gap: 20px; } /* Usei gap e removi margem topo */
+    .services-container { margin-top: 0; flex-direction: column; gap: 0; } 
     
     /* Modificar cards de serviços */
     .service-item {
         display: flex;
         align-items: center;
-        background-color: var(--bg-white); /* Base branca */
+        background-color: var(--bg-white); /* Base SEMPRE branca */
         color: var(--text-dark);
-        padding: 30px; /* Mais padding para o visual dos prints */
+        padding: 30px; 
         border-radius: 100px; /* Formato elíptico */
-        margin-bottom: 0; /* Removi margem e usei gap no container */
+        margin-bottom: 20px; /* Desgruda os cards no mobile */
         cursor: pointer;
         transition: 0.3s;
     }
+    
+    /* Remove a margem do último card para não somar com a margem do botão */
+    .service-item:last-child {
+        margin-bottom: 0;
+    }
 
-    /* Cores no clique / ativo */
+    /* Cores no clique / ativo (Fica amarelo apenas nestes estados) */
     .service-item:active,
     .service-item:focus,
-    .service-item.active { /* Removi :hover e adicionei :active, :focus, .active */
+    .service-item.active { 
         background-color: var(--primary-yellow);
     }
 
     /* Ícone grande e colorido */
     .service-item .icon {
-        font-size: 3rem; /* Tamanho maior */
+        font-size: 3rem; 
         margin-right: 25px;
-        color: var(--primary-yellow); /* Cor padrão amarela */
+        color: var(--primary-yellow); 
     }
 
     /* Cor do ícone quando o card está ativo/clicado (preto) */
@@ -470,17 +475,17 @@ body.menu-open #page-wrapper { transform: translateX(300px); }
 
     .service-item .arrow {
         margin-left: auto;
-        width: 40px; /* Tamanho maior da arrow */
+        width: 40px; 
         height: 40px;
         border-radius: 50%;
-        border: 2px solid var(--text-dark); /* Borda mais grossa e preta */
-        background-color: var(--bg-white); /* Fundo branco */
+        border: 2px solid var(--text-dark); 
+        background-color: var(--bg-white); 
         display: flex;
         justify-content: center;
         align-items: center;
         flex-shrink: 0;
         transition: 0.3s;
-        color: var(--text-dark); /* Cor da seta preta */
+        color: var(--text-dark); 
     }
 
     /* Comportamento da arrow quando o card está ativo/clicado (fundo preto, seta branca) */
@@ -488,15 +493,15 @@ body.menu-open #page-wrapper { transform: translateX(300px); }
     .service-item:focus .arrow,
     .service-item.active .arrow {
         background: var(--bg-black);
-        color: var(--text-light); /* Seta branca */
+        color: var(--text-light); 
         border-color: var(--bg-black);
     }
 
     /* Centralizar o botão na seção de serviços (usando margem automática) */
     .services-section .btn {
-        margin: 40px auto 0;
-        display: block; /* Mudei para block para usar margem automática */
-        width: fit-content; /* Para não ocupar a largura toda */
+        margin: 30px auto; /* Centraliza horizontalmente e dá respiro em cima e embaixo */
+        display: block; 
+        width: fit-content; 
     }
     
     .card, .gallery-item, .logo-box { min-width: 100%; }
