@@ -9,6 +9,29 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Righteous&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/styles.css">
+    
+    <style>
+        @media (max-width: 992px) {
+            .top-info-right {
+                display: flex !important;
+                flex-direction: row !important;
+                flex-wrap: nowrap !important;
+                justify-content: center !important;
+                align-items: center !important;
+                gap: 15px !important;
+                width: 100% !important;
+            }
+            .top-info-right span {
+                margin: 0 !important;
+                width: auto !important;
+                flex-basis: auto !important;
+                font-size: 0.65rem !important;
+            }
+            .top-info-right span:nth-child(1) { order: 2 !important; } /* CNPJ na direita */
+            .top-info-right span.separator { display: none !important; }
+            .top-info-right span.phone-number { order: 1 !important; } /* WhatsApp na esquerda */
+        }
+    </style>
 </head>
 <body>
 
