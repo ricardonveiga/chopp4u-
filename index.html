@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Serviços - Chopp 4u!</title>
+    <title>Chopp 4u!</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Righteous&display=swap" rel="stylesheet">
@@ -35,6 +35,19 @@
 </head>
 <body>
 
+    <div id="age-gate" class="age-gate-overlay">
+        <div class="age-gate-box">
+            <img src="images/logo-chopp-4u-atualizado.svg" alt="Chopp 4U! Logo">
+            <p>Olá! Bem-vindo a Chopp 4U!</p>
+            <p>Antes de continuar, precisamos confirmar sua idade.</p>
+            <h3>VOCÊ TEM 18 ANOS OU MAIS?</h3>
+            <div class="age-gate-buttons">
+                <button id="btn-no-age" class="btn btn-outline-dark">Não</button>
+                <button id="btn-yes-age" class="btn btn-solid-yellow">Sim</button>
+            </div>
+        </div>
+    </div>
+
     <aside id="sidebar" class="sidebar">
         <button id="close-btn" class="close-btn"><i class="fas fa-times"></i></button>
         
@@ -48,9 +61,9 @@
         
         <nav class="sidebar-nav">
             <ul>
-                <li><a href="index.html">HOME</a></li>
+                <li><a href="index.html" class="active">HOME</a></li>
                 <li><a href="quem-somos.html">QUEM SOMOS</a></li>
-                <li><a href="servicos.html" class="active">SERVIÇOS</a></li>
+                <li><a href="servicos.html">SERVIÇOS</a></li>
                 <li><a href="galeria.html">GALERIA</a></li>
                 <li><a href="clientes.html">CLIENTES</a></li>
             </ul>
@@ -112,9 +125,9 @@
                 </div>
                 <nav class="desktop-nav">
                     <ul>
-                        <li><a href="index.html">HOME</a></li>
+                        <li><a href="index.html" class="active">HOME</a></li>
                         <li><a href="quem-somos.html">QUEM SOMOS</a></li>
-                        <li><a href="servicos.html" class="active">SERVIÇOS</a></li>
+                        <li><a href="servicos.html">SERVIÇOS</a></li>
                         <li><a href="galeria.html">GALERIA</a></li>
                         <li><a href="clientes.html">CLIENTES</a></li>
                     </ul>
@@ -125,46 +138,115 @@
             </div>
         </header>
 
-        <div class="page-breadcrumb">
-            <a href="index.html">Home</a> &nbsp; > &nbsp; Serviços
-        </div>
-
-        <section class="page-services-section">
-            <div class="section-header text-center">
-                <span class="section-subtitle dark-line">Chopp4U! - Nossos Serviços</span>
-                <h2>Tudo para deixar seu evento inesquecível!</h2>
+        <section id="hero" class="hero-slider">
+            <div class="slide active" style="background-image: url('images/banner-1.jpg'); transition: background-image 0.5s ease-in-out;">
+                <div class="hero-content">
+                    <h1>O sabor que torna seus momentos inesquecíveis.</h1>
+                    <p>A Chopp4U! leva até você o Chope perfeito, gelado e cremoso, para brindar com quem mais importa.</p>
+                    <a href="https://wa.me/5511922886539" target="_blank" class="btn btn-primary">SOLICITE UM ORÇAMENTO</a>
+                </div>
             </div>
             
-            <div class="services-grid">
-                <div class="srv-card">
-                    <img src="images/triplochopps.jpg" alt="Chope Artesanal">
-                    <div class="srv-content">
-                        <div class="icon"><img src="images/iconecaneca.svg" alt="Caneca"></div>
-                        <h4>Venda de Chope Artesanal</h4>
-                        <p>Venda de Chope Pilsen, Lager, Hoppy Lager, American IPA, Black, Weiss e Vinho.</p>
-                    </div>
-                </div>
-                
-                <div class="srv-card">
-                    <img src="images/duplochopps.jpg" alt="Staff">
-                    <div class="srv-content">
-                        <div class="icon"><img src="images/iconecaneca.svg" alt="Caneca"></div>
-                        <h4>Serviços de Staff</h4>
-                        <p>Para eventos de médio e grande porte, contrate nossos Staffs que proporcionarão maior comodidade e tranquilidade para seu evento.</p>
-                    </div>
-                </div>
-                
-                <div class="srv-card">
-                    <img src="images/growlers.jpg" alt="Growlers">
-                    <div class="srv-content">
-                        <div class="icon"><img src="images/iconecaneca.svg" alt="Caneca"></div>
-                        <h4>Venda de Growlers</h4>
-                        <p>De Quarta à Domingo, experimente nossos Growlers sempre frescos e gelados! Atendemos por encomenda com prazo de 24hrs.</p>
-                    </div>
+            <div class="slide" style="background-image: url('images/banner-2.jpg');">
+                <div class="hero-content">
+                    <h1>A solução completa para seu evento.</h1>
+                    <p>Chope gelado, estrutura completa e atendimento de qualidade.</p>
+                    <a href="https://wa.me/5511922886539" target="_blank" class="btn btn-primary">SOLICITE UM ORÇAMENTO</a>
                 </div>
             </div>
-            <div class="text-center" style="margin-top: 50px;">
-                <a href="https://wa.me/5511922886539" target="_blank" class="btn btn-outline-light square-btn">ENTRE EM CONTATO</a>
+
+            <div class="slide" style="background-image: url('images/banner-3.jpg');">
+                <div class="hero-content">
+                    <h1>Sua festa, nosso compromisso.</h1>
+                    <p>A melhor experiência em chope artesanal, direto na sua casa ou empresa.</p>
+                    <a href="https://wa.me/5511922886539" target="_blank" class="btn btn-primary">SOLICITE UM ORÇAMENTO</a>
+                </div>
+            </div>
+            
+            <div class="hero-pagination">
+                <div class="page-item active">
+                    <span class="num">01</span>
+                    <span class="text">FAÇA O SEU EVENTO</span>
+                </div>
+                <div class="page-item">
+                    <span class="num">02</span>
+                    <span class="text">EVENTOS PARTICULARES</span>
+                </div>
+                <div class="page-item">
+                    <span class="num">03</span>
+                    <span class="text">EVENTOS CORPORATIVOS</span>
+                </div>
+            </div>
+
+            <div class="mobile-hero-nav" style="display: none;">
+                <div class="nav-controls">
+                    <span id="prev-slide-btn">ANT</span> <span class="sep">/</span> <span id="next-slide-btn">PRÓX</span>
+                </div>
+                <div class="nav-counter"><span id="current-slide-num">01</span></div>
+            </div>
+        </section>
+
+        <section id="about" class="about-section">
+            <div class="about-container">
+                <div class="about-image">
+                    <img src="images/img-sobre-atualizado.png" alt="Copo de Chope Perfeito">
+                </div>
+                <div class="about-text">
+                    <span class="section-subtitle">Chopp4U! - O Chope perfeito para seu evento</span>
+                    <h2>Mais sabor, mais diversão, mais momentos para brindar!</h2>
+                    <p>Sabemos que um dos maiores prazeres da vida é estar junto às pessoas que mais gostamos, nestas ocasiões, nada melhor que um bom Chope para acompanhar sua confraternização.</p>
+                    <p>Pensando nisso, a <strong>Chopp4U!</strong> oferece Chope de alta qualidade e diversos estilos, além de excelência em prestação de serviço, contribuindo para que seu evento seja ainda mais prazeroso.</p>
+                    <h3>Venha brindar com a gente!!!</h3>
+                    <a href="quem-somos.html" class="btn btn-outline-dark">SAIBA MAIS</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="services" class="services-section">
+            <div class="section-header text-center">
+                <span class="section-subtitle">Chopp4U! - Nossos Serviços</span>
+                <h2>Tudo para deixar seu evento inesquecível!</h2>
+            </div>
+            <div class="services-container">
+                <div class="services-list">
+                    <p>Faça um orçamento completo.</p>
+                    
+                    <div class="service-item" data-target="chope" onclick="window.location.href='servicos.html'">
+                        <div class="icon"><img src="images/iconecaneca.svg" alt="Ícone Caneca"></div>
+                        <div class="info">
+                            <h4>Venda de Chope Artesanal</h4>
+                            <p>Venda de Chope Pilsen, Lager, Hoppy Lager, American IPA, Black, Weiss e Vinho.</p>
+                        </div>
+                        <div class="arrow"><i class="fas fa-chevron-right"></i></div>
+                    </div>
+                    
+                    <div class="service-item" data-target="staff" onclick="window.location.href='servicos.html'">
+                        <div class="icon"><img src="images/iconecaneca.svg" alt="Ícone Staff"></div>
+                        <div class="info">
+                            <h4>Serviços de Staff</h4>
+                            <p>Para eventos de médio e grande porte, contrate nossos Staffs que proporcionarão maior comodidade e tranquilidade.</p>
+                        </div>
+                        <div class="arrow"><i class="fas fa-chevron-right"></i></div>
+                    </div>
+                    
+                    <div class="service-item" data-target="growlers" onclick="window.location.href='servicos.html'">
+                        <div class="icon"><img src="images/iconecaneca.svg" alt="Ícone Growlers"></div>
+                        <div class="info">
+                            <h4>Venda de Growlers</h4>
+                            <p>De Quarta à Domingo, experimente nossos Growlers sempre frescos e gelados! Atendemos por encomenda.</p>
+                        </div>
+                        <div class="arrow"><i class="fas fa-chevron-right"></i></div>
+                    </div>
+                    
+                    <br>
+                    <a href="https://wa.me/5511922886539" target="_blank" class="btn btn-outline-light">ENTRE EM CONTATO</a>
+                </div>
+                
+                <div class="services-gallery">
+                    <div class="img-large">
+                        <img src="images/Tudo-para-deixar-seu-evento-inesquecIvel 1.png" alt="Serviço 1">
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -325,7 +407,7 @@
                         <li><i class="far fa-envelope"></i> vendas@chopp4u.com.br</li>
                         <li><i class="fab fa-instagram"></i> <a href="https://www.instagram.com/chopp4u/" target="_blank" style="color: inherit;">@chopp4u</a></li>
                         <li><i class="far fa-check-square"></i> Chopp4U - D.A. Brambilla Serviços e Comércio de Bebidas - CNPJ 31.854.260/0001-58</li>
-                        <li><i class="fas fa-map-marker-alt"></i> Endereço Administrativo: Rua Raul Pompéia 800, São Paulo - SP</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Endereço Administrativo: Rua Raul Pompéia 800, CEP - 05025-010 - São Paulo - SP</li>
                     </ul>
                 </div>
             </div>
