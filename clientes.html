@@ -9,9 +9,52 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Righteous&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/styles.css">
+    
+    <style>
+        /* Ajuste do Top Bar para Mobile */
+        @media (max-width: 992px) {
+            .top-info-right {
+                display: flex !important;
+                flex-direction: row !important;
+                justify-content: center !important;
+                align-items: center !important;
+                gap: 15px !important;
+                width: 100% !important;
+            }
+            .top-info-right span {
+                font-size: 0.65rem !important;
+            }
+            .top-info-right span.separator { display: none !important; }
+        }
+
+        /* Botão WhatsApp Radiante/Fixo no Mobile */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 20px;
+            right: 20px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+        }
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            color: #fff;
+        }
+    </style>
 </head>
 <body>
-    
+
     <aside id="sidebar" class="sidebar">
         <button id="close-btn" class="close-btn"><i class="fas fa-times"></i></button>
         
@@ -51,7 +94,7 @@
                 <li><i class="far fa-check-square"></i> Chopp4U - CNPJ 31.854.260/0001-58</li>
                 <li><i class="fas fa-map-marker-alt"></i> Rua Raul Pompéia 800, São Paulo - SP</li>
             </ul>
-            <div class="sidebar-footer-copy">© Copyright 2025 | Chopp4U! | ADM | Desenvolvido por smsites.com.br</div>
+            <div class="sidebar-footer-copy">© Copyright 2026 | Chopp4U! | ADM</div>
         </div>
     </aside>
     
@@ -68,8 +111,6 @@
                 <div class="top-info-right">
                     <span><i class="fas fa-check"></i> CNPJ 31.854.260/0001-58</span>
                     <span class="separator">|</span>
-                    <span><i class="far fa-envelope"></i> vendas@chopp4u.com.br</span>
-                    <span class="separator">|</span>
                     <span class="phone-number">
                         <a href="https://wa.me/5511922886539" target="_blank" style="color: inherit;"><i class="fab fa-whatsapp"></i> +55 11 92288-6539</a>
                     </span>
@@ -84,10 +125,6 @@
                 </div>
                 <div class="logo">
                     <a href="index.html"><img src="images/logo-chopp-4u-atualizado.svg" alt="Chopp 4U! Logo"></a>
-                </div>
-                <div class="mobile-header-social" style="display: none;">
-                    <a href="https://www.facebook.com/Chopp4u/" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://www.instagram.com/chopp4u/" target="_blank"><i class="fab fa-instagram"></i></a>
                 </div>
                 <nav class="desktop-nav">
                     <ul>
@@ -130,13 +167,22 @@
         </section>
         
         <footer class="footer">
+            <div class="newsletter-bar">
+                <div>
+                    <h4>FIQUE CONECTADO</h4>
+                    <p>Leve o melhor chope para seu evento com a Chopp4U!</p>
+                </div>
+                <div class="fique-conectado-social">
+                    <a href="https://www.facebook.com/Chopp4u/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/chopp4u/" target="_blank"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
 
             <div class="footer-content">
                 <div class="footer-col brand-col">
                     <img src="images/logo-chopp-4u-rodape.svg" alt="Chopp 4U! Logo" class="footer-logo">
-                    <p>A Chopp4U oferece Chope de alta qualidade e diversos estilos, além de excelência em prestação de serviço, contribuindo para que seu evento seja ainda mais prazeroso.</p>
+                    <p>A Chopp4U oferece Chope de alta qualidade e diversos estilos, além de excelência em prestação de serviço.</p>
                     <p class="warning">AVISO: PRODUTO DESTINADO A MAIORES DE 18 ANOS.</p>
-                    <p class="warning">PROIBIDA A VENDA DE BEBIDA ALCOÓLICA PARA MENORES DE 18 ANOS.</p>
                     <div class="footer-social">
                         <p>REDES SOCIAIS</p>
                         <a href="https://www.facebook.com/Chopp4u/" target="_blank"><i class="fab fa-facebook-f"></i></a>
@@ -151,17 +197,6 @@
                         <li><a href="quem-somos.html"><i class="fas fa-plus"></i> Quem Somos</a></li>
                         <li><a href="servicos.html"><i class="fas fa-plus"></i> Serviços</a></li>
                         <li><a href="galeria.html"><i class="fas fa-plus"></i> Galeria</a></li>
-                        <li><a href="clientes.html"><i class="fas fa-plus"></i> Contato</a></li>
-                        <li><a href="politica-de-privacidade.html"><i class="fas fa-plus"></i> Política de Privacidade e Termos de Uso</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-col">
-                    <h4>SERVIÇOS</h4>
-                    <ul>
-                        <li><a href="servicos.html"><i class="fas fa-arrow-right"></i> Venda de Chope Artesanal</a></li>
-                        <li><a href="servicos.html"><i class="fas fa-arrow-right"></i> Serviços de Staff</a></li>
-                        <li><a href="servicos.html"><i class="fas fa-arrow-right"></i> Venda de Growlers</a></li>
                     </ul>
                 </div>
 
@@ -170,20 +205,22 @@
                     <ul>
                         <li><i class="fab fa-whatsapp"></i> +55 11 92288-6539</li>
                         <li><i class="far fa-envelope"></i> vendas@chopp4u.com.br</li>
-                        <li><i class="fab fa-instagram"></i> <a href="https://www.instagram.com/chopp4u/" target="_blank" style="color: inherit;">@chopp4u</a></li>
-                        <li><i class="far fa-check-square"></i> Chopp4U - D.A. Brambilla Serviços e Comércio de Bebidas - CNPJ 31.854.260/0001-58</li>
-                        <li><i class="fas fa-map-marker-alt"></i> Endereço Administrativo: Rua Raul Pompéia 800, São Paulo - SP</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Rua Raul Pompéia 800, São Paulo - SP</li>
                     </ul>
                 </div>
             </div>
 
             <div class="footer-bottom">
                 <p>© Copyright 2026 | Chopp4U! |</p>
-                <a href="#" class="scroll-top"><i class="fas fa-arrow-up"></i></a>
+                <a href="#header" class="scroll-top"><i class="fas fa-arrow-up"></i></a>
             </div>
         </footer>
     
     </div>
+
+    <a href="https://wa.me/5511922886539" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
 
     <script src="js/script.js"></script>
 </body>
